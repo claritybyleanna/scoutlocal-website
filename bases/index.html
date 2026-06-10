@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bases | ScoutLocal</title>
+<meta name="description" content="Explore the ScoutLocal base expansion map and join the waitlist for your installation.">
+<link rel="icon" href="../favicon.ico">
+<link rel="icon" type="image/svg+xml" href="../wayfinder.svg">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css?v=20260607-1">
+<style>
+  :root {
+    --cream:    #FAF1EA;
+    --cream-2:  #F4E4D5;
+    --paper:    #FCF6F0;
+    --lpeach:   #FBC8A8;
+    --peach:    #FF9776;
+    --coral:    #FF6B47;
+    --deep:     #E54A2A;
+    --ink:      #1A1612;
+    --ink-2:    #2B241D;
+    --mute:     rgba(26,22,18,0.55);
+    --mute-2:   rgba(26,22,18,0.40);
+    --hairline: rgba(26,22,18,0.10);
+    --hair-2:   rgba(26,22,18,0.06);
+    --sage:     #5F7A54;
+    --sage-bg:  #DCE6D3;
+  }
+  /* scope all resets + font overrides to <main> so they don't affect the
+     shared site-header or site-footer which rely on site.css */
+  main * { margin: 0; padding: 0; box-sizing: border-box; }
+  main {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01";
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--mute);
+  }
+
+  /* ───────── hero ───────── */
+  .hero { position: relative; padding: 88px 0 36px; overflow: hidden; }
+  .bloom { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; z-index: 0; }
+  .bloom.a { width: 760px; height: 760px; right: -200px; top: -260px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,107,71,0.55) 0%, rgba(255,151,118,0.4) 35%, rgba(251,200,168,0) 70%); }
+  .hero-inner { position: relative; z-index: 1; max-width: 820px; }
+  .hero h1 {
+    font-size: clamp(46px, 7vw, 88px); font-weight: 600;
+    letter-spacing: -0.04em; line-height: 0.96; margin: 20px 0 0;
+    text-wrap: balance;
+  }
+  .hero h1 em { font-style: normal; color: var(--coral); }
+  .hero .lede {
+    font-size: clamp(18px, 2.1vw, 22px); color: var(--ink-2);
+    max-width: 600px; margin-top: 24px; text-wrap: pretty;
+  }
+  .stat-row { display: flex; gap: 0; margin-top: 44px; flex-wrap: wrap; }
+  .stat { padding-right: 48px; margin-right: 48px; border-right: 1px solid var(--hairline); }
+  .stat:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+  .stat-n { font-size: 56px; font-weight: 500; letter-spacing: -0.04em; line-height: 0.9; }
+  .stat-n .unit { font-size: 26px; color: var(--mute); letter-spacing: -0.02em; }
+  .stat-l { font-size: 13px; color: var(--mute); text-transform: lowercase; letter-spacing: 0.01em; margin-top: 10px; max-width: 19ch; }
+
+  /* ───────── map section ───────── */
+  .map-section { padding: 56px 0 40px; }
+  .map-card {
+    position: relative;
+    display: grid; grid-template-columns: 1.55fr 1fr; gap: 0;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    border-radius: 28px; overflow: hidden;
+    box-shadow: 0 40px 80px -50px rgba(60,30,10,0.35);
+  }
+  .map-pane { position: relative; padding: 28px 28px 20px; border-right: 1px solid var(--hairline); }
+  .map-pane-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  .map-pane-head h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .map-wrap { position: relative; width: 100%; }
+  .map-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .us-shape { fill: var(--cream-2); stroke: rgba(26,22,18,0.16); stroke-width: 1.1; stroke-linejoin: round; }
+  .route { fill: none; stroke: var(--coral); stroke-width: 2; stroke-linecap: round;
+    stroke-dasharray: 2 9; opacity: 0.55; }
+
+  /* pins (HTML overlay) */
+  .pin {
+    position: absolute; transform: translate(-50%, -50%);
+    cursor: pointer; z-index: 3;
+  }
+  .pin-dot {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+    color: var(--cream); background: var(--ink-2);
+    border: 2px solid var(--paper);
+    box-shadow: 0 4px 10px -3px rgba(40,20,10,0.5);
+    transition: transform .14s ease, background .14s ease;
+  }
+  .pin:hover .pin-dot { transform: scale(1.18); }
+  .pin.sel .pin-dot { box-shadow: 0 0 0 4px rgba(255,107,71,0.25), 0 4px 10px -3px rgba(40,20,10,0.5); }
+  .pin.building .pin-dot { background: var(--coral); }
+  .pin.live .pin-dot {
+    width: 30px; height: 30px; background: var(--sage);
+    box-shadow: 0 0 0 0 rgba(95,122,84,0.5); animation: livepulse 2.4s infinite;
+  }
+  @keyframes livepulse {
+    0% { box-shadow: 0 0 0 0 rgba(95,122,84,0.45); }
+    70% { box-shadow: 0 0 0 14px rgba(95,122,84,0); }
+    100% { box-shadow: 0 0 0 0 rgba(95,122,84,0); }
+  }
+  .pin-label {
+    position: absolute; top: 50%; left: calc(100% + 8px); transform: translateY(-50%);
+    white-space: nowrap; font-size: 11.5px; font-weight: 600; letter-spacing: -0.01em;
+    color: var(--ink); background: rgba(252,246,240,0.9); padding: 2px 7px; border-radius: 6px;
+    border: 1px solid var(--hairline); opacity: 0; pointer-events: none; transition: opacity .14s ease;
+  }
+  .pin.live .pin-label, .pin.sel .pin-label, .pin:hover .pin-label { opacity: 1; }
+  .pin.flip .pin-label { left: auto; right: calc(100% + 8px); }
+  .map-legend { display: flex; gap: 18px; margin-top: 14px; flex-wrap: wrap; }
+  .lg { display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--mute); text-transform: lowercase; letter-spacing: 0.02em; }
+  .lg .sw { width: 11px; height: 11px; border-radius: 50%; }
+
+  /* detail rail */
+  .rail { display: flex; flex-direction: column; min-width: 0; }
+  .detail { padding: 28px 28px 24px; border-bottom: 1px solid var(--hairline); }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 6px 11px; border-radius: 999px;
+  }
+  .status-pill .sd { width: 7px; height: 7px; border-radius: 50%; }
+  .status-pill.live { background: var(--sage-bg); color: var(--sage); }
+  .status-pill.live .sd { background: var(--sage); }
+  .status-pill.building { background: #FBD8C8; color: var(--deep); }
+  .status-pill.building .sd { background: var(--coral); }
+  .status-pill.queued { background: var(--cream-2); color: var(--ink-2); }
+  .status-pill.queued .sd { background: var(--mute); }
+  .detail h2 { font-size: 38px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; margin-top: 16px; }
+  .detail .legacy { font-size: 13px; color: var(--mute); margin-top: 7px; }
+  .detail-meta { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+  .dm-row { display: flex; align-items: center; gap: 11px; font-size: 14px; color: var(--ink-2); }
+  .dm-row svg { flex: none; color: var(--mute); }
+  .momentum { margin-top: 22px; }
+  .mom-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 9px; }
+  .mom-head .n { font-size: 15px; font-weight: 600; }
+  .mom-head .n b { color: var(--coral); }
+  .mom-head .lbl { font-size: 12px; color: var(--mute); text-transform: lowercase; }
+  .bar { height: 8px; border-radius: 999px; background: var(--cream-2); overflow: hidden; }
+  .bar > span { display: block; height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--peach), var(--coral)); width: 0; transition: width .7s cubic-bezier(.2,.8,.2,1); }
+  .btn {
+    appearance: none; border: 0; cursor: pointer; font-family: inherit;
+    width: 100%; margin-top: 22px; padding: 14px 18px; border-radius: 14px;
+    font-size: 15px; font-weight: 600; color: var(--cream); background: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    transition: transform .12s ease, background .12s ease;
+  }
+  .btn:hover { transform: translateY(-1px); background: var(--ink-2); }
+  .btn.joined { background: var(--sage-bg); color: var(--sage); cursor: default; }
+  .btn.joined:hover { transform: none; }
+  .btn.beta { background: var(--coral); }
+  .btn.beta:hover { background: var(--deep); }
+  .detail .helper { font-size: 12px; color: var(--mute); text-align: center; margin-top: 12px; text-wrap: pretty; }
+
+  /* rollout list */
+  .rollout { padding: 18px 14px 16px; overflow-y: auto; max-height: 268px; }
+  .rollout-head { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--mute); padding: 4px 14px 10px; }
+  .ro-item {
+    display: grid; grid-template-columns: 26px 1fr auto; align-items: center; gap: 12px;
+    width: 100%; text-align: left; appearance: none; border: 0; background: transparent;
+    cursor: pointer; font-family: inherit; padding: 9px 14px; border-radius: 12px;
+    transition: background .12s ease;
+  }
+  .ro-item:hover { background: var(--hair-2); }
+  .ro-item.sel { background: rgba(255,107,71,0.08); }
+  .ro-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--mute); }
+  .ro-item.sel .ro-num { color: var(--coral); }
+  .ro-body { min-width: 0; }
+  .ro-name { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ro-loc { font-size: 11.5px; color: var(--mute); text-transform: lowercase; }
+  .ro-status { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .ro-status.live { background: var(--sage-bg); color: var(--sage); }
+  .ro-status.building { background: #FBD8C8; color: var(--deep); }
+  .ro-status.queued { background: var(--cream-2); color: var(--mute); }
+
+  /* ───────── scouting ───────── */
+  .scout { padding: 64px 0 40px; position: relative; }
+  .scout-head { max-width: 720px; }
+  .scout-head h2 { font-size: clamp(34px, 5vw, 58px); font-weight: 600; letter-spacing: -0.035em; line-height: 0.98; margin-top: 16px; text-wrap: balance; }
+  .scout-head h2 em { font-style: normal; color: var(--coral); }
+  .scout-head p { font-size: 18px; color: var(--ink-2); margin-top: 18px; max-width: 560px; text-wrap: pretty; }
+
+  .controls { display: flex; align-items: center; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .search {
+    position: relative; flex: 1; min-width: 240px;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--paper); border: 1px solid var(--hairline);
+    border-radius: 14px; padding: 12px 16px;
+  }
+  .search:focus-within { border-color: rgba(26,22,18,0.28); }
+  .search svg { color: var(--mute); flex: none; }
+  .search input { border: 0; outline: 0; background: transparent; font-family: inherit; font-size: 15px; color: var(--ink); width: 100%; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filt {
+    appearance: none; border: 1px solid var(--hairline); background: var(--paper); cursor: pointer;
+    font-family: inherit; font-size: 13px; font-weight: 500; color: var(--ink-2);
+    padding: 10px 16px; border-radius: 999px; transition: all .12s ease; text-transform: lowercase;
+  }
+  .filt:hover { border-color: rgba(26,22,18,0.25); }
+  .filt.on { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  .lead-note {
+    display: flex; align-items: center; gap: 10px; margin-top: 22px;
+    font-size: 13px; color: var(--mute);
+  }
+  .lead-note b { color: var(--coral); font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; margin-top: 20px; }
+  .bcard {
+    position: relative; background: var(--paper); border: 1px solid var(--hairline);
+    border-radius: 18px; padding: 18px 18px 16px;
+    display: flex; flex-direction: column; gap: 0;
+    transition: transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s ease, border-color .18s ease;
+  }
+  .bcard:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -24px rgba(60,30,10,0.3); border-color: rgba(26,22,18,0.18); }
+  .bcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .bc-rank { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--mute); }
+  .bc-rank.top3 { color: var(--coral); }
+  .bc-name { font-size: 18px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.1; margin-top: 10px; }
+  .bc-sub { font-size: 12.5px; color: var(--mute); text-transform: lowercase; margin-top: 4px; }
+  .bc-region { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-2); background: var(--cream-2); padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+  .bc-mom { margin-top: 16px; }
+  .bc-mom-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  .bc-count { font-size: 13.5px; font-weight: 600; }
+  .bc-count b { color: var(--coral); }
+  .bc-waiting { font-size: 11px; color: var(--mute); text-transform: lowercase; }
+  .bc-btn {
+    appearance: none; border: 1px solid var(--ink); background: transparent; cursor: pointer;
+    font-family: inherit; font-size: 13.5px; font-weight: 600; color: var(--ink);
+    margin-top: 16px; padding: 11px; border-radius: 12px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all .12s ease;
+  }
+  .bc-btn:hover { background: var(--ink); color: var(--cream); }
+  .bc-btn.joined { background: var(--sage-bg); color: var(--sage); border-color: transparent; cursor: default; }
+  .bc-btn.joined:hover { background: var(--sage-bg); color: var(--sage); }
+  .bcard.bumped { animation: bump .5s cubic-bezier(.2,.8,.2,1); }
+  @keyframes bump { 0% { transform: scale(1); } 35% { transform: scale(1.035); box-shadow: 0 0 0 2px var(--coral); } 100% { transform: scale(1); } }
+  .empty { grid-column: 1/-1; text-align: center; padding: 48px; color: var(--mute); font-size: 15px; }
+
+  /* ───────── footer cta ───────── */
+  .footer { position: relative; margin-top: 56px; background: var(--ink); color: var(--cream); overflow: hidden; }
+  .footer .bloom-f { position: absolute; width: 760px; height: 760px; right: -200px; top: -300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,140,90,0.28) 0%, rgba(0,0,0,0) 62%); filter: blur(50px); }
+  .footer-inner { position: relative; padding: 80px 0 40px; }
+  .footer h2 { font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.035em; line-height: 1; max-width: 16ch; text-wrap: balance; }
+  .footer h2 .dot { color: var(--coral); }
+  .footer p { color: rgba(250,241,234,0.7); font-size: 18px; margin-top: 18px; max-width: 48ch; }
+  .signup { display: flex; gap: 10px; margin-top: 30px; max-width: 480px; }
+  .signup input {
+    flex: 1; border: 1px solid rgba(250,241,234,0.2); background: rgba(250,241,234,0.06);
+    border-radius: 14px; padding: 14px 16px; font-family: inherit; font-size: 15px;
+    color: var(--cream); outline: 0;
+  }
+  .signup input::placeholder { color: rgba(250,241,234,0.45); }
+  .signup input:focus { border-color: rgba(250,241,234,0.45); }
+  .signup button {
+    appearance: none; border: 0; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600;
+    color: var(--ink); background: var(--cream); padding: 0 24px; border-radius: 14px; white-space: nowrap;
+    transition: transform .12s ease;
+  }
+  .signup button:hover { transform: translateY(-1px); }
+  .foot-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 64px; padding-top: 28px; border-top: 1px solid rgba(250,241,234,0.14); flex-wrap: wrap; gap: 14px; }
+  .foot-meta .mono { font-size: 12px; color: rgba(250,241,234,0.5); text-transform: lowercase; letter-spacing: 0.04em; }
+
+  /* ───────── toast ───────── */
+  .toast-wrap { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 10px; align-items: center; pointer-events: none; }
+  .toast {
+    background: var(--ink); color: var(--cream); padding: 13px 20px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; box-shadow: 0 16px 40px -16px rgba(0,0,0,0.5);
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0; transform: translateY(12px); transition: opacity .3s ease, transform .3s ease;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast .tk { color: var(--peach); font-weight: 700; }
+  .toast .chk { width: 18px; height: 18px; border-radius: 50%; background: var(--sage); display: inline-flex; align-items: center; justify-content: center; color: var(--cream); font-size: 11px; }
+
+  @media (max-width: 920px) {
+    .map-card { grid-template-columns: 1fr; }
+    .map-pane { border-right: 0; border-bottom: 1px solid var(--hairline); }
+    .rollout { max-height: none; }
+  }
+  @media (max-width: 560px) {
+    .stat { padding-right: 28px; margin-right: 28px; }
+    .stat-n { font-size: 42px; }
+    .signup { flex-direction: column; }
+    .signup button { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span>
+      <span>scout local</span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
+    <nav class="nav-links" id="site-menu" aria-label="Primary navigation">
+      <a href="../families/">Families</a>
+      <a href="../businesses/">Businesses</a>
+      <a href="../how-it-works/">How it works</a>
+      <a href="../bases/" aria-current="page">Bases</a>
+      <a class="nav-cta" href="../join-beta/">Join beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ───────── hero ───────── -->
+<section class="hero">
+  <div class="bloom a"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow">the expansion map</span>
+      <h1>We're scouting <em>your base</em> next.</h1>
+      <p class="lede">ScoutLocal is live at Fort Polk and rolling out across the Army — one base at a time, each one mapped by hand. Find yours, and help it jump the line.</p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-n">1</div>
+          <div class="stat-l">base live in beta today</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">8</div>
+          <div class="stat-l">on the rollout map</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n"><span id="totalWaiting">0</span></div>
+          <div class="stat-l">families on the waitlists</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── map ───────── -->
+<section class="map-section">
+  <div class="wrap">
+    <div class="map-card">
+      <div class="map-pane">
+        <div class="map-pane-head">
+          <h3>The rollout route</h3>
+          <span class="eyebrow" style="font-size:11px">conus · 2026–2027</span>
+        </div>
+        <div class="map-wrap" id="mapWrap">
+          <svg id="mapSvg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+            <path id="usShape" class="us-shape" d=""/>
+            <polyline id="routeLine" class="route" points=""/>
+          </svg>
+          <!-- pins injected here -->
+        </div>
+        <div class="map-legend">
+          <span class="lg"><span class="sw" style="background:var(--sage)"></span>beta live</span>
+          <span class="lg"><span class="sw" style="background:var(--coral)"></span>building now</span>
+          <span class="lg"><span class="sw" style="background:var(--ink-2)"></span>on the roadmap</span>
+        </div>
+      </div>
+
+      <div class="rail">
+        <div class="detail" id="detail"><!-- injected --></div>
+        <div class="rollout-head">rollout order</div>
+        <div class="rollout" id="rolloutList"><!-- injected --></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── scouting ───────── -->
+<section class="scout" id="scout">
+  <div class="wrap">
+    <div class="scout-head">
+      <span class="eyebrow">scouting everywhere else</span>
+      <h2>Don't see your base? <em>Put it on the map.</em></h2>
+      <p>Every other Army installation is fair game. The bases with the most families waiting get scouted first — so add your voice and pull yours up the list.</p>
+    </div>
+
+    <div class="controls">
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="17" y2="17"/></svg>
+        <input id="searchInput" type="text" placeholder="Search your base or post…" autocomplete="off" />
+      </div>
+      <div class="filters" id="filters">
+        <button class="filt on" data-region="all">all</button>
+        <button class="filt" data-region="CONUS">conus</button>
+        <button class="filt" data-region="Europe">europe</button>
+        <button class="filt" data-region="Pacific">pacific</button>
+        <button class="filt" data-region="Other">other</button>
+      </div>
+    </div>
+
+    <div class="lead-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 11 13 11 9 7"/><polyline points="3 11 13 11 9 15"/><path d="M13 4v14"/><path d="M17 7v8"/><path d="M21 9v4"/></svg>
+      <span>Sorted by momentum — <b id="leaderName">—</b> is next in line to be scouted.</span>
+    </div>
+
+    <div class="grid" id="scoutGrid"><!-- injected --></div>
+  </div>
+</section>
+
+<!-- ───────── footer ───────── -->
+<section class="footer">
+  <div class="bloom-f"></div>
+  <div class="wrap footer-inner">
+    <h2>Be first when we land at your base<span class="dot">.</span></h2>
+    <p>Drop your email and we'll ping you the day ScoutLocal goes live where you're stationed — wherever the orders take you next.</p>
+    <form class="signup" id="signupForm">
+      <input type="email" placeholder="you@example.mil" required />
+      <button type="submit">Keep me posted</button>
+    </form>
+    <div class="foot-meta">
+      <span class="brand">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FAF1EA"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        <span class="brand-name" style="font-size:16px">scout local<span class="dot">.</span></span>
+      </span>
+      <span class="mono">a directory for the everyday places that make a new base feel like home</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-glow"></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand"><h2>scout local<span>.</span></h2><p>A directory for the everyday places that make a new base feel workable, familiar, and eventually like home. Built with and for military families.</p></div>
+      <div class="footer-col"><h3>Families</h3><a href="../families/">For families</a><a href="../how-it-works/">How it works</a><a href="../trust-and-promise/">Our promise</a><a href="../bases/">Bases</a><a href="../faq/">FAQ</a></div>
+      <div class="footer-col"><h3>Businesses</h3><a href="../businesses/">Claim a listing</a><a href="../pricing/">Pricing</a><a href="../improve-the-map/">Improve the map</a><a href="../owner-support/">Owner support</a></div>
+      <div class="footer-col"><h3>Company</h3><a href="../about/">About Novalyse</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../contact/">Contact</a></div>
+    </div>
+    <div class="footer-base"><span>ScoutLocal is a product of Novalyse LLC. © 2026 Novalyse LLC.</span><span>Fort Polk beta</span></div>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+// ─────────────────────────── data ───────────────────────────
+// 9 mapped bases: Fort Polk live, then the ordered rollout.
+const MAPPED = [
+  { name:"Fort Polk",  legacy:"Fort Johnson", loc:"Louisiana",   lat:31.05, lng:-93.00, status:"live",     eta:"Live now" },
+  { name:"Fort Liberty", legacy:"Fort Bragg", loc:"North Carolina", lat:35.14, lng:-79.01, status:"building", eta:"Summer 2026" },
+  { name:"Fort Cavazos", legacy:"Fort Hood",  loc:"Texas",       lat:31.13, lng:-97.78, status:"queued",   eta:"Fall 2026" },
+  { name:"Fort Bliss",   legacy:"",           loc:"Texas",       lat:31.81, lng:-106.42, status:"queued",  eta:"Fall 2026" },
+  { name:"Fort Stewart", legacy:"",           loc:"Georgia",     lat:31.87, lng:-81.61, status:"queued",   eta:"Winter 2026" },
+  { name:"Fort Campbell",legacy:"",           loc:"Kentucky / Tennessee", lat:36.67, lng:-87.46, status:"queued", eta:"Winter 2026" },
+  { name:"Fort Moore",   legacy:"Fort Benning",loc:"Georgia",    lat:32.35, lng:-84.97, status:"queued",   eta:"Spring 2027" },
+  { name:"Fort Carson",  legacy:"",           loc:"Colorado",    lat:38.74, lng:-104.79, status:"queued",  eta:"Spring 2027" },
+  { name:"Joint Base Lewis-McChord", legacy:"", loc:"Washington", lat:47.10, lng:-122.58, status:"queued", eta:"2027" },
+];
+
+// All other installations from the roster — the scouting pool.
+const SCOUTING = [
+  ["USAG Humphreys","","South Korea","Large"],
+  ["USAG Rheinland-Pfalz (Kaiserslautern)","","Germany","Large"],
+  ["USAG Hawaii","","Hawaii","Large"],
+  ["Fort Eisenhower","Fort Gordon","Georgia","Medium"],
+  ["Fort Sill","","Oklahoma","Medium"],
+  ["Fort Leonard Wood","","Missouri","Medium"],
+  ["Fort Riley","","Kansas","Medium"],
+  ["Fort Belvoir","","Virginia","Medium"],
+  ["Fort Gregg-Adams","Fort Lee","Virginia","Medium"],
+  ["Fort Jackson","","South Carolina","Medium"],
+  ["Fort Knox","","Kentucky","Medium"],
+  ["Fort Drum","","New York","Medium"],
+  ["Fort Wainwright","","Alaska","Medium"],
+  ["Fort Leavenworth","","Kansas","Medium"],
+  ["Fort Irwin","","California","Medium"],
+  ["Fort Meade","Fort George G. Meade","Maryland","Medium"],
+  ["USAG Bavaria","","Germany","Medium"],
+  ["USAG Wiesbaden","","Germany","Medium"],
+  ["USAG Rheinland-Pfalz (Baumholder)","","Germany","Medium"],
+  ["USAG Italy","","Italy","Medium"],
+  ["Redstone Arsenal","","Alabama","Medium"],
+  ["Fort Novosel","Fort Rucker","Alabama","Small"],
+  ["Fort Huachuca","","Arizona","Small"],
+  ["Fort Detrick","","Maryland","Small"],
+  ["Fort McCoy","","Wisconsin","Small"],
+  ["Fort Buchanan","","Puerto Rico","Small"],
+  ["Fort Myer","Joint Base Myer-Henderson Hall","Virginia","Small"],
+  ["Fort Greely","","Alaska","Small"],
+  ["Fort Hunter Liggett","","California","Small"],
+  ["Fort Hamilton","","New York","Small"],
+  ["Aberdeen Proving Ground","","Maryland","Small"],
+  ["White Sands Missile Range","","New Mexico","Small"],
+  ["Yuma Proving Ground","","Arizona","Small"],
+  ["Rock Island Arsenal","","Illinois","Small"],
+  ["Carlisle Barracks","","Pennsylvania","Small"],
+  ["West Point","U.S. Military Academy","New York","Small"],
+  ["Picatinny Arsenal","","New Jersey","Small"],
+  ["Anniston Army Depot","","Alabama","Small"],
+  ["Pine Bluff Arsenal","","Arkansas","Small"],
+  ["McAlester Army Ammunition Plant","","Oklahoma","Small"],
+  ["Tobyhanna Army Depot","","Pennsylvania","Small"],
+  ["Detroit Arsenal","","Michigan","Small"],
+  ["Dugway Proving Ground","","Utah","Small"],
+  ["Natick Soldier Systems Center","","Massachusetts","Small"],
+  ["Camp Parks","","California","Small"],
+  ["Presidio of Monterey","","California","Small"],
+  ["Hunter Army Airfield","","Georgia","Small"],
+  ["USAG Ansbach","","Germany","Small"],
+  ["USAG Bavaria (Garmisch)","","Germany","Small"],
+  ["USAG Bavaria (Hohenfels)","","Germany","Small"],
+  ["USAG Stuttgart","","Germany","Small"],
+  ["USAG BENELUX (Brussels)","","Belgium","Small"],
+  ["USAG BENELUX (SHAPE/Chievres)","","Belgium","Small"],
+  ["USAG BENELUX (Brunssum)","","Netherlands","Small"],
+  ["USAG Japan (Camp Zama)","","Japan","Small"],
+  ["USAG Okinawa (Torii Station)","","Japan","Small"],
+  ["USAG Daegu","","South Korea","Small"],
+  ["USAG Yongsan-Casey","","South Korea","Small"],
+  ["USAG Poland","","Poland","Small"],
+  ["USAG Miami","","Florida","Small"],
+].map(r => ({ name:r[0], legacy:r[1], loc:r[2], tier:r[3] }));
+
+// ─────────────────────────── helpers ───────────────────────────
+function regionOf(loc){
+  const eu = ["Germany","Italy","Belgium","Netherlands","Poland"];
+  const pac = ["South Korea","Japan","Hawaii"];
+  if (eu.includes(loc)) return "Europe";
+  if (pac.includes(loc)) return "Pacific";
+  if (loc === "Puerto Rico") return "Other";
+  return "CONUS";
+}
+let interestCounts = {};
+function countFor(b){ return Number(interestCounts[b.name]) || 0; }
+
+async function loadInterestCounts(){
+  try {
+    const response = await fetch("../assets/data/base-interest.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`Count request failed: ${response.status}`);
+    const data = await response.json();
+    interestCounts = data.bases || {};
+  } catch (error) {
+    console.warn("Using zero base-interest counts until the next successful update.", error);
+  }
+}
+
+MAPPED.forEach(b => b._isMapped = true);
+
+// ─────────────────────────── map render ───────────────────────────
+// continental US outline (lat,lng) clockwise — stylized
+const US_OUTLINE = [
+  [48.4,-124.7],[49.0,-123.0],[49.0,-104.0],[49.0,-95.15],[49.38,-95.15],
+  [48.1,-88.5],[46.9,-84.4],[45.0,-83.0],[43.0,-82.4],[42.1,-80.0],
+  [43.3,-79.0],[44.1,-76.3],[45.0,-74.7],[45.0,-71.5],[47.4,-69.2],
+  [44.8,-66.95],[43.5,-70.3],[42.0,-70.1],[41.3,-71.4],[40.6,-74.0],
+  [39.3,-74.4],[38.9,-75.0],[37.0,-75.9],[35.2,-75.5],[33.9,-78.0],
+  [32.8,-79.9],[32.0,-80.8],[30.7,-81.4],[29.9,-81.3],[27.2,-80.2],
+  [25.8,-80.1],[25.2,-80.4],[25.9,-81.7],[27.8,-82.8],[29.7,-84.0],
+  [30.4,-87.2],[29.2,-89.3],[29.7,-93.8],[28.0,-96.9],[25.9,-97.4],
+  [29.3,-100.9],[29.8,-103.0],[31.8,-106.5],[31.33,-108.2],[31.33,-111.07],
+  [32.5,-114.8],[32.54,-117.12],[33.7,-118.3],[34.45,-120.5],[36.6,-121.9],
+  [37.8,-122.5],[38.95,-123.7],[40.4,-124.4],[43.3,-124.4],[46.27,-124.0],
+  [47.9,-124.7]
+];
+const PROJ = { lng0:-125, lat1:49.6, kx:0.79, unit:1, pad:6 };
+function project(lat,lng){
+  const x = (lng - PROJ.lng0) * PROJ.kx;
+  const y = (PROJ.lat1 - lat);
+  return [x,y];
+}
+function buildMap(){
+  // compute raw projected, then scale to a tidy viewBox
+  const pts = US_OUTLINE.map(([la,ln]) => project(la,ln));
+  const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
+  const minX=Math.min(...xs), maxX=Math.max(...xs), minY=Math.min(...ys), maxY=Math.max(...ys);
+  const W = 100, H = (maxY-minY)/(maxX-minX)*100;
+  const sx = (W - PROJ.pad*2)/(maxX-minX), sy = (H - PROJ.pad*2)/(maxY-minY);
+  const s = Math.min(sx,sy);
+  function toVB(la,ln){ const [x,y]=project(la,ln); return [ PROJ.pad + (x-minX)*s, PROJ.pad + (y-minY)*s ]; }
+
+  const svg = document.getElementById("mapSvg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H.toFixed(2)}`);
+
+  // outline path
+  const d = pts.map((p,i)=>{ const [x,y]=toVB(US_OUTLINE[i][0],US_OUTLINE[i][1]); return (i?"L":"M")+x.toFixed(2)+" "+y.toFixed(2); }).join(" ") + " Z";
+  document.getElementById("usShape").setAttribute("d", d);
+
+  // route polyline through mapped bases in order
+  const routePts = MAPPED.map(b=>{ const [x,y]=toVB(b.lat,b.lng); return x.toFixed(2)+","+y.toFixed(2); }).join(" ");
+  document.getElementById("routeLine").setAttribute("points", routePts);
+
+  // pins as HTML overlay (percent of viewBox)
+  const wrap = document.getElementById("mapWrap");
+  wrap.querySelectorAll(".pin").forEach(n=>n.remove());
+  MAPPED.forEach((b,i)=>{
+    const [x,y]=toVB(b.lat,b.lng);
+    const pin = document.createElement("div");
+    pin.className = "pin " + b.status + (b.lng < -110 ? " flip" : "");
+    pin.style.left = (x/W*100) + "%";
+    pin.style.top = (y/H*100) + "%";
+    pin.dataset.idx = i;
+    const numTxt = b.status==="live" ? "★" : String(i);
+    pin.innerHTML = `<div class="pin-dot">${numTxt}</div><div class="pin-label">${b.name}</div>`;
+    pin.addEventListener("click", ()=>selectBase(i));
+    pin.addEventListener("mouseenter", ()=>{ if(selIdx!==i) pin.classList.add("sel"); });
+    pin.addEventListener("mouseleave", ()=>{ if(selIdx!==i) pin.classList.remove("sel"); });
+    wrap.appendChild(pin);
+  });
+}
+
+// ─────────────────────────── detail + rollout ───────────────────────────
+let selIdx = 1; // default to Fort Liberty (building / next)
+const PIN_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+const CLK_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>';
+const RTE_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="5" r="2.4"/><path d="M8.4 19H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.6"/></svg>';
+
+const STATUS_LABEL = { live:"Beta live", building:"Building now", queued:"On the roadmap" };
+
+function selectBase(i){
+  selIdx = i;
+  renderDetail();
+  // sync pins + rollout
+  document.querySelectorAll(".pin").forEach(p=>p.classList.toggle("sel", +p.dataset.idx===i));
+  document.querySelectorAll(".ro-item").forEach(p=>p.classList.toggle("sel", +p.dataset.idx===i));
+}
+
+function renderDetail(){
+  const b = MAPPED[selIdx];
+  const c = countFor(b);
+  const maxCount = Math.max(1, ...MAPPED.map(countFor));
+  const pct = Math.round(c/maxCount*100);
+  let cta;
+  if (b.status==="live"){
+    cta = `<a href="../bases/fort-polk/" class="btn beta">Open the Fort Polk page
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <div class="helper">Explore the Fort Polk beta map.</div>`;
+  } else {
+    cta = `<button class="btn" onclick="joinMapped(${selIdx})">Join the ${b.name} waitlist
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      <div class="helper">More families waiting moves a base up the route.</div>`;
+  }
+  const legacyLine = b.legacy ? `<div class="legacy">formerly ${b.legacy}</div>` : "";
+  document.getElementById("detail").innerHTML = `
+    <span class="status-pill ${b.status}"><span class="sd"></span>${STATUS_LABEL[b.status]}${b.status!=="live" ? " · "+b.eta : ""}</span>
+    <h2>${b.name}</h2>
+    ${legacyLine}
+    <div class="detail-meta">
+      <div class="dm-row">${PIN_SVG}<span>${b.loc}</span></div>
+      <div class="dm-row">${CLK_SVG}<span>${b.status==="live" ? "Mapped and live in beta" : (b.status==="building" ? "Scouting businesses now" : "Estimated launch · "+b.eta)}</span></div>
+      <div class="dm-row">${RTE_SVG}<span>${b.status==="live" ? "Origin of the rollout" : "Stop #"+selIdx+" on the route"}</span></div>
+    </div>
+    <div class="momentum">
+      <div class="mom-head"><div class="n"><b>${c.toLocaleString()}</b> families</div><div class="lbl">${b.status==="live" ? "in the app" : "waiting"}</div></div>
+      <div class="bar"><span id="detailBar"></span></div>
+    </div>
+    ${cta}`;
+  requestAnimationFrame(()=>{ const el=document.getElementById("detailBar"); if(el) el.style.width = Math.max(8,pct) + "%"; });
+}
+
+function renderRollout(){
+  const list = document.getElementById("rolloutList");
+  list.innerHTML = MAPPED.map((b,i)=>`
+    <button class="ro-item ${i===selIdx?'sel':''}" data-idx="${i}" onclick="selectBase(${i})">
+      <span class="ro-num">${b.status==="live"?"★":i}</span>
+      <span class="ro-body">
+        <span class="ro-name">${b.name}</span>
+        <span class="ro-loc">${b.loc}</span>
+      </span>
+      <span class="ro-status ${b.status}">${b.status==="live"?"live":(b.status==="building"?"building":b.eta)}</span>
+    </button>`).join("");
+}
+
+function joinMapped(i){
+  const b = MAPPED[i];
+  openKit(b.name);
+}
+
+// ─────────────────────────── scouting grid ───────────────────────────
+let curRegion = "all", curSearch = "";
+function scoutSorted(){
+  let arr = SCOUTING.map(b=>({ ...b, region:regionOf(b.loc), count:countFor(b) }));
+  arr.sort((a,b)=> b.count - a.count || a.name.localeCompare(b.name));
+  return arr;
+}
+function renderScout(bump){
+  const all = scoutSorted();
+  // leader (top overall, ignoring filters)
+  document.getElementById("leaderName").textContent = all[0].name;
+  let arr = all;
+  if (curRegion!=="all") arr = arr.filter(b=>b.region===curRegion);
+  if (curSearch) {
+    const q = curSearch.toLowerCase();
+    arr = arr.filter(b=> b.name.toLowerCase().includes(q) || (b.legacy&&b.legacy.toLowerCase().includes(q)) || b.loc.toLowerCase().includes(q));
+  }
+  const grid = document.getElementById("scoutGrid");
+  if (!arr.length){ grid.innerHTML = `<div class="empty">No installations match "${curSearch}". Try a state or a former name.</div>`; return; }
+  const maxC = all[0].count + 1;
+  grid.innerHTML = arr.map(b=>{
+    const rank = all.indexOf(b)+1;
+    const pct = Math.round(b.count/maxC*100);
+    const legacyLine = b.legacy ? `<div class="bc-sub">formerly ${b.legacy}</div>` : `<div class="bc-sub">${b.loc.toLowerCase()}</div>`;
+    return `<div class="bcard ${bump===b.name?'bumped':''}" data-name="${b.name}">
+      <div class="bcard-top">
+        <div>
+          <span class="bc-rank ${rank<=3?'top3':''}">#${rank}</span>
+        </div>
+        <span class="bc-region">${b.region}</span>
+      </div>
+      <div class="bc-name">${b.name}</div>
+      ${legacyLine}
+      <div class="bc-mom">
+        <div class="bc-mom-head">
+          <span class="bc-count"><b>${b.count.toLocaleString()}</b></span>
+          <span class="bc-waiting">families waiting</span>
+        </div>
+        <div class="bar"><span style="width:${Math.max(6,pct)}%"></span></div>
+      </div>
+      <button class="bc-btn" onclick="joinScout('${b.name.replace(/'/g,"\\'")}')">Add my voice
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    </div>`;
+  }).join("");
+}
+
+function joinScout(name){
+  openKit(name);
+}
+
+function openKit(base, email=""){
+  const params = new URLSearchParams({base});
+  if(email) params.set("email", email);
+  window.location.href = "../join-beta/?" + params.toString();
+}
+
+// ─────────────────────────── counters + toast ───────────────────────────
+let totalTarget = 0;
+function computeTotal(){
+  let t = 0;
+  MAPPED.forEach(b=> t += countFor(b));
+  SCOUTING.forEach(b=> t += countFor(b));
+  return t;
+}
+function animateTotal(){
+  const el = document.getElementById("totalWaiting");
+  totalTarget = computeTotal();
+  const dur = 1400, t0 = performance.now();
+  function step(t){
+    const k = Math.min(1,(t-t0)/dur);
+    const ease = 1-Math.pow(1-k,3);
+    el.textContent = Math.round(totalTarget*ease).toLocaleString();
+    if (k<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function bumpTotal(){
+  const el = document.getElementById("totalWaiting");
+  totalTarget = computeTotal();
+  el.textContent = totalTarget.toLocaleString();
+}
+
+let toastTimer;
+function toast(html, check){
+  const wrap = document.getElementById("toastWrap");
+  wrap.innerHTML = "";
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.innerHTML = (check ? '<span class="chk">✓</span>' : '') + '<span>'+html+'</span>';
+  wrap.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add("show"));
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ t.classList.remove("show"); setTimeout(()=>t.remove(),350); }, 2800);
+}
+
+// ─────────────────────────── wire up ───────────────────────────
+document.getElementById("searchInput").addEventListener("input", e=>{ curSearch = e.target.value.trim(); renderScout(); });
+document.getElementById("filters").addEventListener("click", e=>{
+  const btn = e.target.closest(".filt"); if(!btn) return;
+  document.querySelectorAll(".filt").forEach(f=>f.classList.remove("on"));
+  btn.classList.add("on"); curRegion = btn.dataset.region; renderScout();
+});
+document.getElementById("signupForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value.trim();
+  openKit("", email);
+});
+
+// route draw-in on first view
+const routeObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.style.transition="opacity .8s ease"; en.target.style.opacity="0.55"; routeObserver.unobserve(en.target); } });
+},{threshold:0.3});
+
+async function init(){
+  await loadInterestCounts();
+  buildMap();
+  renderRollout();
+  renderDetail();
+  selectBase(1);
+  renderScout();
+  animateTotal();
+  const rl = document.getElementById("routeLine");
+  rl.style.opacity = "0"; routeObserver.observe(rl);
+  window.addEventListener("resize", ()=>{ /* pins use %, map is responsive; nothing needed */ });
+}
+init();
+</script>
+<script src="../assets/js/site.js?v=20260607-2"></script>
+</body>
+</html>
