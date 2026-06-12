@@ -130,6 +130,10 @@
             <select id="secondary_category" name="secondary_category"><option value="">None</option></select>
           </div>
         </div>
+        <div class="field" id="categoryOtherField" hidden>
+          <label class="lbl" for="category_other">Tell us your category</label>
+          <input type="text" id="category_other" name="category_other" placeholder="e.g. Tattoo studio · Music lessons · Tax prep">
+        </div>
       </div>
 
       <!-- 3 · Background -->
@@ -186,8 +190,9 @@
             <option value="Joint Base Lewis-McChord">Joint Base Lewis-McChord, WA</option>
             <option value="Naval Station Norfolk">Naval Station Norfolk, VA</option>
             <option value="MacDill Air Force Base">MacDill AFB, FL</option>
-            <option value="__other">Another base (tell us below)</option>
+            <option value="__other">Another base — tell us…</option>
           </select>
+          <input type="text" id="base_other" name="base_other" placeholder="Base name (e.g. Fort Polk)" style="margin-top:10px" hidden>
         </div>
         <div class="field"><label class="lbl" for="address">Street address <span class="sub" style="display:inline">(local businesses)</span></label><input type="text" id="address" name="address" placeholder="123 Main St, City, State"></div>
         <div class="field"><label class="lbl" for="area_description">Service area / note</label><input type="text" id="area_description" name="area_description" placeholder="e.g. Near the main gate · Ships nationwide · Serves OCONUS"></div>
@@ -267,6 +272,10 @@
       var o1 = document.createElement("option"); o1.value = c[1]; o1.textContent = c[0]; pc.appendChild(o1);
       var o2 = document.createElement("option"); o2.value = c[1]; o2.textContent = c[0]; sc.appendChild(o2);
     });
+    // Write-in "Other" option for primary category
+    var oOther = document.createElement("option"); oOther.value = "__other"; oOther.textContent = "Other — tell us…"; pc.appendChild(oOther);
+    var catOtherField = document.getElementById("categoryOtherField");
+    pc.addEventListener("change", function () { catOtherField.hidden = (pc.value !== "__other"); });
 
     // Description counter
     var desc = document.getElementById("description"), dcount = document.getElementById("descCount");
@@ -282,6 +291,10 @@
       r.addEventListener("change", syncType);
     });
     syncType();
+
+    // Reveal base write-in box when "Another base" is chosen
+    var baseSel = document.getElementById("base"), baseOther = document.getElementById("base_other");
+    baseSel.addEventListener("change", function () { baseOther.hidden = (baseSel.value !== "__other"); });
 
     var form = document.getElementById("listingForm");
     var msg = document.getElementById("formMsg");
@@ -326,7 +339,10 @@
         document.querySelectorAll('input[name="labels"]:checked'), function (c) { return c.value; }
       );
       var baseVal = val("base");
-      if (baseVal === "__other") baseVal = "";
+      if (baseVal === "__other") baseVal = val("base_other");
+      var primaryCat = val("primary_category");
+      var categoryOther = null;
+      if (primaryCat === "__other") { categoryOther = val("category_other") || null; primaryCat = ""; }
 
       var logoFile = document.getElementById("logo").files[0] || null;
       var photoFiles = Array.prototype.slice.call(document.getElementById("photos").files, 0, 4);
@@ -345,7 +361,8 @@
             name: val("name"),
             description: val("description") || null,
             business_type: (document.querySelector('input[name="business_type"]:checked') || {}).value || null,
-            primary_category: val("primary_category") || null,
+            primary_category: primaryCat || null,
+            category_other: categoryOther,
             secondary_category: val("secondary_category") || null,
             base: baseVal || null,
             labels: labels,
