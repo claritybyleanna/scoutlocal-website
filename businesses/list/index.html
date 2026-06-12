@@ -85,6 +85,18 @@
     <div>
     <form class="listing-form" id="listingForm" novalidate>
 
+      <!-- 0 · Plan interest -->
+      <div class="fieldset">
+        <h2>Your plan</h2>
+        <p class="hint">Start free and upgrade anytime. Pick what you're leaning toward — this just helps us prep the right setup.</p>
+        <div class="field">
+          <div class="chip-row" role="radiogroup">
+            <label class="chip"><input type="radio" name="plan_interest" value="free" checked><span>Free — get listed</span></label>
+            <label class="chip"><input type="radio" name="plan_interest" value="promote"><span>Promote — $29/mo · Beacon &amp; deals</span></label>
+          </div>
+        </div>
+      </div>
+
       <!-- 1 · About you -->
       <div class="fieldset">
         <h2>About you</h2>
@@ -298,6 +310,14 @@
 
     var form = document.getElementById("listingForm");
     var msg = document.getElementById("formMsg");
+
+    // Pre-select plan from the button the visitor clicked (e.g. ?plan=promote)
+    var planParam = (new URLSearchParams(location.search)).get("plan");
+    if (planParam === "free" || planParam === "promote") {
+      Array.prototype.forEach.call(document.querySelectorAll('input[name="plan_interest"]'), function (r) {
+        r.checked = (r.value === planParam);
+      });
+    }
     var btn = document.getElementById("submitBtn");
     var successPanel = document.getElementById("successPanel");
 
@@ -353,6 +373,7 @@
           var photo_paths = paths.slice(1).filter(Boolean);
 
           var payload = {
+            plan_interest: (document.querySelector('input[name="plan_interest"]:checked') || {}).value || null,
             relationship: (document.querySelector('input[name="relationship"]:checked') || {}).value || null,
             submitter_name: val("submitter_name"),
             submitter_email: val("submitter_email"),
