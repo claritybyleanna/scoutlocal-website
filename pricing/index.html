@@ -63,6 +63,12 @@
     .story p:last-child{margin:0}
     .story .kicker{font:11px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust);margin-bottom:10px}
     .story strong{color:var(--ink)}
+    /* flashing sage-green beacon */
+    .beacon-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#7d9456;vertical-align:middle;animation:beaconPulse 1.5s infinite,beaconBlink 1.5s infinite}
+    .beacon-dot.lg{width:16px;height:16px;margin-right:12px}
+    @keyframes beaconPulse{0%{box-shadow:0 0 0 0 rgba(140,170,100,.65)}70%{box-shadow:0 0 0 12px rgba(140,170,100,0)}100%{box-shadow:0 0 0 0 rgba(140,170,100,0)}}
+    @keyframes beaconBlink{0%,100%{opacity:1}50%{opacity:.45}}
+    @media(prefers-reduced-motion:reduce){.beacon-dot{animation:none}}
     @media(max-width:900px){.tier-grid,.callout-grid,.beacon-grid{grid-template-columns:1fr}.story{padding:26px 22px}}
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
@@ -132,7 +138,7 @@
 
   <!-- Beacon spotlight -->
   <section class="dark-section"><div class="wrap">
-    <div class="section-head"><div class="section-number">02 / why Promote</div><div><h2>Beacon turns “open” into “discovered.”</h2></div></div>
+    <div class="section-head"><div class="section-number">02 / why Promote</div><div><h2><span class="beacon-dot lg"></span>Beacon turns “open” into “discovered.”</h2></div></div>
     <div class="beacon-grid">
       <div>
         <p class="beacon-lede">Most local businesses don't lose customers because nobody likes them. They lose them because <strong>nobody knew they were open, in stock, or around the corner</strong> — at the one moment it mattered.</p>
@@ -169,10 +175,10 @@
     <div class="section-head"><div class="section-number">04 / a day on Promote</div><div><h2>How a Friday could go.</h2></div></div>
     <div class="story">
       <p class="kicker">A picture of Promote in action</p>
-      <p>Picture a taco truck near the base — call it <strong>Camp Street Tacos</strong>. On Free, it had a listing: photos, menu, a map pin. Nice to have, but families only found it if they happened to search “tacos” on a day the truck was out.</p>
-      <p>On <strong>Promote</strong>, Friday looks different. The truck parks by the commissary at 11:00 and lights a Beacon: <em>“Open now — corner of Mahan &amp; 3rd.”</em> The forty-some families who'd tapped “Notify me” over the past month get a single push. By 11:20 there's a line of people who knew, the moment it counted, that lunch was two minutes away.</p>
-      <p>At 1:30 the rush thins and there's a tray of carnitas that won't keep. One more Beacon: <em>“Last batch — $2 off till 2.”</em> The deal clears the tray and the afternoon doesn't end on slow. That night the owner checks analytics: directions tapped, new followers, which Beacon pulled hardest.</p>
-      <p>Same truck, same tacos. The difference is that the people already rooting for it finally knew where it was and when — and that's the whole game for a business that moves.</p>
+      <p><strong>Camp Street Tacos</strong> is a food truck and it just opened right outside of the main gate. On <strong>Free</strong>, it had a listing: photos, menu, a map pin. Nice to have, but families only found it if they happened to drive by the food truck.</p>
+      <p>On <strong>Promote</strong>, Friday looks different. The truck parks by the commissary at 11:00 and lights a Beacon: <em>“Open now! Corner of Mahan &amp; 3rd.”</em> The forty-some families who'd tapped “Notify me” over the past month get a single push. By 11:20 there's a line of people who knew that lunch was two minutes away.</p>
+      <p>At 1:30 the rush thins and there's a tray of carnitas that won't keep. One more Beacon: <em>“Last batch! $2 off till 2.”</em> The deal clears the tray and the afternoon doesn't end on slow. That night the owner checks analytics: directions tapped, new followers, which Beacon pulled hardest.</p>
+      <p>Same truck, same tacos. The difference is that the people already rooting for it finally knew where it was and when.</p>
     </div>
   </div></section>
 
@@ -186,7 +192,7 @@
         <tr><td>Appears in search &amp; map</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td>Military-owned badge (if verified)</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td>Weekly “What's Happening” email</td><td>Eligible</td><td>Guaranteed</td></tr>
-        <tr><td>Beacon (open-now / live location)</td><td class="no">—</td><td class="yes">Yes</td></tr>
+        <tr><td><span class="beacon-dot"></span> Beacon (open-now / live location)</td><td class="no">—</td><td class="yes">Yes</td></tr>
         <tr><td>Beacons per week</td><td class="no">—</td><td>5</td></tr>
         <tr><td>Push deals &amp; specials</td><td class="no">—</td><td class="yes">Yes</td></tr>
         <tr><td>“Notify me” bell + push to followers</td><td class="no">—</td><td class="yes">Yes</td></tr>
