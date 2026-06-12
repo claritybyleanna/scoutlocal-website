@@ -1,0 +1,395 @@
+<!doctype html><html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Create your listing | ScoutLocal</title><meta name="description" content="Tell us about your business so it's ready to go live the day the ScoutLocal app drops.">
+  <link rel="icon" href="../../favicon.ico"><link rel="icon" type="image/svg+xml" href="../../wayfinder.svg"><link rel="apple-touch-icon" href="../../apple-touch-icon.png"><link rel="manifest" href="../../site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website"><meta property="og:title" content="Create your listing | ScoutLocal"><meta property="og:description" content="Tell us about your business so it's ready to go live the day the ScoutLocal app drops."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Create your listing | ScoutLocal"><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <link rel="stylesheet" href="../../assets/css/site.css?v=20260607-1">
+  <style>
+    /* ── Listing form (scoped; uses site CSS variables) ───────────────────── */
+    .form-shell{display:grid;grid-template-columns:230px 1fr;gap:48px;align-items:start}
+    .form-aside{position:sticky;top:96px}
+    .form-aside ol{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:2px}
+    .form-aside li{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--line)}
+    .form-aside li b{display:block;color:var(--ink);font-weight:600}
+    form.listing-form{max-width:680px}
+    .fieldset{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:28px 28px 30px;margin-bottom:18px}
+    .fieldset>h2{font:600 22px Outfit;margin:0 0 4px;letter-spacing:-.02em}
+    .fieldset>.hint{font-size:13px;color:var(--muted);margin:0 0 20px}
+    .field{margin-bottom:16px}
+    .field:last-child{margin-bottom:0}
+    .field label.lbl{display:block;font:500 13px Geist;color:var(--ink2);margin-bottom:6px}
+    .field .req{color:var(--rust)}
+    .field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=url],.field textarea,.field select{
+      width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:12px 13px;font:14px Geist;line-height:1.4}
+    .field textarea{min-height:104px;resize:vertical}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--peach);outline-offset:1px;border-color:var(--rust)}
+    .field .sub{font-size:12px;color:var(--muted);margin-top:5px}
+    .counter{float:right;font:11px Geist Mono;color:var(--muted)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .chip-row{display:flex;flex-wrap:wrap;gap:9px}
+    .chip{position:relative;cursor:pointer}
+    .chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+    .chip span{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 15px;font-size:13px;color:var(--ink2);transition:.15s}
+    .chip input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .chip.peach input:checked+span{background:var(--rust);border-color:var(--rust);color:#fff}
+    .filebox{border:1px dashed var(--line);border-radius:8px;padding:14px;background:var(--soft);font-size:13px;color:var(--ink2)}
+    .filebox input{display:block;margin-top:8px;font-size:13px}
+    .consent{display:flex;gap:11px;align-items:flex-start;font-size:13px;color:var(--ink2);line-height:1.5}
+    .consent input{margin-top:3px;width:16px;height:16px;flex:none}
+    .form-actions{display:flex;align-items:center;gap:18px;margin-top:8px;flex-wrap:wrap}
+    .form-actions .btn-primary{cursor:pointer;border:0}
+    .form-msg{font-size:13px;line-height:1.5}
+    .form-msg.err{color:var(--rust)}
+    .req-only[hidden]{display:none}
+    .form-success{border:1px solid var(--sage);background:var(--sage);color:var(--sage-deep);border-radius:10px;padding:34px;text-align:left}
+    .form-success h2{font:700 30px Outfit;margin:0 0 10px;color:var(--ink)}
+    .form-success p{margin:0;color:var(--ink2);line-height:1.55}
+    @media(max-width:900px){.form-shell{grid-template-columns:1fr}.form-aside{position:static}.form-aside ol{display:none}}
+    @media(max-width:620px){.grid-2{grid-template-columns:1fr}.fieldset{padding:22px 18px}}
+  </style></head><body><header class="site-header">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../../"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
+      <nav class="nav-links" id="site-menu" aria-label="Primary navigation">
+        <a href="../../families/">Families</a>
+        <a href="../../businesses/">Businesses</a>
+        <a href="../../how-it-works/">How it works</a>
+        <a href="../../bases/">Bases</a>
+        <a class="nav-cta" href="../../join-beta/">Join beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </nav>
+    </div>
+  </header><main>
+  <section class="page-hero"><div class="page-glow"></div><div class="wrap">
+    <p class="section-number">For local businesses</p>
+    <h1>Let's create your listing.</h1>
+    <p class="page-lede">Want your business listed the day the app drops? Tell us everything once, here. We'll hold your details and have your profile ready to go live and claim the moment ScoutLocal opens on your base.</p>
+  </div></section>
+
+  <section class="section"><div class="wrap"><div class="form-shell">
+    <aside class="form-aside">
+      <p class="section-number">What we'll ask</p>
+      <ol>
+        <li><b>About you</b>Owner or recommender</li>
+        <li><b>The basics</b>Name, type, category</li>
+        <li><b>Background</b>Ownership &amp; size</li>
+        <li><b>Find you</b>Location &amp; contact</li>
+        <li><b>Social</b>Instagram, Facebook, Etsy</li>
+        <li><b>Photos</b>Logo &amp; up to 4 images</li>
+      </ol>
+      <p class="sub" style="font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5">Only your name, email, and the business name are required. Everything else you can add now or after launch.</p>
+    </aside>
+
+    <div>
+    <form class="listing-form" id="listingForm" novalidate>
+
+      <!-- 1 · About you -->
+      <div class="fieldset">
+        <h2>About you</h2>
+        <p class="hint">So we know who to follow up with at launch.</p>
+        <div class="field">
+          <label class="lbl">Your relationship to this business</label>
+          <div class="chip-row" role="radiogroup">
+            <label class="chip"><input type="radio" name="relationship" value="owner" checked><span>I own it</span></label>
+            <label class="chip"><input type="radio" name="relationship" value="manager"><span>I manage it</span></label>
+            <label class="chip"><input type="radio" name="relationship" value="recommender"><span>I'm recommending it</span></label>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field"><label class="lbl" for="submitter_name">Your name <span class="req">*</span></label><input type="text" id="submitter_name" name="submitter_name" autocomplete="name" required></div>
+          <div class="field"><label class="lbl" for="submitter_email">Your email <span class="req">*</span></label><input type="email" id="submitter_email" name="submitter_email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label class="lbl" for="submitter_phone">Your phone <span class="sub" style="display:inline">(optional)</span></label><input type="tel" id="submitter_phone" name="submitter_phone" autocomplete="tel"></div>
+      </div>
+
+      <!-- 2 · The basics -->
+      <div class="fieldset">
+        <h2>The basics</h2>
+        <p class="hint">This is what families see first in the app.</p>
+        <div class="field"><label class="lbl" for="name">Business name <span class="req">*</span></label><input type="text" id="name" name="name" required></div>
+        <div class="field">
+          <label class="lbl">Is this a local or online business?</label>
+          <div class="chip-row" role="radiogroup">
+            <label class="chip"><input type="radio" name="business_type" value="local" checked><span>Local — has a service area near a base</span></label>
+            <label class="chip"><input type="radio" name="business_type" value="online"><span>Online — ships / serves remotely</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="description">Description <span class="counter"><span id="descCount">0</span>/500</span></label>
+          <textarea id="description" name="description" maxlength="500" placeholder="Tell families what you offer and what makes you a good fit for them."></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label class="lbl" for="primary_category">Primary category</label>
+            <select id="primary_category" name="primary_category"><option value="">Choose one…</option></select>
+          </div>
+          <div class="field">
+            <label class="lbl" for="secondary_category">Secondary category <span class="sub" style="display:inline">(optional)</span></label>
+            <select id="secondary_category" name="secondary_category"><option value="">None</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · Background -->
+      <div class="fieldset">
+        <h2>Background</h2>
+        <p class="hint">Ownership labels are shown to families. Verification happens later — claiming a label here doesn't grant a badge.</p>
+        <div class="field">
+          <label class="lbl">Ownership labels <span class="sub" style="display:inline">(select any that apply)</span></label>
+          <div class="chip-row">
+            <label class="chip peach"><input type="checkbox" name="labels" value="military_spouse_owned"><span>Military spouse owned</span></label>
+            <label class="chip peach"><input type="checkbox" name="labels" value="veteran_owned"><span>Veteran owned</span></label>
+            <label class="chip peach"><input type="checkbox" name="labels" value="active_duty_owned"><span>Active duty / enlisted</span></label>
+            <label class="chip peach"><input type="checkbox" name="labels" value="women_owned"><span>Women owned</span></label>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label class="lbl" for="years_in_business">Years in business</label>
+            <select id="years_in_business" name="years_in_business">
+              <option value="">Choose…</option>
+              <option value="less_than_1yr">Less than 1 year</option>
+              <option value="1_to_3yr">1–3 years</option>
+              <option value="3_to_5yr">3–5 years</option>
+              <option value="5plus_yr">5+ years</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="lbl" for="employee_count">Team size</label>
+            <select id="employee_count" name="employee_count">
+              <option value="">Choose…</option>
+              <option value="just_me">Just me</option>
+              <option value="2_to_5">2–5 employees</option>
+              <option value="6_to_10">6–10 employees</option>
+              <option value="11_to_20">11–20 employees</option>
+              <option value="20plus">20+ employees</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 · Find you -->
+      <div class="fieldset">
+        <h2>How families find you</h2>
+        <p class="hint">Add whatever you have — anything blank now can be filled in after launch.</p>
+        <div class="field req-only" id="baseField">
+          <label class="lbl" for="base">Which base do you serve?</label>
+          <select id="base" name="base">
+            <option value="">Choose a base…</option>
+            <option value="Fort Johnson">Fort Johnson, LA (live beta)</option>
+            <option value="Fort Liberty">Fort Liberty, NC</option>
+            <option value="Fort Cavazos">Fort Cavazos, TX</option>
+            <option value="Fort Campbell">Fort Campbell, KY</option>
+            <option value="Fort Carson">Fort Carson, CO</option>
+            <option value="Joint Base Lewis-McChord">Joint Base Lewis-McChord, WA</option>
+            <option value="Naval Station Norfolk">Naval Station Norfolk, VA</option>
+            <option value="MacDill Air Force Base">MacDill AFB, FL</option>
+            <option value="__other">Another base (tell us below)</option>
+          </select>
+        </div>
+        <div class="field"><label class="lbl" for="address">Street address <span class="sub" style="display:inline">(local businesses)</span></label><input type="text" id="address" name="address" placeholder="123 Main St, City, State"></div>
+        <div class="field"><label class="lbl" for="area_description">Service area / note</label><input type="text" id="area_description" name="area_description" placeholder="e.g. Near the main gate · Ships nationwide · Serves OCONUS"></div>
+        <div class="field"><label class="lbl" for="hours">Hours</label><input type="text" id="hours" name="hours" placeholder="Mon–Fri 9am–5pm"></div>
+        <div class="grid-2">
+          <div class="field"><label class="lbl" for="phone">Business phone</label><input type="tel" id="phone" name="phone" placeholder="(555) 555-5555"></div>
+          <div class="field"><label class="lbl" for="email">Business email</label><input type="email" id="email" name="email" placeholder="hello@yourbusiness.com"></div>
+        </div>
+        <div class="field"><label class="lbl" for="website">Website</label><input type="url" id="website" name="website" placeholder="https://yourbusiness.com"></div>
+      </div>
+
+      <!-- 5 · Social -->
+      <div class="fieldset">
+        <h2>Social</h2>
+        <p class="hint">Optional, but they help families recognize you.</p>
+        <div class="field"><label class="lbl" for="social_instagram">Instagram</label><input type="text" id="social_instagram" name="social_instagram" placeholder="@handle or full URL"></div>
+        <div class="field"><label class="lbl" for="social_facebook">Facebook</label><input type="text" id="social_facebook" name="social_facebook" placeholder="Facebook page URL"></div>
+        <div class="field"><label class="lbl" for="social_etsy">Etsy</label><input type="text" id="social_etsy" name="social_etsy" placeholder="Etsy shop URL"></div>
+      </div>
+
+      <!-- 6 · Photos -->
+      <div class="fieldset">
+        <h2>Photos</h2>
+        <p class="hint">Optional. A logo and a few photos make your listing land. JPG or PNG, up to ~5 MB each.</p>
+        <div class="field"><label class="lbl" for="logo">Logo</label><div class="filebox">Square works best.<input type="file" id="logo" name="logo" accept="image/png,image/jpeg,image/webp"></div></div>
+        <div class="field"><label class="lbl" for="photos">Photos <span class="sub" style="display:inline">(up to 4)</span></label><div class="filebox">Storefront, products, your team.<input type="file" id="photos" name="photos" accept="image/png,image/jpeg,image/webp" multiple></div></div>
+      </div>
+
+      <!-- 7 · Notes + consent -->
+      <div class="fieldset">
+        <h2>Anything else?</h2>
+        <div class="field"><label class="lbl" for="notes_to_team">Notes for the ScoutLocal team <span class="sub" style="display:inline">(optional)</span></label><textarea id="notes_to_team" name="notes_to_team" placeholder="Another base, a question, anything we should know."></textarea></div>
+        <div class="field">
+          <label class="consent"><input type="checkbox" id="consent" name="consent" required><span>I'd like ScoutLocal to hold these details and contact me at launch to publish and claim this listing. ScoutLocal never sells contact data or charges for ranking.</span></label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Save my listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <div class="form-success" id="successPanel" hidden>
+      <h2>You're on the list. 🎉</h2>
+      <p>Thanks — your details are saved. When ScoutLocal opens on your base, we'll email you to review, publish, and claim your listing. No action needed until then.</p>
+    </div>
+    </div>
+  </div></div></section>
+  </main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand"><h2>scout local<span>.</span></h2><p>A directory for the everyday places that make a new base feel workable, familiar, and eventually like home. Built with and for military families.</p></div>
+      <div class="footer-col"><h3>Families</h3><a href="../../families/">For families</a><a href="../../how-it-works/">How it works</a><a href="../../trust-and-promise/">Our promise</a><a href="../../bases/">Bases</a><a href="../../faq/">FAQ</a></div>
+      <div class="footer-col"><h3>Businesses</h3><a href="../../businesses/">Claim a listing</a><a href="../../pricing/">Pricing</a><a href="../../improve-the-map/">Improve the map</a><a href="../../owner-support/">Owner support</a></div>
+      <div class="footer-col"><h3>Company</h3><a href="../../about/">About Novalyse</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a><a href="../../contact/">Contact</a></div>
+    </div>
+    <div class="footer-base"><span>ScoutLocal is a product of Novalyse LLC. © 2026 Novalyse LLC.</span><span>Fort Polk beta</span></div>
+  </div></footer>
+  <script src="../../assets/js/site.js?v=20260607-2"></script>
+  <script>
+  (function () {
+    // ── Supabase (public anon key — safe to expose; RLS allows anon INSERT only)
+    var SUPABASE_URL = "https://pmogqxzpwdagpllempgn.supabase.co";
+    var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtb2dxeHpwd2RhZ3BsbGVtcGduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNTQ2MjUsImV4cCI6MjA5MzkzMDYyNX0.qodUSAhb7R31Jiv1KwLs-9Gnv-oejL-495h7-Ogz5dg";
+    var BUCKET = "listing-uploads";
+
+    // App categories (label → slug) — mirrors public.categories
+    var CATEGORIES = [
+      ["Childcare", "childcare"], ["Restaurants", "restaurants"], ["Auto Repair", "auto-repair"],
+      ["Pet Services", "pet-services"], ["Salons / Beauty", "salons-beauty"], ["Healthcare", "healthcare"],
+      ["Home Services", "home-services"], ["E-Commerce", "e-commerce"], ["Coaching / Consulting", "coaching-consulting"],
+      ["Virtual Services", "virtual-services"]
+    ];
+    var pc = document.getElementById("primary_category");
+    var sc = document.getElementById("secondary_category");
+    CATEGORIES.forEach(function (c) {
+      var o1 = document.createElement("option"); o1.value = c[1]; o1.textContent = c[0]; pc.appendChild(o1);
+      var o2 = document.createElement("option"); o2.value = c[1]; o2.textContent = c[0]; sc.appendChild(o2);
+    });
+
+    // Description counter
+    var desc = document.getElementById("description"), dcount = document.getElementById("descCount");
+    desc.addEventListener("input", function () { dcount.textContent = desc.value.length; });
+
+    // Show/hide base prompt based on local vs online
+    var baseField = document.getElementById("baseField");
+    function syncType() {
+      var t = (document.querySelector('input[name="business_type"]:checked') || {}).value;
+      baseField.hidden = (t === "online");
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="business_type"]'), function (r) {
+      r.addEventListener("change", syncType);
+    });
+    syncType();
+
+    var form = document.getElementById("listingForm");
+    var msg = document.getElementById("formMsg");
+    var btn = document.getElementById("submitBtn");
+    var successPanel = document.getElementById("successPanel");
+
+    function val(name) { var el = form.elements[name]; return el ? el.value.trim() : ""; }
+    function setMsg(text, isErr) { msg.textContent = text || ""; msg.className = "form-msg" + (isErr ? " err" : ""); }
+
+    function uuid() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0, v = c === "x" ? r : (r & 0x3) | 0x8; return v.toString(16);
+      });
+    }
+
+    // Best-effort upload; returns stored path or null (never blocks submission)
+    function uploadFile(file) {
+      if (!file) return Promise.resolve(null);
+      var safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      var path = uuid() + "/" + safe;
+      return fetch(SUPABASE_URL + "/storage/v1/object/" + BUCKET + "/" + path, {
+        method: "POST",
+        headers: { apikey: SUPABASE_ANON, Authorization: "Bearer " + SUPABASE_ANON, "Content-Type": file.type || "application/octet-stream" },
+        body: file
+      }).then(function (r) { return r.ok ? path : null; }).catch(function () { return null; });
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      setMsg("");
+
+      // Required: name, email, business name, consent
+      if (!val("submitter_name")) return setMsg("Please add your name.", true);
+      if (!val("submitter_email")) return setMsg("Please add your email so we can reach you at launch.", true);
+      if (!val("name")) return setMsg("Please add the business name.", true);
+      if (!form.elements.consent.checked) return setMsg("Please check the consent box to continue.", true);
+
+      btn.disabled = true; setMsg("Saving…");
+
+      var labels = Array.prototype.map.call(
+        document.querySelectorAll('input[name="labels"]:checked'), function (c) { return c.value; }
+      );
+      var baseVal = val("base");
+      if (baseVal === "__other") baseVal = "";
+
+      var logoFile = document.getElementById("logo").files[0] || null;
+      var photoFiles = Array.prototype.slice.call(document.getElementById("photos").files, 0, 4);
+
+      Promise.all([uploadFile(logoFile)].concat(photoFiles.map(uploadFile)))
+        .then(function (paths) {
+          var logo_path = paths[0];
+          var photo_paths = paths.slice(1).filter(Boolean);
+
+          var payload = {
+            relationship: (document.querySelector('input[name="relationship"]:checked') || {}).value || null,
+            submitter_name: val("submitter_name"),
+            submitter_email: val("submitter_email"),
+            submitter_phone: val("submitter_phone") || null,
+            notes_to_team: val("notes_to_team") || null,
+            name: val("name"),
+            description: val("description") || null,
+            business_type: (document.querySelector('input[name="business_type"]:checked') || {}).value || null,
+            primary_category: val("primary_category") || null,
+            secondary_category: val("secondary_category") || null,
+            base: baseVal || null,
+            labels: labels,
+            years_in_business: val("years_in_business") || null,
+            employee_count: val("employee_count") || null,
+            phone: val("phone") || null,
+            email: val("email") || null,
+            website: val("website") || null,
+            address: val("address") || null,
+            area_description: val("area_description") || null,
+            hours: val("hours") || null,
+            social_instagram: val("social_instagram") || null,
+            social_facebook: val("social_facebook") || null,
+            social_etsy: val("social_etsy") || null,
+            logo_path: logo_path,
+            photo_paths: photo_paths,
+            consent: true,
+            source: "website_waitlist",
+            referrer: document.referrer || null,
+            user_agent: navigator.userAgent
+          };
+
+          return fetch(SUPABASE_URL + "/rest/v1/pending_business_listings", {
+            method: "POST",
+            headers: {
+              apikey: SUPABASE_ANON,
+              Authorization: "Bearer " + SUPABASE_ANON,
+              "Content-Type": "application/json",
+              Prefer: "return=minimal"
+            },
+            body: JSON.stringify(payload)
+          });
+        })
+        .then(function (res) {
+          if (!res.ok) { return res.text().then(function (t) { throw new Error(t || ("HTTP " + res.status)); }); }
+          form.hidden = true;
+          successPanel.hidden = false;
+          successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+        })
+        .catch(function (err) {
+          btn.disabled = false;
+          setMsg("Something went wrong saving your listing. Please try again, or email us at hello@scoutlocal.app.", true);
+          if (window.console) console.error("ScoutLocal listing submit failed:", err);
+        });
+    });
+  })();
+  </script></body></html>
