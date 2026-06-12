@@ -1,51 +1,69 @@
 <!doctype html><html lang="en"><head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pricing | ScoutLocal</title><meta name="description" content="ScoutLocal business subscription tiers: Free, Promote, and Featured. Free for families. Same ranking rules for everyone.">
+  <title>Pricing | ScoutLocal</title><meta name="description" content="ScoutLocal business plans: Free to get listed, Promote to get found in the moment with Beacon. Free for families. Same ranking rules for everyone.">
   <link rel="icon" href="../favicon.ico"><link rel="icon" type="image/svg+xml" href="../wayfinder.svg"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <meta property="og:type" content="website"><meta property="og:title" content="Pricing | ScoutLocal"><meta property="og:description" content="ScoutLocal business subscription tiers: Free, Promote, and Featured. Free for families. Same ranking rules for everyone."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Pricing | ScoutLocal"><meta name="twitter:description" content="ScoutLocal business subscription tiers: Free, Promote, and Featured."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta property="og:type" content="website"><meta property="og:title" content="Pricing | ScoutLocal"><meta property="og:description" content="Get listed free, or get found in the moment with Beacon on Promote."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Pricing | ScoutLocal"><meta name="twitter:description" content="Get listed free, or get found in the moment with Beacon on Promote."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
   <link rel="stylesheet" href="../assets/css/site.css?v=20260607-1">
   <style>
     /* ── Pricing tiers (scoped; uses site CSS variables) ───────────────────── */
-    .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
-    .tier{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:28px 26px 30px}
-    .tier.core{border-color:var(--rust);box-shadow:0 18px 40px -28px rgba(178,94,60,.55)}
-    .tier.soon{background:var(--soft)}
+    .tier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px;max-width:840px}
+    .tier{position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:30px 28px 32px;transition:transform .2s,box-shadow .3s,border-color .3s}
+    .tier:before{content:"";position:absolute;left:50%;top:-40%;width:120%;height:120%;transform:translateX(-50%);background:radial-gradient(circle at 50% 0,var(--peach),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+    .tier:hover{transform:translateY(-4px);border-color:var(--rust);box-shadow:0 26px 54px -30px rgba(178,94,60,.6)}
+    .tier:hover:before{opacity:.55}
+    .tier>*{position:relative}
     .tier .tier-tag{font:10px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
     .tier.core .tier-tag{color:var(--rust)}
-    .tier h3{font:700 27px Outfit;letter-spacing:-.02em;margin:8px 0 2px}
-    .tier .role{font-size:13px;color:var(--muted);min-height:36px;margin:0 0 14px}
-    .tier .price{font:700 40px/1 Outfit;letter-spacing:-.03em}
+    .tier h3{font:700 29px Outfit;letter-spacing:-.02em;margin:8px 0 2px}
+    .tier .role{font-size:13.5px;color:var(--muted);min-height:38px;margin:0 0 14px}
+    .tier .price{font:700 44px/1 Outfit;letter-spacing:-.03em}
     .tier .price small{font:500 15px Geist;color:var(--muted)}
     .tier .mil{font-size:12.5px;color:var(--sage-deep);background:var(--sage);display:inline-block;padding:4px 9px;border-radius:5px;margin-top:10px}
-    .tier .mil.tbd{color:var(--muted);background:transparent;padding-left:0}
-    .tier ul{list-style:none;padding:0;margin:18px 0 22px;display:flex;flex-direction:column;gap:9px}
-    .tier li{position:relative;padding-left:24px;font-size:13.5px;line-height:1.45;color:var(--ink2)}
+    .tier .mil.plain{color:var(--muted);background:transparent;padding-left:0}
+    .tier ul{list-style:none;padding:0;margin:18px 0 24px;display:flex;flex-direction:column;gap:10px}
+    .tier li{position:relative;padding-left:24px;font-size:14px;line-height:1.45;color:var(--ink2)}
     .tier li:before{content:"";position:absolute;left:0;top:6px;width:13px;height:9px;border-left:2px solid var(--rust);border-bottom:2px solid var(--rust);transform:rotate(-45deg)}
     .tier li.muted{color:var(--muted)}
     .tier li.muted:before{border-color:var(--line)}
     .tier .adds{font:10px Geist Mono;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:4px 0 0}
     .tier .cta{margin-top:auto}
     .tier .cta .btn{width:100%}
-    .ribbon{position:absolute;top:18px;right:18px;font:10px Geist Mono;text-transform:uppercase;letter-spacing:.08em;color:var(--rust);background:var(--peach2);padding:5px 9px;border-radius:999px}
+    .ribbon{position:absolute;top:18px;right:18px;font:10px Geist Mono;text-transform:uppercase;letter-spacing:.08em;color:var(--rust);background:var(--peach2);padding:5px 9px;border-radius:999px;z-index:2}
     /* comparison table */
     .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
-    table.cmp{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+    table.cmp{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
     table.cmp th,table.cmp td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line)}
-    table.cmp thead th{font:600 14px Outfit;background:var(--soft);position:sticky;top:0}
-    table.cmp thead th:not(:first-child),table.cmp td:not(:first-child){text-align:center;width:150px}
-    table.cmp tbody td:first-child{color:var(--ink2)}
-    table.cmp tr:last-child td{border-bottom:0}
+    table.cmp thead th{font:600 14px Outfit;background:var(--soft)}
+    table.cmp thead th:not(:first-child),table.cmp td:not(:first-child){text-align:center;width:160px}
     table.cmp .col-core{color:var(--rust)}
     table.cmp .yes{color:var(--sage-deep);font-weight:600}
     table.cmp .no{color:var(--muted)}
+    table.cmp tr:last-child td{border-bottom:0}
     table.cmp tr.price-row td{font-weight:700;font-family:Outfit;background:var(--soft)}
-    .pill-note{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:18px 20px;background:var(--paper);margin-top:16px}
-    .pill-note .section-number{flex:none;color:var(--rust)}
-    .pill-note p{margin:0;font-size:14px;line-height:1.55;color:var(--ink2)}
-    @media(max-width:900px){.tier-grid{grid-template-columns:1fr}}
+    /* beacon spotlight */
+    .beacon-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+    .beacon-points{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.15)}
+    .beacon-points div{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+    .beacon-points h4{font:600 19px Outfit;margin:0 0 6px;color:#fff}
+    .beacon-points p{margin:0;color:rgba(255,255,255,.78);line-height:1.5;font-size:14.5px}
+    .beacon-lede{font-size:18px;line-height:1.55;color:rgba(255,255,255,.85)}
+    .beacon-lede strong{color:var(--peach)}
+    /* audience callouts */
+    .callout-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+    .callout{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:30px 28px}
+    .callout .ico{font:11px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust)}
+    .callout h3{font:600 25px Outfit;margin:10px 0 10px;letter-spacing:-.02em}
+    .callout p{margin:0;color:var(--ink2);line-height:1.6}
+    /* story */
+    .story{border:1px solid var(--line);border-left:3px solid var(--rust);border-radius:10px;background:var(--soft);padding:34px 36px;max-width:760px}
+    .story p{color:var(--ink2);line-height:1.7;margin:0 0 16px}
+    .story p:last-child{margin:0}
+    .story .kicker{font:11px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust);margin-bottom:10px}
+    .story strong{color:var(--ink)}
+    @media(max-width:900px){.tier-grid,.callout-grid,.beacon-grid{grid-template-columns:1fr}.story{padding:26px 22px}}
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
       <a class="brand" href="../"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
@@ -62,14 +80,14 @@
 
   <section class="page-hero"><div class="page-glow"></div><div class="wrap">
     <p class="section-number">Pricing</p>
-    <h1>Three tiers. One ladder.</h1>
-    <p class="page-lede">ScoutLocal is always free for families. For businesses, each tier adds one clear capability: get <strong>listed</strong>, get <strong>found in the moment</strong>, then get <strong>prioritized with insight</strong>. Payment can support a profile — it never buys a badge, a hidden report, or family data.</p>
+    <h1>Get listed. Then get found in the moment.</h1>
+    <p class="page-lede">ScoutLocal is always free for families. For businesses, start free to be in the directory — then upgrade to Promote when you're ready to broadcast that you're open, in stock, or around the corner. Payment can support a profile; it never buys a badge, a hidden report, or family data.</p>
     <div class="button-row"><a class="btn btn-primary" href="../businesses/list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div></section>
 
   <!-- Tiers -->
   <section class="section"><div class="wrap">
-    <div class="section-head"><div class="section-number">01 / the tiers</div><div><h2>Pick where you are today.</h2><p>You can start free and move up the day it's worth it. Nothing here is locked in — upgrade or downgrade as your season changes.</p></div></div>
+    <div class="section-head"><div class="section-number">01 / the plans</div><div><h2>Two plans. Start free, move up when it pays for itself.</h2></div></div>
 
     <div class="tier-grid">
 
@@ -79,7 +97,7 @@
         <h3>Free</h3>
         <p class="role">Every local business, the default. Be in the directory and findable.</p>
         <div class="price">$0</div>
-        <span class="mil tbd">No card required</span>
+        <span class="mil plain">No card required</span>
         <ul>
           <li>Directory listing — logo, photos, info, hours, contact, map pin</li>
           <li>Appears in search &amp; on the map</li>
@@ -100,77 +118,90 @@
         <span class="mil">$19/mo military-adjusted rate</span>
         <p class="adds">Everything in Free, plus</p>
         <ul>
-          <li>Push deals &amp; specials</li>
-          <li>Beacon — broadcast “open now” &amp; live location, up to 5 per week</li>
+          <li>Beacon — broadcast “open now” &amp; your live location, up to 5 per week</li>
+          <li>Push deals &amp; specials to nearby families</li>
           <li>“Notify me” bell with push to your followers</li>
           <li>Guaranteed weekly newsletter inclusion</li>
-          <li>Basic analytics — views, saves, directions, alert-followers</li>
+          <li>Analytics — views, saves, directions, alert-followers</li>
         </ul>
         <div class="cta"><a class="btn btn-primary" href="../businesses/list/">Start your listing</a></div>
       </article>
 
-      <!-- Featured -->
-      <article class="tier soon">
-        <span class="ribbon">Planned · post-beta</span>
-        <span class="tier-tag">Featured</span>
-        <h3>Featured</h3>
-        <p class="role">For high-volume vendors who want priority and the insight to act on it.</p>
-        <div class="price">$59–79<small> /month</small></div>
-        <span class="mil tbd">Price &amp; military rate to be finalized</span>
-        <p class="adds">Everything in Promote, plus</p>
-        <ul>
-          <li>Unlimited Beacons — no weekly cap</li>
-          <li>Priority &amp; featured placement in search and “near you”</li>
-          <li>Advanced analytics — trends, best days/hours, what drove visits</li>
-          <li>Multi-location support</li>
-        </ul>
-        <div class="cta"><a class="btn btn-ghost" href="../businesses/list/">Get on the list</a></div>
-      </article>
-
     </div>
-
-    <div class="pill-note"><span class="section-number">Note</span><p><strong>Featured arrives after the August beta.</strong> It's defined here so the full ladder is clear, but it isn't part of the launch set, and its final price (within $59–79) and military-adjusted rate aren't locked yet.</p></div>
   </div></section>
 
-  <!-- Comparison -->
+  <!-- Beacon spotlight -->
+  <section class="dark-section"><div class="wrap">
+    <div class="section-head"><div class="section-number">02 / why Promote</div><div><h2>Beacon turns “open” into “discovered.”</h2></div></div>
+    <div class="beacon-grid">
+      <div>
+        <p class="beacon-lede">Most local businesses don't lose customers because nobody likes them. They lose them because <strong>nobody knew they were open, in stock, or around the corner</strong> — at the one moment it mattered.</p>
+        <p class="beacon-lede" style="margin-top:18px">Beacon is that moment. Tap go-live and every family who follows you sees you're open <em>right now</em>, where you are, and what's waiting. No ad spend. No algorithm. Just the people who already chose you, nudged at exactly the right time.</p>
+      </div>
+      <div class="beacon-points">
+        <div><h4>Turn dead hours into a line</h4><p>Slow Tuesday at 2pm? Light a Beacon with a one-hour deal and watch the door. You control the timing, so you create demand when you need it — not when an ad calendar says so.</p></div>
+        <div><h4>Sell the fresh batch before it cools</h4><p>New tray out of the oven, last ten slots of the day, a surprise restock — announce it the second it's true. Urgency you can't fake is urgency that sells.</p></div>
+        <div><h4>Reach a warm audience, free</h4><p>Beacon pushes only to families who tapped “Notify me.” They asked to hear from you. That's a following most businesses pay thousands to build — and yours starts the day you upgrade.</p></div>
+        <div><h4>Be found where you are, not where you were</h4><p>For anyone who moves, Beacon drops a live pin so today's spot is never a guess. The family two blocks away finally knows you're there.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- Audience callouts -->
+  <section class="section"><div class="wrap">
+    <div class="section-head"><div class="section-number">03 / built for how you work</div><div><h2>Especially good if you don't have a storefront.</h2></div></div>
+    <div class="callout-grid">
+      <div class="callout">
+        <p class="ico">Home-based &amp; by-appointment</p>
+        <h3>Your Beacon is your sign.</h3>
+        <p>No window on the highway, no walk-by traffic — and you don't need it. When you open booking, start a porch-pickup window, or drop a fresh batch, the nearby families who follow you get the nudge. One tap reaches everyone who's waiting on you, instead of posting to five feeds and hoping an algorithm shows it. The bakers, lash artists, detailers, and tutors run their whole day on it.</p>
+      </div>
+      <div class="callout">
+        <p class="ico">Food trucks &amp; mobile vendors</p>
+        <h3>Your location is your business. It changes daily.</h3>
+        <p>A static listing can't keep up with a truck that parks somewhere new every shift. Beacon's live pin moves with you: go live the minute you set up, and every follower sees exactly where you are right now. When the rush fades, drop a flash deal to refill the line before close. Markets, lots, driveways, pop-ups — wherever today's spot is, your regulars can find it.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- Story -->
   <section class="section section-soft"><div class="wrap">
-    <div class="section-head"><div class="section-number">02 / compare</div><div><h2>Feature by feature.</h2></div></div>
+    <div class="section-head"><div class="section-number">04 / a day on Promote</div><div><h2>How a Friday could go.</h2></div></div>
+    <div class="story">
+      <p class="kicker">A picture of Promote in action</p>
+      <p>Picture a taco truck near the base — call it <strong>Camp Street Tacos</strong>. On Free, it had a listing: photos, menu, a map pin. Nice to have, but families only found it if they happened to search “tacos” on a day the truck was out.</p>
+      <p>On <strong>Promote</strong>, Friday looks different. The truck parks by the commissary at 11:00 and lights a Beacon: <em>“Open now — corner of Mahan &amp; 3rd.”</em> The forty-some families who'd tapped “Notify me” over the past month get a single push. By 11:20 there's a line of people who knew, the moment it counted, that lunch was two minutes away.</p>
+      <p>At 1:30 the rush thins and there's a tray of carnitas that won't keep. One more Beacon: <em>“Last batch — $2 off till 2.”</em> The deal clears the tray and the afternoon doesn't end on slow. That night the owner checks analytics: directions tapped, new followers, which Beacon pulled hardest.</p>
+      <p>Same truck, same tacos. The difference is that the people already rooting for it finally knew where it was and when — and that's the whole game for a business that moves.</p>
+    </div>
+  </div></section>
+
+  <!-- Compare -->
+  <section class="section"><div class="wrap">
+    <div class="section-head"><div class="section-number">05 / compare</div><div><h2>Free vs Promote.</h2></div></div>
     <div class="cmp-wrap"><table class="cmp">
-      <thead><tr><th>Feature</th><th>Free</th><th class="col-core">Promote</th><th>Featured</th></tr></thead>
+      <thead><tr><th>Feature</th><th>Free</th><th class="col-core">Promote</th></tr></thead>
       <tbody>
-        <tr><td>Directory listing (logo, photos, info, hours, map pin)</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>Appears in search &amp; map</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>Military-owned badge (if verified)</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>Weekly “What's Happening” email</td><td>Eligible</td><td>Guaranteed</td><td>Guaranteed + spotlight</td></tr>
-        <tr><td>Push deals &amp; specials</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>Beacon (open-now / live location)</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>Beacons per week</td><td class="no">—</td><td>5</td><td>Unlimited</td></tr>
-        <tr><td>“Notify me” bell + push to followers</td><td class="no">—</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-        <tr><td>Placement</td><td>Standard</td><td>Standard</td><td>Priority / featured</td></tr>
-        <tr><td>Analytics</td><td class="no">—</td><td>Basic</td><td>Advanced</td></tr>
-        <tr><td>Multi-location</td><td class="no">—</td><td class="no">—</td><td class="yes">Yes</td></tr>
-        <tr class="price-row"><td>Monthly price</td><td>$0</td><td>$29</td><td>$59–79 (TBD)</td></tr>
-        <tr class="price-row"><td>Military-adjusted rate</td><td>n/a</td><td>$19</td><td>TBD</td></tr>
+        <tr><td>Directory listing (logo, photos, info, hours, map pin)</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Appears in search &amp; map</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Military-owned badge (if verified)</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Weekly “What's Happening” email</td><td>Eligible</td><td>Guaranteed</td></tr>
+        <tr><td>Beacon (open-now / live location)</td><td class="no">—</td><td class="yes">Yes</td></tr>
+        <tr><td>Beacons per week</td><td class="no">—</td><td>5</td></tr>
+        <tr><td>Push deals &amp; specials</td><td class="no">—</td><td class="yes">Yes</td></tr>
+        <tr><td>“Notify me” bell + push to followers</td><td class="no">—</td><td class="yes">Yes</td></tr>
+        <tr><td>Analytics</td><td class="no">—</td><td>Yes</td></tr>
+        <tr class="price-row"><td>Monthly price</td><td>$0</td><td>$29</td></tr>
+        <tr class="price-row"><td>Military-adjusted rate</td><td>n/a</td><td>$19</td></tr>
       </tbody>
     </table></div>
-
-    <div class="pill-note"><span class="section-number">Fair to families</span><p><strong>Push limits apply on every tier</strong> — at most 1 push per business per day, 3 Beacon pushes per family per day, plus quiet hours. They protect families and aren't a paid feature. Featured's edge is unlimited go-lives, never more interruptions of any one family.</p></div>
   </div></section>
 
-  <!-- Upgrade path -->
-  <section class="dark-section"><div class="wrap">
-    <div class="section-head"><div class="section-number">03 / the upgrade path</div><div><h2>Move up the day it's worth it.</h2></div></div>
-    <div class="never-grid" style="grid-template-columns:repeat(2,1fr)">
-      <div><span>Free → Promote</span><p>From listed to live. You stop being a static entry and start broadcasting when you're open. The day you upgrade, everyone who already favorited you is invited to turn on alerts — your follower list starts warm, not at zero.</p></div>
-      <div><span>Promote → Featured</span><p>From live to prioritized. Unlimited go-lives for vendors who operate daily, top placement so you're seen first, and the analytics that tell you which deals and times actually move people — so you can do more of what works.</p></div>
-    </div>
-  </div></section>
-
-  <!-- Military rate + status -->
-  <section class="section"><div class="wrap">
-    <div class="section-head"><div class="section-number">04 / military rate</div><div><h2>A built-in rate for military-affiliated owners.</h2><p>Verified military-affiliated owners pay the military-adjusted rate on paid tiers — $19/mo on Promote, with the Featured rate to be finalized. Eligibility and verification follow the Business Account Types rules.</p></div></div>
-    <div class="draft-note"><strong>Pricing status — draft.</strong> Free and Promote pricing is settled for launch. Featured is planned for after the August beta; its final price and military rate will be published before it goes live.</div>
-  </div></section>
+  <!-- CTA -->
+  <section class="section"><div class="wrap"><section class="signup-band">
+    <div><p class="section-number">Get listed</p><h2>Ready when the app drops?</h2><p>Create your listing now. We'll have your profile ready to publish and claim the day ScoutLocal opens on your base — start free, add Beacon whenever you want to be found in the moment.</p></div>
+    <div style="display:flex;flex-direction:column;gap:14px"><a class="btn" style="background:var(--peach);color:var(--ink)" href="../businesses/list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span style="font-size:12px;color:rgba(255,255,255,.6)">Free to list. Promote is $29/mo, $19 military-adjusted.</span></div>
+  </section></div></section>
 
   </main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
     <div class="footer-grid">
