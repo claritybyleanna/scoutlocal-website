@@ -547,7 +547,24 @@ function regionOf(loc){
   return "CONUS";
 }
 let interestCounts = {};
-function countFor(b){ return Number(interestCounts[b.name]) || 0; }
+let localVotes = {};
+const LS_VOTES_KEY = "sl-base-votes";
+function loadLocalVotes(){
+  try { localVotes = JSON.parse(localStorage.getItem(LS_VOTES_KEY)) || {}; } catch(e){ localVotes = {}; }
+}
+function saveLocalVotes(){
+  try { localStorage.setItem(LS_VOTES_KEY, JSON.stringify(localVotes)); } catch(e){}
+}
+function countFor(b){ return (Number(interestCounts[b.name]) || 0) + (Number(localVotes[b.name]) || 0); }
+// Demo: clicking "Add my voice" / "Join the waitlist" bumps the on-screen counter.
+function addVoice(name){
+  localVotes[name] = (Number(localVotes[name]) || 0) + 1;
+  saveLocalVotes();
+  renderScout(name);
+  renderDetail();
+  bumpTotal();
+  toast(`Thanks — you added your voice for <b>${name}</b>.`, true);
+}
 
 async function loadInterestCounts(){
   try {
@@ -688,7 +705,7 @@ function renderRollout(){
 
 function joinMapped(i){
   const b = MAPPED[i];
-  openKit(b.name);
+  addVoice(b.name);
 }
 
 // ─────────────────────────── scouting grid ───────────────────────────
@@ -738,7 +755,7 @@ function renderScout(bump){
 }
 
 function joinScout(name){
-  openKit(name);
+  addVoice(name);
 }
 
 function openKit(base, email=""){
@@ -805,6 +822,7 @@ const routeObserver = new IntersectionObserver((entries)=>{
 },{threshold:0.3});
 
 async function init(){
+  loadLocalVotes();
   await loadInterestCounts();
   buildMap();
   renderRollout();
