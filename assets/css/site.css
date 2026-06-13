@@ -26,3 +26,16 @@
 .kit-form-wrap .formkit-alert:empty{display:none!important}
 
 .legal-meta{font:12px Geist Mono;color:var(--ink2);margin-bottom:10px}.legal ul{margin:14px 0;padding-left:22px;color:var(--ink2);line-height:1.7}.legal li{margin:6px 0}.legal li strong{color:var(--ink)}
+
+.signup-alt{margin:20px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.72)}.signup-alt a{color:var(--peach);font-weight:600;text-decoration:underline;text-decoration-color:var(--peach);text-underline-offset:3px;text-decoration-thickness:1.5px}.signup-alt a:hover{color:#ffe0c4;text-decoration-color:#ffe0c4}
+
+/* Photography: families hero cluster + homepage intro photo */
+.family-hero-grid{display:grid;grid-template-columns:1fr .92fr;gap:56px;align-items:center}
+.photo-cluster{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.photo-cluster img{width:100%;object-fit:cover;border:1px solid var(--line);border-radius:10px;display:block;box-shadow:0 26px 50px -38px #6c5038}
+.photo-cluster .pc-wide{grid-column:1 / -1;aspect-ratio:3/2}
+.photo-cluster .pc-sq{aspect-ratio:1/1}
+.intro-section{overflow-x:clip}
+.intro-banner{display:block;width:auto;margin:0 0 44px;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);height:clamp(200px,32vw,420px);object-fit:cover;object-position:center 45%;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:900px){.family-hero-grid{grid-template-columns:1fr;gap:34px}}
+@media(max-width:620px){.intro-banner{height:clamp(160px,50vw,240px);margin-bottom:30px}}
