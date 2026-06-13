@@ -6,7 +6,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <meta property="og:type" content="website"><meta property="og:title" content="How ScoutLocal works | ScoutLocal"><meta property="og:description" content="A new base, already mapped. See how military families belong faster with verified local places and events."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How ScoutLocal works | ScoutLocal"><meta name="twitter:description" content="A new base, already mapped. See how military families belong faster with verified local places and events."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
-  <link rel="stylesheet" href="../assets/css/site.css?v=20260613-2">
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260613-3">
   <style>
   /* How it works — page layout on shared site tokens */
   .hiw-col{max-width:760px;margin:0 auto}
@@ -55,25 +55,15 @@
   .hiw-tile .chk svg{width:11px;height:11px}
   .hiw-tile h4{font:600 15px Outfit;letter-spacing:-.01em;margin-top:12px;line-height:1.15}
   .hiw-tile p{font-size:12px;color:var(--ink2);margin-top:3px;line-height:1.35}
-  /* step 4 dark */
-  .hiw-belong{position:relative;overflow:hidden;background:var(--ink);border:1px solid var(--ink);padding:22px 26px;display:flex;align-items:center;gap:18px;color:#fff}
-  .hiw-belong::after{content:"";position:absolute;width:360px;height:360px;right:-140px;top:-160px;border-radius:50%;filter:blur(40px);background:radial-gradient(circle,rgba(255,151,118,.26),transparent 60%)}
+  /* step 4 — dark card with community photo */
+  .hiw-belong{position:relative;overflow:hidden;background:var(--ink);border:1px solid var(--ink);color:#fff}
+  .hiw-belong::after{content:"";position:absolute;width:360px;height:360px;right:-140px;top:-160px;border-radius:50%;filter:blur(40px);background:radial-gradient(circle,rgba(255,151,118,.26),transparent 60%);pointer-events:none}
+  .hiw-belong-head{position:relative;display:flex;align-items:center;gap:18px;padding:22px 26px 18px}
   .hiw-belong .hiw-ic{position:relative;background:rgba(255,255,255,.12);color:#fff}
-  .hiw-belong h3{position:relative;font:600 22px Outfit;letter-spacing:-.02em}
-  .hiw-belong p{position:relative;font-size:14px;color:rgba(255,255,255,.74);margin-top:4px}
-  /* community band */
-  .hiw-community{margin-top:46px}
-  .hiw-cap{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:14px}
-  .hiw-cap .line{font:600 20px Outfit;letter-spacing:-.02em}
-  .hiw-community img{width:100%;height:340px;object-fit:cover;object-position:center 32%;border:1px solid var(--line);border-radius:16px;display:block;box-shadow:0 26px 50px -38px #6c5038}
-  /* flywheel */
-  .hiw-fly{max-width:760px;margin:0 auto;text-align:center}
-  .hiw-fly-row{display:flex;align-items:stretch;justify-content:center;margin-top:20px;flex-wrap:wrap}
-  .hiw-fly-box{background:var(--peach2);border-radius:12px;padding:18px 22px;font:600 16px Outfit;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:center;flex:1 1 0;min-width:150px;justify-content:center;text-align:center}
-  .hiw-fly-arrow{display:flex;align-items:center;color:var(--rust);padding:0 12px}
-  .hiw-fly-arrow svg{width:22px;height:14px}
-  .hiw-fly-loop{margin-top:16px;font:500 11px Geist Mono;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
-  .hiw-fly-loop svg{width:34px;height:14px;color:var(--rust)}
+  .hiw-belong-head h3{font:600 22px Outfit;letter-spacing:-.02em}
+  .hiw-belong-head p{font-size:14px;color:rgba(255,255,255,.74);margin-top:4px}
+  .hiw-belong-img{position:relative;display:block;width:calc(100% - 52px);margin:0 26px;height:320px;object-fit:cover;object-position:center 32%;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+  .hiw-belong-cap{position:relative;font:600 20px Outfit;letter-spacing:-.02em;color:#fff;padding:16px 26px 20px}
   /* trust pills */
   .hiw-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   .hiw-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font:600 13px Outfit;letter-spacing:-.01em;white-space:nowrap}
@@ -84,13 +74,12 @@
   @media(max-width:640px){
     .hiw-hero-body{grid-template-columns:1fr}
     .hiw-phone{margin:0 auto}
-    .hiw-fly-row{flex-direction:column;align-items:center}
-    .hiw-fly-box{width:100%;flex:none}
-    .hiw-fly-arrow{transform:rotate(90deg);padding:8px 0}
     .hiw-step{grid-template-columns:40px 1fr;gap:16px}
     .hiw-steps::before{left:19px}
     .hiw-marker{width:40px}.hiw-marker b{width:36px;height:36px;font-size:16px}
-    .hiw-community img{height:240px}
+    .hiw-belong-img{height:200px;width:calc(100% - 32px);margin:0 16px}
+    .hiw-belong-head{padding:18px 18px 14px}
+    .hiw-belong-cap{padding:14px 18px 18px}
   }
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
@@ -146,14 +135,13 @@
       </div></div>
 
       <div class="hiw-step last"><div class="hiw-marker"><b>4</b></div><div class="hiw-card hiw-belong">
-        <span class="hiw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M12 18c-2.5-1.8-3.5-3.2-3.5-4.6A2 2 0 0 1 12 12a2 2 0 0 1 3.5 1.4C15.5 14.8 14.5 16.2 12 18z"/></svg></span>
-        <div><h3>Belong faster.</h3><p>Settled on day one, not month six.</p></div>
+        <div class="hiw-belong-head"><span class="hiw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M12 18c-2.5-1.8-3.5-3.2-3.5-4.6A2 2 0 0 1 12 12a2 2 0 0 1 3.5 1.4C15.5 14.8 14.5 16.2 12 18z"/></svg></span>
+        <div><h3>Belong faster.</h3><p>Settled on day one, not month six.</p></div></div>
+        <img class="hiw-belong-img" src="../assets/img/community.jpg" alt="Military families and neighbors talking and laughing at a local community gathering." width="1500" height="1000" loading="lazy">
+        <p class="hiw-belong-cap">Home, sooner.</p>
       </div></div>
 
     </div>
-
-    <div class="hiw-community"><div class="hiw-cap"><span class="line">Home, sooner.</span><span class="hiw-eyebrow">Fort Polk &middot; beta</span></div>
-      <img src="../assets/img/community.jpg" alt="Military families and neighbors talking and laughing at a local community gathering." width="1500" height="1000" loading="lazy"></div>
   </div></div></section>
 
   <section class="section section-soft"><div class="wrap"><div class="section-head"><div class="section-number">Trust</div><div><h2>Badges are earned. Never bought.</h2><p>Every badge uses the same documented criteria on every listing, so a signal means the same thing everywhere.</p></div></div>
@@ -166,16 +154,6 @@
     <div class="values-grid" style="margin-top:36px"><article><h3>Verified Local</h3><p>A real business with a reviewed physical presence near the listed base.</p></article><article><h3>Military-Connected Owned</h3><p>Ownership status verified through documentation or a trusted partner.</p></article><article><h3>Founding Partner</h3><p>Recognition for early verified businesses that helped build the first useful directory.</p></article></div>
   </div></section>
 
-  <section class="section"><div class="wrap"><div class="hiw-fly"><span class="hiw-eyebrow"><span class="dot"></span>Why it keeps getting better</span>
-    <div class="hiw-fly-row">
-      <div class="hiw-fly-box">More families join</div>
-      <div class="hiw-fly-arrow"><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h18M15 2l5 5-5 5"/></svg></div>
-      <div class="hiw-fly-box">More businesses list</div>
-      <div class="hiw-fly-arrow"><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h18M15 2l5 5-5 5"/></svg></div>
-      <div class="hiw-fly-box">A richer directory</div>
-    </div>
-    <div class="hiw-fly-loop"><svg viewBox="0 0 36 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11c0-6 28-6 28 0" stroke-dasharray="2 4"/><path d="M7 7l-3 4 4 1"/></svg>Which brings in more families</div>
-  </div></div></section>
   </main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand"><h2>scout local<span>.</span></h2><p>A directory for the everyday places that make a new base feel workable, familiar, and eventually like home. Built with and for military families.</p></div>
