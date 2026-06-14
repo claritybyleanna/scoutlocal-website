@@ -67,7 +67,6 @@
     <h1>Let's create your listing.</h1>
     <p class="page-lede">Want your business listed the day the app drops? Tell us everything once, here. We'll hold your details and have your profile ready to go live and claim the moment ScoutLocal opens on your base.</p>
   </div></section>
-
   <section class="section"><div class="wrap"><div class="form-shell">
     <aside class="form-aside">
       <p class="section-number">What we'll ask</p>
@@ -81,10 +80,8 @@
       </ol>
       <p class="sub" style="font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5">Only your name, email, and the business name are required. Everything else you can add now or after launch.</p>
     </aside>
-
     <div>
     <form class="listing-form" id="listingForm" novalidate>
-
       <!-- 0 · Plan interest -->
       <div class="fieldset">
         <h2>Your plan</h2>
@@ -96,7 +93,6 @@
           </div>
         </div>
       </div>
-
       <!-- 1 · About you -->
       <div class="fieldset">
         <h2>About you</h2>
@@ -115,7 +111,6 @@
         </div>
         <div class="field"><label class="lbl" for="submitter_phone">Your phone <span class="sub" style="display:inline">(optional)</span></label><input type="tel" id="submitter_phone" name="submitter_phone" autocomplete="tel"></div>
       </div>
-
       <!-- 2 · The basics -->
       <div class="fieldset">
         <h2>The basics</h2>
@@ -147,7 +142,6 @@
           <input type="text" id="category_other" name="category_other" placeholder="e.g. Tattoo studio · Music lessons · Tax prep">
         </div>
       </div>
-
       <!-- 3 · Background -->
       <div class="fieldset">
         <h2>Background</h2>
@@ -185,7 +179,6 @@
           </div>
         </div>
       </div>
-
       <!-- 4 · Find you -->
       <div class="fieldset">
         <h2>How families find you</h2>
@@ -215,7 +208,6 @@
         </div>
         <div class="field"><label class="lbl" for="website">Website</label><input type="url" id="website" name="website" placeholder="https://yourbusiness.com"></div>
       </div>
-
       <!-- 5 · Social -->
       <div class="fieldset">
         <h2>Social</h2>
@@ -224,7 +216,6 @@
         <div class="field"><label class="lbl" for="social_facebook">Facebook</label><input type="text" id="social_facebook" name="social_facebook" placeholder="Facebook page URL"></div>
         <div class="field"><label class="lbl" for="social_etsy">Etsy</label><input type="text" id="social_etsy" name="social_etsy" placeholder="Etsy shop URL"></div>
       </div>
-
       <!-- 6 · Photos -->
       <div class="fieldset">
         <h2>Photos</h2>
@@ -232,7 +223,6 @@
         <div class="field"><label class="lbl" for="logo">Logo</label><div class="filebox">Square works best.<input type="file" id="logo" name="logo" accept="image/png,image/jpeg,image/webp"></div></div>
         <div class="field"><label class="lbl" for="photos">Photos <span class="sub" style="display:inline">(up to 4)</span></label><div class="filebox">Storefront, products, your team.<input type="file" id="photos" name="photos" accept="image/png,image/jpeg,image/webp" multiple></div></div>
       </div>
-
       <!-- 7 · Notes + consent -->
       <div class="fieldset">
         <h2>Anything else?</h2>
@@ -241,13 +231,11 @@
           <label class="consent"><input type="checkbox" id="consent" name="consent" required><span>I'd like ScoutLocal to hold these details and contact me at launch to publish and claim this listing. ScoutLocal never sells contact data or charges for ranking.</span></label>
         </div>
       </div>
-
       <div class="form-actions">
         <button type="submit" class="btn btn-primary" id="submitBtn">Save my listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
       </div>
     </form>
-
     <div class="form-success" id="successPanel" hidden>
       <h2>You're on the list. 🎉</h2>
       <p>Thanks — your details are saved. When ScoutLocal opens on your base, we'll email you to review, publish, and claim your listing. No action needed until then.</p>
@@ -270,7 +258,6 @@
     var SUPABASE_URL = "https://pmogqxzpwdagpllempgn.supabase.co";
     var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtb2dxeHpwd2RhZ3BsbGVtcGduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNTQ2MjUsImV4cCI6MjA5MzkzMDYyNX0.qodUSAhb7R31Jiv1KwLs-9Gnv-oejL-495h7-Ogz5dg";
     var BUCKET = "listing-uploads";
-
     // App categories (label → slug) — mirrors public.categories
     var CATEGORIES = [
       ["Childcare", "childcare"], ["Restaurants", "restaurants"], ["Auto Repair", "auto-repair"],
@@ -288,11 +275,9 @@
     var oOther = document.createElement("option"); oOther.value = "__other"; oOther.textContent = "Other — tell us…"; pc.appendChild(oOther);
     var catOtherField = document.getElementById("categoryOtherField");
     pc.addEventListener("change", function () { catOtherField.hidden = (pc.value !== "__other"); });
-
     // Description counter
     var desc = document.getElementById("description"), dcount = document.getElementById("descCount");
     desc.addEventListener("input", function () { dcount.textContent = desc.value.length; });
-
     // Show/hide base prompt based on local vs online
     var baseField = document.getElementById("baseField");
     function syncType() {
@@ -303,14 +288,11 @@
       r.addEventListener("change", syncType);
     });
     syncType();
-
     // Reveal base write-in box when "Another base" is chosen
     var baseSel = document.getElementById("base"), baseOther = document.getElementById("base_other");
     baseSel.addEventListener("change", function () { baseOther.hidden = (baseSel.value !== "__other"); });
-
     var form = document.getElementById("listingForm");
     var msg = document.getElementById("formMsg");
-
     // Pre-select plan from the button the visitor clicked (e.g. ?plan=promote)
     var planParam = (new URLSearchParams(location.search)).get("plan");
     if (planParam === "free" || planParam === "promote") {
@@ -320,17 +302,14 @@
     }
     var btn = document.getElementById("submitBtn");
     var successPanel = document.getElementById("successPanel");
-
     function val(name) { var el = form.elements[name]; return el ? el.value.trim() : ""; }
     function setMsg(text, isErr) { msg.textContent = text || ""; msg.className = "form-msg" + (isErr ? " err" : ""); }
-
     function uuid() {
       if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
       return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (Math.random() * 16) | 0, v = c === "x" ? r : (r & 0x3) | 0x8; return v.toString(16);
       });
     }
-
     // Best-effort upload; returns stored path or null (never blocks submission)
     function uploadFile(file) {
       if (!file) return Promise.resolve(null);
@@ -342,19 +321,15 @@
         body: file
       }).then(function (r) { return r.ok ? path : null; }).catch(function () { return null; });
     }
-
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       setMsg("");
-
       // Required: name, email, business name, consent
       if (!val("submitter_name")) return setMsg("Please add your name.", true);
       if (!val("submitter_email")) return setMsg("Please add your email so we can reach you at launch.", true);
       if (!val("name")) return setMsg("Please add the business name.", true);
       if (!form.elements.consent.checked) return setMsg("Please check the consent box to continue.", true);
-
       btn.disabled = true; setMsg("Saving…");
-
       var labels = Array.prototype.map.call(
         document.querySelectorAll('input[name="labels"]:checked'), function (c) { return c.value; }
       );
@@ -363,15 +338,12 @@
       var primaryCat = val("primary_category");
       var categoryOther = null;
       if (primaryCat === "__other") { categoryOther = val("category_other") || null; primaryCat = ""; }
-
       var logoFile = document.getElementById("logo").files[0] || null;
       var photoFiles = Array.prototype.slice.call(document.getElementById("photos").files, 0, 4);
-
       Promise.all([uploadFile(logoFile)].concat(photoFiles.map(uploadFile)))
         .then(function (paths) {
           var logo_path = paths[0];
           var photo_paths = paths.slice(1).filter(Boolean);
-
           var payload = {
             plan_interest: (document.querySelector('input[name="plan_interest"]:checked') || {}).value || null,
             relationship: (document.querySelector('input[name="relationship"]:checked') || {}).value || null,
@@ -405,7 +377,6 @@
             referrer: document.referrer || null,
             user_agent: navigator.userAgent
           };
-
           return fetch(SUPABASE_URL + "/rest/v1/pending_business_listings", {
             method: "POST",
             headers: {
