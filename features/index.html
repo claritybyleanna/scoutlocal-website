@@ -1,41 +1,41 @@
 <!doctype html><html lang="en"><head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Features | ScoutLocal</title><meta name="description" content="Beacon is the feature we're testing next — broadcast that you're open, in stock, or around the corner. Right now every business gets 3 Beacons a month, free.">
+  <title>Features | ScoutLocal</title><meta name="description" content="Everything in ScoutLocal: trusted local businesses for military families, free always. Listings, badges, and Beacon for businesses — free during beta.">
   <link rel="icon" href="../favicon.ico"><link rel="icon" type="image/svg+xml" href="../wayfinder.svg"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <meta property="og:type" content="website"><meta property="og:title" content="Features | ScoutLocal"><meta property="og:description" content="Beacon is the feature we're testing next. Right now every business gets 3 Beacons a month, free."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Features | ScoutLocal"><meta name="twitter:description" content="Beacon is the feature we're testing next. Right now every business gets 3 Beacons a month, free."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta property="og:type" content="website"><meta property="og:title" content="Features | ScoutLocal"><meta property="og:description" content="Everything in ScoutLocal — free for families, free for businesses during beta, with Beacon included as a perk."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Features | ScoutLocal"><meta name="twitter:description" content="Everything in ScoutLocal — free for families, free for businesses during beta, with Beacon included as a perk."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
   <link rel="stylesheet" href="../assets/css/site.css?v=20260613-3">
   <style>
-    /* Features — Beacon (scoped; uses site CSS variables) */
-    .fx-now{display:flex;gap:16px;align-items:flex-start;max-width:760px;border:1px dashed var(--rust);background:var(--peach2);border-radius:10px;padding:20px 22px}
-    .fx-now h3{font:600 18px Outfit;letter-spacing:-.01em;margin:0 0 4px}
-    .fx-now p{margin:0;color:var(--ink2);line-height:1.55;font-size:14.5px}
-    .fx-now .tag{flex:0 0 auto;font:10px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust);border:1px solid var(--rust);border-radius:999px;padding:5px 10px;margin-top:2px}
-    .beacon-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
-    .beacon-points{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.15)}
-    .beacon-points div{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.15)}
-    .beacon-points h4{font:600 19px Outfit;margin:0 0 6px;color:#fff}
-    .beacon-points p{margin:0;color:rgba(255,255,255,.78);line-height:1.5;font-size:14.5px}
-    .beacon-lede{font-size:18px;line-height:1.55;color:rgba(255,255,255,.85)}
-    .beacon-lede strong{color:var(--peach)}
-    .callout-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
-    .callout{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:30px 28px}
-    .callout .ico{font:11px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust)}
-    .callout h3{font:600 25px Outfit;margin:10px 0 10px;letter-spacing:-.02em}
-    .callout p{margin:0;color:var(--ink2);line-height:1.6}
-    .story{border:1px solid var(--line);border-left:3px solid var(--rust);border-radius:10px;background:var(--soft);padding:34px 36px;max-width:760px}
-    .story p{color:var(--ink2);line-height:1.7;margin:0 0 16px}
-    .story p:last-child{margin:0}
-    .story .kicker{font:11px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust);margin-bottom:10px}
-    .story strong{color:var(--ink)}
+    /* Features page — scoped, uses site tokens */
+    .feat-tag{display:inline-flex;align-items:center;gap:9px;font:500 11px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:var(--rust)}
+    .feat-tag .d{width:6px;height:6px;border-radius:50%;background:var(--rust)}
+    .feat-block{max-width:1000px}
+    .feat-block h2{font:700 clamp(28px,3.6vw,42px)/1.06 Outfit;letter-spacing:-.03em;margin:14px 0 14px;max-width:22ch}
+    .feat-lede{font-size:17px;line-height:1.62;color:var(--ink2);max-width:64ch;margin:0}
+    .feat-sub{font:500 11px Geist Mono;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:36px 0 18px;padding-bottom:11px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+    .feat-sub .pill{font:500 9.5px Geist Mono;color:#36421f;background:var(--sage);padding:3px 8px;border-radius:999px;letter-spacing:.08em}
+    .feat-grp{font:600 15px Outfit;color:var(--ink);margin:24px 0 12px;display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
+    .feat-grp .k{font:500 10px Geist Mono;text-transform:uppercase;letter-spacing:.08em;color:#8a4326;background:var(--peach2);padding:3px 8px;border-radius:999px}
+    .feat-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:13px 36px}
+    .feat-list.one{grid-template-columns:1fr;max-width:760px}
+    .feat-list li{position:relative;padding-left:28px;font-size:15px;line-height:1.5;color:var(--ink2)}
+    .feat-list li:before{content:"";position:absolute;left:1px;top:4px;width:13px;height:8px;border-left:2.5px solid var(--sage-deep);border-bottom:2.5px solid var(--sage-deep);transform:rotate(-45deg)}
+    .feat-list li b{color:var(--ink);font-weight:600}
+    .feat-soon li{color:#655c50}
+    .feat-soon li:before{border:1.5px solid var(--line);border-radius:50%;width:9px;height:8px;transform:none;top:6px}
+    .feat-soon li b{color:var(--ink2)}
+    .feat-note{border:1px dashed var(--rust);background:var(--peach2);border-radius:10px;padding:20px 22px;margin:26px 0 0;font-size:14.5px;line-height:1.62;color:var(--ink2);max-width:820px}
+    .feat-note b{color:var(--ink)}
+    .feat-close{text-align:center;max-width:680px;margin:0 auto}
+    .feat-close h2{font:700 clamp(26px,3.4vw,38px)/1.1 Outfit;letter-spacing:-.025em;margin:0 0 14px}
+    .feat-close p{font-size:17px;line-height:1.6;color:var(--ink2);margin:0}
     .beacon-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#7d9456;vertical-align:middle;animation:beaconPulse 1.5s infinite,beaconBlink 1.5s infinite}
-    .beacon-dot.lg{width:16px;height:16px;margin-right:12px}
-    @keyframes beaconPulse{0%{box-shadow:0 0 0 0 rgba(140,170,100,.65)}70%{box-shadow:0 0 0 12px rgba(140,170,100,0)}100%{box-shadow:0 0 0 0 rgba(140,170,100,0)}}
+    @keyframes beaconPulse{0%{box-shadow:0 0 0 0 rgba(140,170,100,.6)}70%{box-shadow:0 0 0 11px rgba(140,170,100,0)}100%{box-shadow:0 0 0 0 rgba(140,170,100,0)}}
     @keyframes beaconBlink{0%,100%{opacity:1}50%{opacity:.45}}
     @media(prefers-reduced-motion:reduce){.beacon-dot{animation:none}}
-    @media(max-width:900px){.callout-grid,.beacon-grid{grid-template-columns:1fr}.story{padding:26px 22px}.fx-now{flex-direction:column;gap:12px}}
+    @media(max-width:720px){.feat-list{grid-template-columns:1fr}}
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
       <a class="brand" href="../"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
@@ -52,61 +52,93 @@
 
   <section class="page-hero"><div class="page-glow"></div><div class="wrap">
     <p class="section-number">Features</p>
-    <h1><span class="beacon-dot lg"></span>Beacon: be found the moment you're open.</h1>
-    <p class="page-lede">Beacon is the feature we're testing next. Tap go-live and every family who follows you sees you're open <em>right now</em>, where you are, and what's waiting — no ad spend, no algorithm. While we test it, every business gets 3 Beacons a month, free.</p>
-    <div class="button-row"><a class="btn btn-primary" href="../businesses/list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <h1>Belong faster after every move.</h1>
+    <p class="page-lede">ScoutLocal is the trusted local guide for military families — the businesses and places worth knowing near your base, plus the military-spouse entrepreneurs worth supporting anywhere. Free for families. A home for the businesses who serve them.</p>
+    <div class="button-row"><a class="btn btn-primary" href="../join-beta/">Join the beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn btn-ghost" href="../businesses/list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div></section>
 
-  <section class="section"><div class="wrap">
-    <div class="fx-now"><span class="tag">Testing next</span><div><h3>Free while we test it.</h3><p>Right now, every business — listed for free — gets <strong>3 Beacons a month at no cost</strong>. No card and no paid plan required while we learn what works. We'll share what comes next before anything changes.</p></div></div>
-  </div></section>
+  <!-- For Families -->
+  <section class="section"><div class="wrap"><div class="feat-block">
+    <span class="feat-tag"><span class="d"></span>For families · free, always</span>
+    <h2>Land at a new base and know who to trust by the end of the week.</h2>
+    <p class="feat-lede">Every PCS means starting over: a new mechanic, a new salon, childcare you can actually trust, somewhere that already feels like yours. ScoutLocal hands you the shortlist the day you arrive — recommended by the families who already know.</p>
 
-  <section class="dark-section"><div class="wrap">
-    <div class="section-head"><div class="section-number">01 / the feature</div><div><h2><span class="beacon-dot lg"></span>Beacon turns &ldquo;open&rdquo; into &ldquo;discovered.&rdquo;</h2></div></div>
-    <div class="beacon-grid">
-      <div>
-        <p class="beacon-lede">Most local businesses don't lose customers because nobody likes them. They lose them because <strong>nobody knew they were open, in stock, or around the corner</strong> — at the one moment it mattered.</p>
-        <p class="beacon-lede" style="margin-top:18px">Beacon is that moment. Tap go-live and every family who follows you sees you're open <em>right now</em>, where you are, and what's waiting. Just the people who already chose you, nudged at exactly the right time.</p>
-      </div>
-      <div class="beacon-points">
-        <div><h4>Turn dead hours into a line</h4><p>Slow Tuesday at 2pm? Light a Beacon with a one-hour deal and watch the door. You control the timing, so you create demand when you need it — not when an ad calendar says so.</p></div>
-        <div><h4>Sell the fresh batch before it cools</h4><p>New tray out of the oven, last ten slots of the day, a surprise restock — announce it the second it's true. Urgency you can't fake is urgency that sells.</p></div>
-        <div><h4>Reach a warm audience, free</h4><p>Beacon pushes only to families who tapped &ldquo;Notify me.&rdquo; They asked to hear from you. That's a following most businesses pay thousands to build.</p></div>
-        <div><h4>Be found where you are, not where you were</h4><p>For anyone who moves, Beacon drops a live pin so today's spot is never a guess. The family two blocks away finally knows you're there.</p></div>
-      </div>
-    </div>
-  </div></section>
+    <p class="feat-sub">Available now <span class="pill">Free</span></p>
+    <ul class="feat-list">
+      <li>Find trusted local businesses near your base, browsable by category</li>
+      <li>Discover military-spouse-owned businesses nationwide — and support your own community</li>
+      <li>Badges you can trust — <b>Military Spouse Owned</b> and <b>Verified Local</b></li>
+      <li><span class="beacon-dot"></span> See who's open right now — when a food truck or pop-up goes live, you'll know where and until when</li>
+      <li>Save your favorites so your list travels with you to the next base</li>
+      <li>Turn on alerts for the businesses you love, and get a heads-up the moment they're open</li>
+      <li>A weekly <b>&ldquo;What's Happening&rdquo;</b> email — new businesses, local spotlights, and tips for settling in</li>
+      <li><b>Free. Always.</b> Families never pay.</li>
+    </ul>
 
-  <section class="section"><div class="wrap">
-    <div class="section-head"><div class="section-number">02 / built for how you work</div><div><h2>Especially good if you don't have a storefront.</h2></div></div>
-    <div class="callout-grid">
-      <div class="callout">
-        <p class="ico">Home-based &amp; by-appointment</p>
-        <h3>Your Beacon is your sign.</h3>
-        <p>No window on the highway, no walk-by traffic — and you don't need it. When you open booking, start a porch-pickup window, or drop a fresh batch, the nearby families who follow you get the nudge. One tap reaches everyone who's waiting on you, instead of posting to five feeds and hoping an algorithm shows it. The bakers, lash artists, detailers, and tutors run their whole day on it.</p>
-      </div>
-      <div class="callout">
-        <p class="ico">Food trucks &amp; mobile vendors</p>
-        <h3>Your location is your business. It changes daily.</h3>
-        <p>A static listing can't keep up with a truck that parks somewhere new every shift. Beacon's live pin moves with you: go live the minute you set up, and every follower sees exactly where you are right now. When the rush fades, drop a flash deal to refill the line before close. Markets, lots, driveways, pop-ups — wherever today's spot is, your regulars can find it.</p>
-      </div>
-    </div>
-  </div></section>
+    <p class="feat-sub">Coming soon</p>
+    <ul class="feat-list feat-soon">
+      <li><b>Reviews from families like you</b> — trust, in their own words</li>
+      <li><b>Local events in one place</b> — MWR, ACS, and FRG happenings</li>
+      <li><b>More bases</b> — ScoutLocal is rolling out base by base, and yours could be next</li>
+    </ul>
+  </div></div></section>
 
-  <section class="section section-soft"><div class="wrap">
-    <div class="section-head"><div class="section-number">03 / a day with Beacon</div><div><h2>How a Friday could go.</h2></div></div>
-    <div class="story">
-      <p class="kicker">Beacon in action</p>
-      <p><strong>Camp Street Tacos</strong> is a food truck that just opened outside the main gate. It has a free ScoutLocal listing — photos, menu, a map pin. Nice to have, but families only found it if they happened to drive by.</p>
-      <p>With Beacon, Friday looks different. The truck parks by the commissary at 11:00 and lights a Beacon: <em>&ldquo;Open now! Corner of Mahan &amp; 3rd.&rdquo;</em> The forty-some families who'd tapped &ldquo;Notify me&rdquo; over the past month get a single push. By 11:20 there's a line of people who knew lunch was two minutes away.</p>
-      <p>At 1:30 the rush thins and there's a tray of carnitas that won't keep. One more Beacon: <em>&ldquo;Last batch! $2 off till 2.&rdquo;</em> The deal clears the tray and the afternoon doesn't end on slow. That night the owner checks which Beacon pulled hardest.</p>
-      <p>Same truck, same tacos. The difference is that the people already rooting for it finally knew where it was and when — and right now, that costs nothing.</p>
-    </div>
-  </div></section>
+  <!-- For Businesses -->
+  <section class="section section-soft"><div class="wrap"><div class="feat-block">
+    <span class="feat-tag"><span class="d"></span>For businesses · free during beta</span>
+    <h2>Get found by the military families around your base — the most loyal community you can earn.</h2>
+    <p class="feat-lede">Military families move often, spend locally, and stay with the businesses that take care of them. ScoutLocal puts you in front of them — and if your hours aren't fixed, it lets you tell them exactly when you're open and where.</p>
 
+    <p class="feat-sub">Available now <span class="pill">Free during beta</span></p>
+
+    <p class="feat-grp">Your listing</p>
+    <ul class="feat-list">
+      <li>A full profile: logo, photos, description, category, hours, contact, and links</li>
+      <li>A map pin families can navigate to</li>
+    </ul>
+
+    <p class="feat-grp">Get discovered</p>
+    <ul class="feat-list">
+      <li>Show up in search and on the map</li>
+      <li>Earn a <b>Verified Local</b> or <b>Military Spouse Owned</b> badge</li>
+      <li>Eligible for the weekly <b>&ldquo;What's Happening&rdquo;</b> email to local families</li>
+      <li>Families can save you to their Favorites and turn on alerts</li>
+    </ul>
+
+    <p class="feat-grp"><span class="beacon-dot"></span> Go live with Beacon <span class="k">Beta perk · 3 a month</span></p>
+    <ul class="feat-list">
+      <li>Broadcast <b>&ldquo;open now&rdquo;</b> and your live location the moment you open — built for food trucks, pop-ups, and home-based vendors</li>
+      <li>Live pin for mobile vendors; open-now signal for home-based businesses (your address stays protected)</li>
+      <li>Lights up your listing, hits the live feed and the map, and notifies the families who follow you</li>
+    </ul>
+
+    <div class="feat-note"><b>Founding businesses:</b> our paid plan (Promote) is paused for now, so your listing is free during the beta — and Beacon is included as a perk, 3 a month, so you can put it to the test and help us shape it before it becomes a paid feature.</div>
+
+    <p class="feat-grp">Manage it yourself</p>
+    <ul class="feat-list">
+      <li>Claim and edit anytime — changes go live instantly</li>
+      <li>A <b>&ldquo;Last updated&rdquo;</b> freshness mark on your listing</li>
+      <li>See your views and saves<!-- Internal note (delete before publishing): "Views and saves" is shown free during beta but was originally a Promote perk. Decide whether to keep it free or thin it to a teaser once Promote launches, so analytics keeps room to be a paid reason. --></li>
+    </ul>
+
+    <p class="feat-sub">Coming soon</p>
+    <ul class="feat-list one feat-soon">
+      <li><b>Promote (paid):</b> more Beacons — up to 5 a week — plus push deals &amp; specials, guaranteed newsletter inclusion, and basic analytics</li>
+      <li><b>Featured (later):</b> unlimited Beacons, priority placement in search and &ldquo;near you,&rdquo; advanced analytics, and multi-location</li>
+      <li><b>Beacon enhancements:</b> schedule a Beacon in advance, and &ldquo;nearby&rdquo; alerts that reach your followers when you're close</li>
+    </ul>
+  </div></div></section>
+
+  <!-- Closing -->
+  <section class="section"><div class="wrap"><div class="feat-close">
+    <h2>Two sides, one community.</h2>
+    <p>Families find the businesses worth trusting; businesses find the families worth serving. That's how a new base starts to feel like home.</p>
+  </div></div></section>
+
+  <!-- CTA -->
   <section class="section"><div class="wrap"><section class="signup-band">
-    <div><p class="section-number">Get listed</p><h2>Ready when the app drops?</h2><p>Create your listing now — free — and Beacon's ready when you are. We'll have your profile set to publish and claim the day ScoutLocal opens on your base.</p></div>
-    <div style="display:flex;flex-direction:column;gap:14px"><a class="btn" style="background:var(--peach);color:var(--ink)" href="../businesses/list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span style="font-size:12px;color:rgba(255,255,255,.6)">Free to list. 3 Beacons a month, free while we test.</span></div>
+    <div><p class="section-number">Get started</p><h2>Free for families. Free for businesses during beta.</h2><p>Join the beta to get your base's shortlist, or create your listing now — free, with Beacon included as a perk while we test it.</p></div>
+    <div style="display:flex;flex-direction:column;gap:14px"><a class="btn" style="background:var(--peach);color:var(--ink)" href="../businesses/list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn" style="border:1px solid rgba(255,255,255,.3);color:#fff" href="../join-beta/">Join the beta as a family<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </section></div></section>
 
   </main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
