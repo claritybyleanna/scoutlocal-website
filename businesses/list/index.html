@@ -44,6 +44,14 @@
     .form-msg{font-size:13px;line-height:1.5}
     .form-msg.err{color:var(--rust)}
     .req-only[hidden]{display:none}
+    .tag-input{display:flex;gap:8px}
+    .tag-input input{flex:1}
+    .tag-add{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:0 16px;font:600 13px Geist;cursor:pointer;flex:none}
+    .tag-add:hover{background:var(--rust);border-color:var(--rust)}
+    .tag-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+    .tag-chip{display:inline-flex;align-items:center;gap:8px;background:var(--peach2);color:var(--ink);border-radius:999px;padding:6px 6px 6px 13px;font-size:13px}
+    .tag-chip button{border:0;background:rgba(23,21,15,.12);color:var(--ink);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;padding:0}
+    .tag-chip button:hover{background:rgba(23,21,15,.28)}
     .form-success{border:1px solid var(--sage);background:var(--sage);color:var(--sage-deep);border-radius:10px;padding:34px;text-align:left}
     .form-success h2{font:700 30px Outfit;margin:0 0 10px;color:var(--ink)}
     .form-success p{margin:0;color:var(--ink2);line-height:1.55}
@@ -140,6 +148,16 @@
         <div class="field" id="categoryOtherField" hidden>
           <label class="lbl" for="category_other">Tell us your category</label>
           <input type="text" id="category_other" name="category_other" placeholder="e.g. Tattoo studio · Music lessons · Tax prep">
+        </div>
+        <div class="field">
+          <label class="lbl" for="tagEntry">Tags <span class="sub" style="display:inline">(how families might search for you)</span></label>
+          <div class="tag-input">
+            <input type="text" id="tagEntry" list="tagOptions" placeholder="Pick a tag or type your own, then Add" autocomplete="off">
+            <button type="button" class="tag-add" id="tagAdd">Add</button>
+          </div>
+          <datalist id="tagOptions"></datalist>
+          <div class="tag-chips" id="tagChips"></div>
+          <p class="sub">Choose from the suggestions, or add any tag that fits — these help families find you under the right searches.</p>
         </div>
       </div>
       <!-- 3 · Background -->
@@ -275,6 +293,31 @@
     var oOther = document.createElement("option"); oOther.value = "__other"; oOther.textContent = "Other — tell us…"; pc.appendChild(oOther);
     var catOtherField = document.getElementById("categoryOtherField");
     pc.addEventListener("change", function () { catOtherField.hidden = (pc.value !== "__other"); });
+    // Tags: suggestions from existing categories + free-form custom tags
+    var tagOptions = document.getElementById("tagOptions");
+    CATEGORIES.forEach(function (c) { var o = document.createElement("option"); o.value = c[0]; tagOptions.appendChild(o); });
+    var selectedTags = [];
+    var tagEntry = document.getElementById("tagEntry");
+    var tagChips = document.getElementById("tagChips");
+    function renderTags() {
+      tagChips.innerHTML = "";
+      selectedTags.forEach(function (t, idx) {
+        var chip = document.createElement("span"); chip.className = "tag-chip";
+        chip.appendChild(document.createTextNode(t));
+        var x = document.createElement("button"); x.type = "button"; x.setAttribute("aria-label", "Remove " + t); x.textContent = "×";
+        x.addEventListener("click", function () { selectedTags.splice(idx, 1); renderTags(); });
+        chip.appendChild(x); tagChips.appendChild(chip);
+      });
+    }
+    function addTag() {
+      var v = (tagEntry.value || "").trim().replace(/\s+/g, " ");
+      if (!v) return;
+      var dupe = selectedTags.some(function (t) { return t.toLowerCase() === v.toLowerCase(); });
+      if (!dupe && selectedTags.length < 12) selectedTags.push(v);
+      tagEntry.value = ""; renderTags(); tagEntry.focus();
+    }
+    document.getElementById("tagAdd").addEventListener("click", addTag);
+    tagEntry.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === ",") { e.preventDefault(); addTag(); } });
     // Description counter
     var desc = document.getElementById("description"), dcount = document.getElementById("descCount");
     desc.addEventListener("input", function () { dcount.textContent = desc.value.length; });
@@ -357,6 +400,7 @@
             primary_category: primaryCat || null,
             category_other: categoryOther,
             secondary_category: val("secondary_category") || null,
+            tags: selectedTags,
             base: baseVal || null,
             labels: labels,
             years_in_business: val("years_in_business") || null,
