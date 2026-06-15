@@ -37,6 +37,17 @@
     .bc-prev{right:auto;left:12px}.bc-next{right:12px}
     .bc-dots{width:100%;bottom:14px}
   }
+  /* flywheel diagram */
+  .fw{max-width:760px;margin:0 auto;text-align:center}
+  .fw-eyebrow{font:500 11px Geist Mono;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:9px}
+  .fw-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--rust)}
+  .fw-row{display:flex;align-items:stretch;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .fw-box{background:var(--peach2);border-radius:12px;padding:18px 22px;font:600 16px Outfit;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:center;flex:1 1 0;min-width:150px;justify-content:center;text-align:center}
+  .fw-arrow{display:flex;align-items:center;color:var(--rust);padding:0 12px}
+  .fw-arrow svg{width:22px;height:14px}
+  .fw-loop{margin-top:16px;font:500 11px Geist Mono;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+  .fw-loop svg{width:40px;height:16px;color:var(--rust)}
+  @media(max-width:640px){.fw-row{flex-direction:column;align-items:center}.fw-box{width:100%;flex:none}.fw-arrow{transform:rotate(90deg);padding:8px 0}}
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
       <a class="brand" href="../"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
@@ -51,6 +62,16 @@
     </div>
   </header><main><section class="page-hero biz-hero"><div class="wrap"><div class="biz-hero-copy"><p class="section-number">For local businesses</p><h1>Military families are already looking. Be the clear answer.</h1><p class="page-lede">Claim your profile so families can find accurate hours, services, photos, contact details, and military-relevant notes without buying rank.</p><div class="button-row"><a class="btn btn-primary" href="list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></div><div class="bc-stage" aria-roledescription="carousel" aria-label="Local businesses on ScoutLocal"><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/salon.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/salon.jpg" alt="A hair stylist at work in their salon"></div><figcaption>Hair &amp; beauty</figcaption></figure><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/florist.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/florist.jpg" alt="A flower-shop owner arranging blooms in their studio"></div><figcaption>Florists &amp; makers</figcaption></figure><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/computer.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/computer.jpg" alt="A home-based business owner working at a computer"></div><figcaption>Home-based &amp; freelance</figcaption></figure><div class="bc-fade"></div><button class="bc-ctrl bc-next" type="button" aria-label="Next photo">&rsaquo;</button><div class="bc-dots" aria-label="Choose photo"></div></div></section><section class="section"><div class="wrap"><div class="section-head"><div class="section-number">01 / why list</div><div><h2>Current information earns trust.</h2><p>ScoutLocal helps good local businesses be found without chasing old threads or paying for position.</p></div></div><div class="values-grid"><article><h3>Full profile</h3><p>Show hours, services, photos, contact information, and military-relevant notes.</p></article><article><h3>Manual verification</h3><p>Verified Local status follows a review of the business name, address, phone, website, and public presence.</p></article><article><h3>Same ranking rules</h3><p>Payment can support a profile. It cannot buy a badge, ranking boost, or hidden reports.</p></article></div></div></section>
   <section class="dark-section"><div class="wrap"><div class="section-head"><div class="section-number">02 / what cannot be bought</div><div><h2>The trust contract stays intact.</h2></div></div><div class="never-grid"><div><span>01</span><p>A ranking boost above other verified listings</p></div><div><span>02</span><p>Suppression of reports against a listing</p></div><div><span>03</span><p>A military-connected ownership badge without verification</p></div><div><span>04</span><p>Family contact information or targeting data</p></div><div><span>05</span><p>An override on a verified-closed banner</p></div><div><span>06</span><p>A shortcut around current-information requirements</p></div></div></div></section>
+  <section class="section"><div class="wrap"><div class="fw"><span class="fw-eyebrow"><span class="dot"></span>Why it keeps getting better</span>
+    <div class="fw-row">
+      <div class="fw-box">more families join</div>
+      <div class="fw-arrow"><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h18M15 2l5 5-5 5"/></svg></div>
+      <div class="fw-box">more businesses list</div>
+      <div class="fw-arrow"><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h18M15 2l5 5-5 5"/></svg></div>
+      <div class="fw-box">a richer directory</div>
+    </div>
+    <div class="fw-loop"><svg viewBox="0 0 40 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M36 5c0 7-26 8-31 2" stroke-dasharray="2 4"/><path d="M9 3 4 7l5 4"/></svg>which brings in more families</div>
+  </div></div></section>
   <section class="section"><div class="wrap"><section class="signup-band"><div><p class="section-number">Join the beta</p><h2>Raise your hand for the Fort Polk beta.</h2><p>Claim or recommend a business profile through the existing ScoutLocal beta form.</p></div><div class="kit-form-wrap"><script async data-uid="73027e0e98" src="https://scoutlocal.kit.com/73027e0e98/index.js"></script></div></section></div></section></main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand"><h2>scout local<span>.</span></h2><p>A directory for the everyday places that make a new base feel workable, familiar, and eventually like home. Built with and for military families.</p></div>
