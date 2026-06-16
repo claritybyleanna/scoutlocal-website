@@ -1,16 +1,60 @@
 <!doctype html><html lang="en"><head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Find your next go-to place near base | ScoutLocal</title><meta name="description" content="ScoutLocal helps military families find trusted local businesses after a move.">
+  <title>ScoutLocal — the local directory for military families</title><meta name="description" content="ScoutLocal is a local directory built for military families: verified businesses, current information, and a softer landing after every PCS. Free to use.">
   <link rel="icon" href="favicon.ico"><link rel="icon" type="image/svg+xml" href="wayfinder.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <meta property="og:type" content="website"><meta property="og:title" content="Find your next go-to place near base | ScoutLocal"><meta property="og:description" content="ScoutLocal helps military families find trusted local businesses after a move."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Find your next go-to place near base | ScoutLocal"><meta name="twitter:description" content="ScoutLocal helps military families find trusted local businesses after a move."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta property="og:type" content="website"><meta property="og:title" content="ScoutLocal — the local directory for military families"><meta property="og:description" content="Verified businesses, current information, and a softer landing after every PCS. Free to use."><meta property="og:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ScoutLocal — the local directory for military families"><meta name="twitter:description" content="Verified businesses, current information, and a softer landing after every PCS. Free to use."><meta name="twitter:image" content="https://claritybyleanna.github.io/Scout-Local/og-image.png">
   <link rel="stylesheet" href="assets/css/site.css?v=20260607-1">
   <style>
-  .intro-section{overflow-x:clip}
-  .intro-banner{display:block;width:100vw;max-width:none;margin:0 0 44px;margin-left:calc(50% - 50vw);height:clamp(220px,30vw,440px);object-fit:cover;object-position:center 45%;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  @media(max-width:620px){.intro-banner{height:clamp(170px,52vw,240px);margin-bottom:30px}}
+  .hm-hero{position:relative;overflow:hidden;padding:78px 0 56px}
+  .hm-glow{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,var(--peach),rgba(255,209,172,.42) 40%,transparent 72%);filter:blur(20px);width:820px;height:680px;right:-260px;top:-300px}
+  .hm-hero .wrap{position:relative;display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:center}
+  .hm-phone{position:relative;width:300px;max-width:78vw;aspect-ratio:1179/2556;background:var(--ink);border-radius:44px;padding:11px;box-shadow:0 50px 90px -42px #6c5038;margin:0 auto;justify-self:end}
+  .hm-phone-screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:var(--soft)}
+  .hm-app-track{display:flex;height:100%;transition:transform .45s cubic-bezier(.2,.8,.2,1);touch-action:pan-y;cursor:grab}
+  .hm-app-track:active{cursor:grabbing}
+  .hm-app-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;display:block;-webkit-user-drag:none;user-select:none}
+  .hm-app-dots{position:absolute;left:0;right:0;bottom:14px;display:flex;gap:7px;justify-content:center;z-index:2}
+  .hm-app-dots button{width:7px;height:7px;border-radius:50%;border:0;background:rgba(255,255,255,.55);cursor:pointer;padding:0;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:transform .18s,background .18s}
+  .hm-app-dots button.on{background:#fff;transform:scale(1.4)}
+  .hm-hero h1{font:700 clamp(52px,7.4vw,104px)/.94 Outfit;letter-spacing:-.045em;margin:0 0 26px;max-width:13ch}
+  .hm-hero h1 .hl,.hm-connect .lead .hl{background:linear-gradient(transparent 60%,var(--peach) 60% 93%,transparent 93%)}
+  .hm-lede{font-size:19px;line-height:1.55;color:var(--ink2);max-width:56ch;margin:0}
+  .hm-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:32px}
+  .hm-free{font:500 12px Geist Mono;text-transform:uppercase;letter-spacing:.1em;color:#36421f;background:var(--sage);padding:8px 13px;border-radius:999px}
+  .hm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:980px}
+  .hm-stat .n{font:700 clamp(44px,5.4vw,68px)/1 Outfit;letter-spacing:-.03em;color:var(--ink)}
+  .hm-stat .n span{color:var(--muted)}
+  .hm-stat.free .n{color:#36421f}
+  .hm-stat p{font-size:16px;line-height:1.5;color:var(--ink2);margin:12px 0 0;max-width:32ch}
+  .hm-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px}
+  .hm-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px 28px;display:flex;flex-direction:column;box-shadow:0 26px 54px -42px #6c5038}
+  .hm-card .step{font:500 11px Geist Mono;text-transform:uppercase;letter-spacing:.12em;color:#655c50}
+  .hm-card h3{font:600 24px Outfit;letter-spacing:-.02em;margin:15px 0 12px;line-height:1.1}
+  .hm-card>p{font-size:15px;line-height:1.55;color:var(--ink2);margin:0 0 24px}
+  .hm-mini{margin-top:auto;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:4px 16px}
+  .hm-mini .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 2px;border-bottom:1px dashed var(--line)}
+  .hm-mini .row:last-child{border-bottom:0}
+  .hm-mini .row b{font:600 14px Geist;color:var(--ink)}
+  .hm-mini .row .v{font:500 11px Geist Mono;text-transform:uppercase;letter-spacing:.06em;color:#655c50}
+  .hm-pill{font:500 10px Geist Mono;letter-spacing:.08em;text-transform:uppercase;color:#36421f;background:var(--sage);padding:5px 10px;border-radius:999px}
+  .hm-chips{display:flex;flex-wrap:wrap;gap:8px;padding:13px 0}
+  .hm-chip{font-size:13px;border:1px solid var(--line);background:var(--paper);padding:8px 14px;border-radius:999px;color:var(--ink2)}
+  .hm-chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  /* connect-with-community band */
+  .hm-connect .lead{font:700 clamp(40px,6vw,76px)/.97 Outfit;letter-spacing:-.04em;margin:0;max-width:16ch}
+  .hm-arm{width:100vw;margin-left:calc(50% - 50vw);height:clamp(280px,40vw,520px);object-fit:cover;object-position:center 40%;display:block;margin-top:34px}
+  .hm-paths{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:52px}
+  .hm-path .eyebrow{font:500 11px Geist Mono;text-transform:uppercase;letter-spacing:.12em;color:#655c50}
+  .hm-path h3{font:600 clamp(28px,3.4vw,40px) Outfit;letter-spacing:-.025em;line-height:1.05;margin:14px 0}
+  .hm-path p{font-size:17px;line-height:1.55;color:var(--ink2);margin:0 0 20px;max-width:42ch}
+  .hm-path a.lnk{font:600 15px Geist;color:var(--rust);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+  .hm-path a.lnk svg{width:15px;height:15px}
+  @media(max-width:900px){.hm-cards{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}.hm-hero .wrap{grid-template-columns:1fr;gap:38px}.hm-phone{justify-self:center}}
+  @media(max-width:760px){.hm-paths{grid-template-columns:1fr;gap:36px}}
+  @media(max-width:640px){.hm-stats{grid-template-columns:1fr;gap:30px}}
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
       <a class="brand" href=""><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
@@ -23,13 +67,102 @@
         <a class="nav-cta" href="join-beta/">Join beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </nav>
     </div>
-  </header><main><section class="home-hero"><div class="hero-glow"></div><div class="wrap hero-grid"><div><h1>Find your next go-to place <span>near base.</span></h1><p>ScoutLocal helps military families find trusted local businesses after a move, from childcare and auto repair to salons, pet care, food, fitness, and weekend places worth trying.</p><div class="button-row"><a class="btn btn-primary" href="families/">Explore the family path<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn btn-ghost" href="businesses/">List your business<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div><div class="phone-stage"><div class="phone"><div class="phone-top"><b>9:41</b><span>● ))) 78%</span></div><p class="phone-label">Fort Polk, Louisiana</p><h2>What do you need today?</h2><div class="search-box">Search places near base</div><div class="phone-pills"><span class="active">Childcare</span><span>Auto</span><span>Pet care</span></div><p class="list-label">Places to start</p>
-  <div class="listing"><div><b>Bright Start Learning</b><small>Childcare · Leesville</small></div><em>Verified local</em></div>
-  <div class="listing"><div><b>Westside Auto Care</b><small>Auto repair · Near base</small></div><em>Updated May</em></div>
-  <div class="listing"><div><b>Main Street Grooming</b><small>Pet care · DeRidder</small></div><em>Verified local</em></div></div></div></div></section>
-  <section class="section intro-section"><div class="wrap"><div class="section-head"><div class="section-number">01 / start here</div><div><h2>Same local map. Two different jobs.</h2></div></div><img class="intro-banner" src="assets/img/hands-wide.jpg" alt="Two hands reaching toward each other across the sky." width="1800" height="1350" loading="lazy"><div class="audience-grid"><a href="families/"><p class="section-number">For military families</p><h3>Rebuild the everyday routine.</h3><p>Find the childcare, mechanic, salon, vet, gym, coffee shop, and weekend places that make a new station workable.</p><strong>Explore the family path <svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></strong></a><a href="businesses/"><p class="section-number">For local businesses</p><h3>Be the clear, current answer.</h3><p>Claim your profile so families can see accurate hours, services, photos, contact details, and military-relevant notes.</p><strong>Explore the business path <svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></strong></a></div></div></section>
-  <section class="section section-soft"><div class="wrap"><div class="section-head"><div class="section-number">02 / explore</div><div><h2>A shorter home page. Clear paths when you need more.</h2></div></div><div class="panel-grid"><a class="link-panel" href="how-it-works/"><span class="round-icon"><svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>How it works</h3><p>Choose a base, search by routine, and compare clear trust signals.</p><strong>Explore <svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></strong></a><a class="link-panel" href="trust-and-promise/"><span class="round-icon"><svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Trust & promise</h3><p>Understand what badges mean and what ScoutLocal will never sell.</p><strong>Explore <svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></strong></a><a class="link-panel" href="features/"><span class="round-icon"><svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Features</h3><p>Meet Beacon — the open-now broadcast we're testing next, free for every business.</p><strong>Explore <svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></strong></a></div></div></section>
-  <section class="section"><div class="wrap"><section class="signup-band"><div><p class="section-number">Join the beta</p><h2>Help build the Fort Polk starter map.</h2><p>Families can join the beta and recommend trusted places. Businesses can raise a hand to claim a profile.</p></div><div class="kit-form-wrap"><script async data-uid="73027e0e98" src="https://scoutlocal.kit.com/73027e0e98/index.js"></script></div></section></div></section></main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
+  </header><main>
+
+  <section class="hm-hero"><div class="hm-glow"></div><div class="wrap">
+    <div class="hm-hero-copy">
+      <h1>Belong faster <span class="hl">after every move.</span></h1>
+      <p class="hm-lede">ScoutLocal is a local directory built for military families. Verified businesses, current information, and a softer landing after every PCS — so you can rebuild your routine instead of starting from scratch.</p>
+      <div class="hm-cta">
+        <a class="btn btn-primary" href="join-beta/">Join the beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn-ghost" href="businesses/list/">List your business<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <div class="hm-phone" role="group" aria-label="ScoutLocal app preview — swipe through screens">
+      <div class="hm-phone-screen">
+        <div class="hm-app-track">
+          <img src="assets/img/app-explore.jpg" alt="ScoutLocal app — browse military-affiliated local businesses" loading="lazy" draggable="false">
+          <img src="assets/img/app-events.jpg" alt="ScoutLocal app — the Scout community events calendar" loading="lazy" draggable="false">
+          <img src="assets/img/app-saved.jpg" alt="ScoutLocal app — saved places, alerts, and events" loading="lazy" draggable="false">
+          <img src="assets/img/app-splash.jpg" alt="ScoutLocal app — trusted, near base" loading="lazy" draggable="false">
+        </div>
+        <div class="hm-app-dots" aria-label="Choose app screen"></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="hm-stats">
+      <div class="hm-stat"><div class="n">1<span>/3</span></div><p>U.S. military families move every 2&ndash;3 years on PCS orders.</p></div>
+      <div class="hm-stat"><div class="n">6mo</div><p>Average time families spend rebuilding the everyday places that anchor home.</p></div>
+      <div class="hm-stat free"><div class="n">$0</div><p>To use the app &mdash; and to list a business. Always free. That's the only promise we're making.</p></div>
+    </div>
+  </div></section>
+
+  <section class="section section-soft"><div class="wrap">
+    <div class="section-head"><div class="section-number">02 / how it works</div><div><h2>Open the app, find the routine, settle in.</h2><p>Three steps, then you put it down. ScoutLocal is built to be useful and get out of the way — no streaks, no points, no reason to keep scrolling.</p></div></div>
+    <div class="hm-cards">
+
+      <div class="hm-card">
+        <span class="step">Step 01</span>
+        <h3>Tell us where you landed.</h3>
+        <p>Pick your base and how long you've been there. We shape the directory to your installation, and go gentle on the defaults if you just arrived.</p>
+        <div class="hm-mini">
+          <div class="row"><b>Fort Polk, LA</b><span class="hm-pill">Live</span></div>
+          <div class="row"><b>Time at base</b><span class="v">Just arrived</span></div>
+          <div class="row"><b>Branch</b><span class="v">Army</span></div>
+        </div>
+      </div>
+
+      <div class="hm-card">
+        <span class="step">Step 02</span>
+        <h3>Browse by what your day needs.</h3>
+        <p>Search a category — childcare, auto repair, pet care — or browse the routines that anchor home: coffee, gym, library, the everyday places.</p>
+        <div class="hm-mini"><div class="hm-chips"><span class="hm-chip">childcare</span><span class="hm-chip on">coffee</span><span class="hm-chip">salon</span><span class="hm-chip">vet</span><span class="hm-chip">gym</span></div></div>
+      </div>
+
+      <div class="hm-card">
+        <span class="step">Step 03</span>
+        <h3>See who's actually trustworthy.</h3>
+        <p>Verified Local. Military Spouse Owned. Every badge means one specific thing — and every listing tells you the day it was last updated.</p>
+        <div class="hm-mini">
+          <div class="row"><b>Johnson's Auto Co.</b><span class="hm-pill">Verified</span></div>
+          <div class="row"><b>Updated</b><span class="v">14 days ago</span></div>
+          <div class="row"><b>Reports open</b><span class="v">0</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div></section>
+
+  <section class="section section-soft"><div class="wrap hm-connect">
+      <h2 class="lead">Connect with <span class="hl">your community.</span></h2>
+    </div>
+    <img class="hm-arm" src="assets/img/hands-wide.jpg" alt="Two hands reaching toward each other across the sky.">
+    <div class="wrap">
+      <div class="hm-paths">
+        <div class="hm-path">
+          <div class="eyebrow">For military families</div>
+          <h3>Rebuild the everyday routine.</h3>
+          <p>Find the childcare, mechanic, salon, vet, gym, coffee shop, and weekend places that make a new station workable.</p>
+          <a class="lnk" href="families/">Explore the family path<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="hm-path">
+          <div class="eyebrow">For local businesses</div>
+          <h3>Be the clear, current answer.</h3>
+          <p>Claim your profile so families can see accurate hours, services, photos, contact details, and military-relevant notes.</p>
+          <a class="lnk" href="businesses/">Explore the business path<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="wrap"><section class="signup-band">
+    <div><p class="section-number">Get started</p><h2>Free for families. Free for businesses.</h2><p>Join the beta to get your base's directory, or list your local business so families can find you — always free.</p></div>
+    <div style="display:flex;flex-direction:column;gap:14px"><a class="btn" style="background:var(--peach);color:var(--ink)" href="join-beta/">Join the beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn" style="border:1px solid rgba(255,255,255,.3);color:#fff" href="businesses/list/">List your business<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </section></div></section>
+
+  </main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand"><h2>scout local<span>.</span></h2><p>A directory for the everyday places that make a new base feel workable, familiar, and eventually like home. Built with and for military families.</p></div>
       <div class="footer-col"><h3>Families</h3><a href="families/">For families</a><a href="how-it-works/">How it works</a><a href="trust-and-promise/">Our promise</a><a href="faq/">FAQ</a></div>
@@ -37,4 +170,32 @@
       <div class="footer-col"><h3>Company</h3><a href="about/">About Novalyse</a><a href="privacy/">Privacy</a><a href="terms/">Terms</a><a href="contact/">Contact</a></div>
     </div>
     <div class="footer-base"><span>ScoutLocal is a product of Novalyse LLC. © 2026 Novalyse LLC.</span><span>Fort Polk beta</span></div>
-  </div></footer><script src="assets/js/site.js?v=20260607-2"></script></body></html>
+  </div></footer><script>
+  (function(){
+    var track=document.querySelector('.hm-app-track'); if(!track) return;
+    var imgs=track.querySelectorAll('img');
+    var dotsWrap=document.querySelector('.hm-app-dots');
+    var n=imgs.length, i=0, timer=null;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    for(var d=0; d<n; d++){
+      var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','App screen '+(d+1));
+      (function(idx){ b.addEventListener('click',function(){ go(idx); restart(); }); })(d);
+      dotsWrap.appendChild(b);
+    }
+    var dots=dotsWrap.querySelectorAll('button');
+    function go(x){ i=(x+n)%n; track.style.transform='translateX(-'+(i*100)+'%)'; for(var k=0;k<n;k++){ dots[k].classList.toggle('on',k===i); } }
+    function start(){ if(reduce) return; timer=setInterval(function(){ go(i+1); },3800); }
+    function restart(){ clearInterval(timer); start(); }
+    var sx=0, dx=0, drag=false;
+    function down(x){ sx=x; dx=0; drag=true; clearInterval(timer); }
+    function move(x){ if(drag){ dx=x-sx; } }
+    function up(){ if(!drag) return; drag=false; if(dx<-40){ go(i+1); } else if(dx>40){ go(i-1); } restart(); }
+    track.addEventListener('touchstart',function(e){ down(e.touches[0].clientX); },{passive:true});
+    track.addEventListener('touchmove',function(e){ move(e.touches[0].clientX); },{passive:true});
+    track.addEventListener('touchend',up);
+    track.addEventListener('mousedown',function(e){ down(e.clientX); e.preventDefault(); });
+    window.addEventListener('mousemove',function(e){ move(e.clientX); });
+    window.addEventListener('mouseup',up);
+    go(0); start();
+  })();
+  </script><script src="assets/js/site.js?v=20260607-2"></script></body></html>
