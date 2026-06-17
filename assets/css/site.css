@@ -13,5 +13,15 @@
 @media(max-width:620px){.wrap{width:min(100% - 36px,1240px)}.home-hero,.page-hero{padding:50px 0}.home-hero h1,.page-hero h1{font-size:50px}.phone{width:100%;max-width:330px}.section{padding:64px 0}.audience-grid,.panel-grid,.values-grid,.pricing-grid,.steps-grid,.base-grid,.never-grid{grid-template-columns:1fr}.audience-grid>a,.audience-grid>a+a{padding:28px 0;border-left:0;border-top:1px solid var(--line)}.link-panel,.link-panel:last-child{border-right:1px solid var(--line)}.signup-band{padding:30px 24px}.footer-grid{grid-template-columns:1fr}.footer-base{flex-direction:column}.routine-list strong{font-size:20px}}
 
 /* ScoutLocal lead form states. */
-.scout-lead-form input:focus,.scout-lead-form select:focus{outline:2px solid var(--peach);outline-offset:2px;border-color:var(--peach)}
+.scout-lead-form input:focus,.scout-lead-form select:focus,.scout-lead-form textarea:focus{outline:2px solid var(--peach);outline-offset:2px;border-color:var(--peach)}
 .scout-lead-form select{appearance:none}
+.scout-lead-form textarea{width:100%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:7px;padding:13px;font:14px/1.45 Geist;resize:vertical}
+.scout-lead-form textarea::placeholder{color:rgba(255,255,255,.55)}
+.scout-lead-form small{color:rgba(255,255,255,.62);font-size:11px;line-height:1.4}
+.lead-form-checkbox{grid-template-columns:auto 1fr;align-items:start;column-gap:10px}
+.lead-form-checkbox input{width:18px;height:18px;min-height:18px;margin:1px 0 0;accent-color:var(--peach)}
+.lead-form-checkbox span,.lead-form-checkbox small{grid-column:2}
+.lead-form-confirmation{border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:18px;background:rgba(255,255,255,.08)}
+.lead-form-confirmation h3{font:600 24px/1.1 Outfit;margin:0 0 8px;color:#fff}
+.lead-form-confirmation p{margin:0 0 14px!important}
+.lead-form-confirmation .btn{width:100%;min-height:46px}
