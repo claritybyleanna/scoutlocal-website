@@ -37,17 +37,111 @@
     .bc-prev{right:auto;left:12px}.bc-next{right:12px}
     .bc-dots{width:100%;bottom:14px}
   }
-  /* flywheel diagram */
-  .fw{max-width:760px;margin:0 auto;text-align:center}
-  .fw-eyebrow{font:500 11px Geist Mono;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:9px}
-  .fw-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--rust)}
-  .fw-row{display:flex;align-items:stretch;justify-content:center;margin-top:20px;flex-wrap:wrap}
-  .fw-box{background:var(--peach2);border-radius:12px;padding:18px 22px;font:600 16px Outfit;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:center;flex:1 1 0;min-width:150px;justify-content:center;text-align:center}
-  .fw-arrow{display:flex;align-items:center;color:var(--rust);padding:0 12px}
-  .fw-arrow svg{width:22px;height:14px}
-  .fw-loop{margin-top:16px;font:500 11px Geist Mono;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
-  .fw-loop svg{width:40px;height:16px;color:var(--rust)}
-  @media(max-width:640px){.fw-row{flex-direction:column;align-items:center}.fw-box{width:100%;flex:none}.fw-arrow{transform:rotate(90deg);padding:8px 0}}
+
+  /* ===== ported "for business" sections — scoped under .bizx, self-contained ===== */
+  .bizx{--bg-card:#fff;--bg-warm:#faf5ed;--bg-soft:#ede6db;--ink:#17150f;--ink-2:#2a261d;--muted:#8a8278;--muted-2:#b3a99c;--line:#e4dbcd;--line-soft:#eee5d6;--peach-1:#ffd1ac;--peach-2:#ffe2c6;--peach-3:#fdeada;--sage:#bccaa6;--sage-deep:#4f5c3a;--sage-mist:#e7ede0;--sage-line:#c3d0b2;--rust:#b25e3c;--accent:#b25e3c}
+  .bizx .mono{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .bizx .block{padding:92px 0;position:relative;overflow:hidden}
+  @media(max-width:780px){.bizx .block{padding:62px 0}}
+  .bizx .sec-head{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;margin-bottom:52px}
+  @media(max-width:780px){.bizx .sec-head{grid-template-columns:1fr;gap:16px;margin-bottom:34px}}
+  .bizx .sec-num{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .bizx .sec-num .slash{color:var(--muted-2)}
+  .bizx h2{font-family:'Outfit','Geist',sans-serif;font-size:clamp(34px,4.6vw,58px);line-height:.99;letter-spacing:-.035em;font-weight:700;max-width:19ch}
+  .bizx h2 .accent{color:var(--accent)}
+  .bizx .sec-sub{margin-top:18px;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:56ch}
+  .bizx .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+  @media(max-width:880px){.bizx .steps{grid-template-columns:1fr}}
+  .bizx .step{background:var(--bg-card);border:1px solid var(--line);border-radius:24px;padding:32px 28px 28px;position:relative;overflow:hidden;min-height:300px;display:flex;flex-direction:column}
+  .bizx .step .snum{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+  .bizx .step h4{font-family:'Outfit',sans-serif;font-size:23px;font-weight:600;letter-spacing:-.015em;margin:12px 0;line-height:1.12}
+  .bizx .step p{font-size:15px;line-height:1.55;color:var(--ink-2)}
+  .bizx .step .illu{margin-top:auto;padding-top:24px}
+  .bizx .illu-frame{border:1px solid var(--line-soft);border-radius:14px;background:linear-gradient(180deg,#fdf8ee,#f9f1e3);padding:14px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .bizx .illu-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .bizx .illu-row:last-child{border-bottom:0}
+  .bizx .illu-row b{color:var(--ink);font-family:'Geist',sans-serif;font-size:13px;text-transform:none;letter-spacing:-.01em;font-weight:600}
+  .bizx .illu-row .tag{font-size:10px;color:var(--sage-deep);background:var(--sage);padding:3px 7px;border-radius:4px;font-family:'Geist',sans-serif;letter-spacing:.02em}
+  .bizx .get-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--bg-card)}
+  @media(max-width:780px){.bizx .get-grid{grid-template-columns:1fr}}
+  .bizx .get{padding:28px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:flex-start}
+  .bizx .get:nth-child(2n){border-right:0}
+  .bizx .get:nth-last-child(-n+2){border-bottom:0}
+  @media(max-width:780px){.bizx .get{border-right:0}.bizx .get:nth-last-child(-n+2){border-bottom:1px solid var(--line)}.bizx .get:last-child{border-bottom:0}}
+  .bizx .get .gi{width:40px;height:40px;border-radius:12px;background:var(--bg-warm);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;flex:0 0 40px}
+  .bizx .get .gi svg{width:20px;height:20px}
+  .bizx .get h4{font-family:'Outfit',sans-serif;font-size:17px;font-weight:600;letter-spacing:-.015em;margin-bottom:6px}
+  .bizx .get p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+  .bizx .dash-showcase{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  @media(max-width:980px){.bizx .dash-showcase{grid-template-columns:1fr;gap:38px}}
+  .bizx .dash{position:relative;background:var(--bg-card);border:1px solid var(--line);border-radius:26px;padding:26px 26px 22px;box-shadow:0 30px 60px -34px rgba(40,30,20,.30),0 8px 16px -10px rgba(40,30,20,.16);overflow:hidden}
+  .bizx .dash::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 4%,var(--peach-2),rgba(255,226,198,0) 50%);pointer-events:none}
+  .bizx .dash-top{position:relative;display:flex;justify-content:space-between;align-items:center}
+  .bizx .dash-top .mono{font-size:10px}
+  .bizx .live-pill{display:inline-flex;align-items:center;gap:7px;background:var(--sage-mist);border:1px solid var(--sage-line);border-radius:999px;padding:5px 11px;font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-deep)}
+  .bizx .live-dot{position:relative;width:7px;height:7px;border-radius:50%;background:#7d9a64;flex:0 0 7px}
+  .bizx .live-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#7d9a64;animation:bizping 2s cubic-bezier(0,0,.2,1) infinite}
+  @keyframes bizping{0%{transform:scale(1);opacity:.5}70%{transform:scale(2.6);opacity:0}100%{transform:scale(2.6);opacity:0}}
+  @media(prefers-reduced-motion:reduce){.bizx .live-dot::after{animation:none}}
+  .bizx .dash-name{position:relative;font-family:'Outfit',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.03em;margin:18px 0 12px;line-height:1}
+  .bizx .dash-badges{position:relative;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .bizx .chip-badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;padding:5px 10px 6px;border-radius:999px;border:1px solid var(--line);background:var(--bg-warm);color:var(--ink-2)}
+  .bizx .chip-badge svg{width:13px;height:13px}
+  .bizx .chip-badge.sage{background:var(--sage-mist);border-color:var(--sage-line);color:var(--sage-deep)}
+  .bizx .dash-stats{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+  .bizx .dstat{background:var(--bg-warm);border:1px solid var(--line-soft);border-radius:16px;padding:16px 14px}
+  .bizx .dstat .num{font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .bizx .dstat .lab{font-size:11.5px;color:var(--muted);margin-top:6px}
+  .bizx .dstat .delta{font-family:'Geist Mono',monospace;font-size:10px;color:var(--sage-deep);margin-top:7px;display:inline-flex;align-items:center;gap:3px}
+  .bizx .dash-beacon{position:relative;background:var(--sage-mist);border:1px solid var(--sage-line);border-radius:16px;padding:15px 16px;display:flex;align-items:center;gap:13px}
+  .bizx .dash-beacon .bicon{width:34px;height:34px;border-radius:10px;background:var(--sage);display:flex;align-items:center;justify-content:center;flex:0 0 34px}
+  .bizx .dash-beacon .btext .t{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .bizx .dash-beacon .btext .s{font-size:12px;color:var(--sage-deep);margin-top:2px}
+  .bizx .toggle-on{margin-left:auto;width:42px;height:24px;border-radius:999px;background:var(--sage-deep);position:relative;flex:0 0 42px}
+  .bizx .toggle-on span{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .bizx .beacon{background:linear-gradient(180deg,#eef2e7,#e7ede0);border-top:1px solid var(--sage-line);border-bottom:1px solid var(--sage-line)}
+  .bizx .beacon-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:start}
+  .bizx .beacon-visuals{display:flex;flex-direction:column;gap:18px}
+  @media(max-width:980px){.bizx .beacon-grid{grid-template-columns:1fr;gap:44px}}
+  .bizx .beacon-kick{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep);display:inline-flex;align-items:center;gap:9px;margin-bottom:20px}
+  .bizx .beacon h2{color:var(--ink)}
+  .bizx .beacon p.lede{color:var(--ink-2);max-width:46ch;font-size:17px;line-height:1.55}
+  .bizx .beacon-feats{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+  .bizx .beacon-feats li{display:flex;gap:13px;font-size:15px;color:var(--ink-2);line-height:1.5}
+  .bizx .beacon-feats li svg{flex:0 0 18px;margin-top:2px}
+  .bizx .beacon-badge{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:9px 14px;background:rgba(255,255,255,.6);border:1px solid var(--sage-line);border-radius:999px;font-size:13px;color:var(--sage-deep)}
+  .bizx .beacon-card{background:var(--bg-card);border:1px solid var(--sage-line);border-radius:26px;padding:34px 30px;box-shadow:0 30px 60px -34px rgba(40,40,20,.26);text-align:center;position:relative;overflow:hidden}
+  .bizx .ring-wrap{position:relative;width:170px;height:170px;margin:6px auto 4px}
+  .bizx .ring-wrap svg{transform:rotate(-90deg)}
+  .bizx .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .bizx .ring-center .cd{font-family:'Outfit',sans-serif;font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .bizx .ring-center .cl{font-size:12px;color:var(--muted);margin-top:5px}
+  .bizx .beacon-card .bc-name{font-family:'Outfit',sans-serif;font-size:20px;font-weight:600;letter-spacing:-.02em;margin-top:14px}
+  .bizx .beacon-card .bc-note{font-size:14px;color:var(--ink-2);margin-top:5px}
+  .bizx .beacon-card .bc-surfaces{display:flex;gap:9px;margin-top:22px}
+  .bizx .bc-surf{flex:1;background:var(--sage-mist);border:1px solid var(--sage-line);border-radius:14px;padding:13px 0}
+  .bizx .bc-surf .bn{font-size:17px;font-weight:700;color:var(--sage-deep);line-height:1}
+  .bizx .bc-surf .bl{font-size:10.5px;color:var(--sage-deep);opacity:.85;margin-top:4px;text-transform:lowercase}
+  .bizx .badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--bg-card)}
+  @media(max-width:880px){.bizx .badges-grid{grid-template-columns:1fr}}
+  .bizx .badge-card{padding:34px 30px;border-right:1px solid var(--line);position:relative;display:flex;flex-direction:column;gap:16px;min-height:320px}
+  .bizx .badge-card:last-child{border-right:0}
+  @media(max-width:880px){.bizx .badge-card{border-right:0;border-bottom:1px solid var(--line)}.bizx .badge-card:last-child{border-bottom:0}}
+  .bizx .badge-emblem{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+  .bizx .badge-emblem.sage{background:var(--sage);border-color:var(--sage)}
+  .bizx .badge-emblem.cream{background:var(--bg-soft)}
+  .bizx .badge-emblem.peach{background:linear-gradient(135deg,var(--peach-1),var(--peach-2))}
+  .bizx .badge-emblem svg{width:26px;height:26px}
+  .bizx .badge-card h4{font-family:'Outfit',sans-serif;font-size:21px;font-weight:600;letter-spacing:-.015em}
+  .bizx .badge-card p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+  .bizx .badge-card .crit{margin-top:auto;padding-top:18px;border-top:1px dashed var(--line);font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .bizx .faq-list{border-top:1px solid var(--line)}
+  .bizx details.faq{border-bottom:1px solid var(--line);padding:24px 0}
+  .bizx details.faq summary{display:flex;justify-content:space-between;align-items:center;gap:24px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:500;letter-spacing:-.015em;list-style:none;color:var(--ink);cursor:pointer}
+  .bizx details.faq summary::-webkit-details-marker{display:none}
+  .bizx details.faq summary .plus{width:22px;height:22px;border:1px solid var(--line);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px;transition:transform .25s,background .2s}
+  .bizx details.faq[open] summary .plus{transform:rotate(45deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+  .bizx details.faq .ans{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:74ch;margin-top:16px}
   </style></head><body><header class="site-header">
     <div class="wrap nav-inner">
       <a class="brand" href="../"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
@@ -60,18 +154,193 @@
         <a class="nav-cta" href="../join-beta/">Join beta<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </nav>
     </div>
-  </header><main><section class="page-hero biz-hero"><div class="wrap"><div class="biz-hero-copy"><p class="section-number">For local businesses</p><h1>Military families are already looking. Be the clear answer.</h1><p class="page-lede">Claim your profile so families can find accurate hours, services, photos, contact details, and military-relevant notes without buying rank.</p><div class="button-row"><a class="btn btn-primary" href="list/">Create your listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></div><div class="bc-stage" aria-roledescription="carousel" aria-label="Local businesses on ScoutLocal"><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/salon.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/salon.jpg" alt="A hair stylist at work in their salon"></div><figcaption>Hair &amp; beauty</figcaption></figure><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/florist.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/florist.jpg" alt="A flower-shop owner arranging blooms in their studio"></div><figcaption>Florists &amp; makers</figcaption></figure><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/computer.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/computer.jpg" alt="A home-based business owner working at a computer"></div><figcaption>Home-based &amp; freelance</figcaption></figure><div class="bc-fade"></div><button class="bc-ctrl bc-next" type="button" aria-label="Next photo">&rsaquo;</button><div class="bc-dots" aria-label="Choose photo"></div></div></section><section class="section"><div class="wrap"><div class="section-head"><div class="section-number">01 / why list</div><div><h2>Current information earns trust.</h2><p>ScoutLocal helps good local businesses be found without chasing old threads or paying for position.</p></div></div><div class="values-grid"><article><h3>Full profile</h3><p>Show hours, services, photos, contact information, and military-relevant notes.</p></article><article><h3>Manual verification</h3><p>Verified Local status follows a review of the business name, address, phone, website, and public presence.</p></article><article><h3>Same ranking rules</h3><p>Payment can support a profile. It cannot buy a badge, ranking boost, or hidden reports.</p></article></div></div></section>
-  <section class="dark-section"><div class="wrap"><div class="section-head"><div class="section-number">02 / what cannot be bought</div><div><h2>The trust contract stays intact.</h2></div></div><div class="never-grid"><div><span>01</span><p>A ranking boost above other verified listings</p></div><div><span>02</span><p>Suppression of reports against a listing</p></div><div><span>03</span><p>A military-connected ownership badge without verification</p></div><div><span>04</span><p>Family contact information or targeting data</p></div><div><span>05</span><p>An override on a verified-closed banner</p></div><div><span>06</span><p>A shortcut around current-information requirements</p></div></div></div></section>
-  <section class="section"><div class="wrap"><div class="fw"><span class="fw-eyebrow"><span class="dot"></span>Why it keeps getting better</span>
-    <div class="fw-row">
-      <div class="fw-box">more families join</div>
-      <div class="fw-arrow"><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h18M15 2l5 5-5 5"/></svg></div>
-      <div class="fw-box">more businesses list</div>
-      <div class="fw-arrow"><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h18M15 2l5 5-5 5"/></svg></div>
-      <div class="fw-box">a richer directory</div>
+  </header><main><section class="page-hero biz-hero"><div class="wrap"><div class="biz-hero-copy"><p class="section-number">For local businesses</p><h1>Military families are already looking. Be the clear answer.</h1><p class="page-lede">Claim your profile so families can find accurate hours, services, photos, contact details, and military-relevant notes without buying rank.</p><div class="button-row"><a class="btn btn-primary" href="list/">List your business<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn btn-ghost" href="#how">See how it works<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></div><div class="bc-stage" aria-roledescription="carousel" aria-label="Local businesses on ScoutLocal"><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/salon.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/salon.jpg" alt="A hair stylist at work in their salon"></div><figcaption>Hair &amp; beauty</figcaption></figure><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/florist.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/florist.jpg" alt="A flower-shop owner arranging blooms in their studio"></div><figcaption>Florists &amp; makers</figcaption></figure><figure class="bc-slide"><img class="bc-blur-img" src="../assets/img/computer.jpg" alt="" aria-hidden="true"><div class="bc-sharp"><img src="../assets/img/computer.jpg" alt="A home-based business owner working at a computer"></div><figcaption>Home-based &amp; freelance</figcaption></figure><div class="bc-fade"></div><button class="bc-ctrl bc-next" type="button" aria-label="Next photo">&rsaquo;</button><div class="bc-dots" aria-label="Choose photo"></div></div></section>
+
+  <div class="bizx">
+
+  <!-- 02 / how it works -->
+  <section class="block" id="how"><div class="wrap">
+    <div class="sec-head"><div><div class="sec-num">02 <span class="slash">/</span> how it works</div></div>
+      <div><h2>Listed and found in about a week.</h2><p class="sec-sub">No sales calls, no contracts, no setup fee. Apply, get verified by a human, and go live. You stay in control of your listing the whole time.</p></div></div>
+    <div class="steps">
+      <article class="step">
+        <div class="snum">step 01</div>
+        <h4>Apply &amp; get verified.</h4>
+        <p>Tell us your name, address, phone, website and what you do. A ScoutLocal admin reviews it by hand — usually within a week. No bulk imports, no scraped data.</p>
+        <div class="illu"><div class="illu-frame">
+          <div class="illu-row"><b>Jerry's Auto</b><span class="tag">in review</span></div>
+          <div class="illu-row"><b>Category</b><span>auto repair</span></div>
+          <div class="illu-row"><b>Base</b><span>fort polk</span></div>
+        </div></div>
+      </article>
+      <article class="step">
+        <div class="snum">step 02</div>
+        <h4>Build your profile.</h4>
+        <p>Add photos, hours, services and contact details. Mark yourself milspouse-, veteran- or active-duty-owned for verification. Keep it current — fresh listings rank better.</p>
+        <div class="illu"><div class="illu-frame">
+          <div class="illu-row"><b>Photos &amp; hours</b><span class="tag">added</span></div>
+          <div class="illu-row"><b>Services</b><span>6 listed</span></div>
+          <div class="illu-row"><b>Last updated</b><span>today</span></div>
+        </div></div>
+      </article>
+      <article class="step">
+        <div class="snum">step 03</div>
+        <h4>Get found, saved, contacted.</h4>
+        <p>Families near your base see you in search and category browse, save you for later, and reach out directly. A monthly email shows how you're doing — and nudges a refresh.</p>
+        <div class="illu"><div class="illu-frame">
+          <div class="illu-row"><b>This month</b><span>1,240 views</span></div>
+          <div class="illu-row"><b>Saved</b><span>86 families</span></div>
+          <div class="illu-row"><b>Contacts</b><span style="color:var(--sage-deep)">34</span></div>
+        </div></div>
+      </article>
     </div>
-    <div class="fw-loop"><svg viewBox="0 0 40 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M36 5c0 7-26 8-31 2" stroke-dasharray="2 4"/><path d="M9 3 4 7l5 4"/></svg>which brings in more families</div>
-  </div></div></section>
+  </div></section>
+
+  <!-- 03 / what's included -->
+  <section class="block" style="background:var(--bg-warm);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+    <div class="sec-head"><div><div class="sec-num">03 <span class="slash">/</span> what's included</div></div>
+      <div><h2>Everything to be found and trusted.</h2><p class="sec-sub">Verification, your full profile, and the tools to keep it current — one straightforward listing, with no add-ons and no upsells.</p></div></div>
+    <div class="get-grid">
+      <div class="get">
+        <span class="gi"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.5 8.5 8 9.5 4.5-1 8-4.5 8-9.5V5l-8-3z" stroke="#17150f" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5L16 9.5" stroke="#17150f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><h4>A Verified Local badge</h4><p>Earned after a manual review, so families know you're a real business with a real presence near their base.</p></div>
+      </div>
+      <div class="get">
+        <span class="gi"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="14" rx="2" stroke="#17150f" stroke-width="1.6"/><path d="M3.5 9.5h17" stroke="#17150f" stroke-width="1.6"/><circle cx="7" cy="7.2" r="0.5" fill="#17150f"/></svg></span>
+        <div><h4>A full business profile</h4><p>Photos, hours, services, and every way to reach you — laid out the same clean way for every listing.</p></div>
+      </div>
+      <div class="get">
+        <span class="gi"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18l4-1 9-9-3-3-9 9-1 4z" stroke="#17150f" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <div><h4>Edit anytime, instantly</h4><p>Change hours, swap photos, update services from your account. A meaningful edit refreshes your "last updated" date.</p></div>
+      </div>
+      <div class="get">
+        <span class="gi"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13L20 7L13 22L11 15L5 13Z" stroke="#2f3a22" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <div><h4>Open Now Beacons (beta)</h4><p>Flip on a Beacon to tell nearby families you're open and available right now. More on that below.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- 04 / open now beacons · beta -->
+  <section class="block beacon" id="beacons"><div class="wrap">
+    <div class="beacon-grid">
+      <div>
+        <div class="beacon-kick"><span class="live-dot"></span>04 / open now beacons · beta</div>
+        <h2>Tell families you're open <span style="color:var(--sage-deep)">right now.</span></h2>
+        <p class="lede">A walk-in slot opened up. The food truck just parked. You've got availability this afternoon. Drop a Beacon and ScoutLocal lights you up for families nearby — on your listing, in the feed, and on the map — for as long as you set.</p>
+        <ul class="beacon-feats">
+          <li><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5l3.5 3.5L14 6" stroke="#4f5c3a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Goes straight to the families who already saved you.</li>
+          <li><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5l3.5 3.5L14 6" stroke="#4f5c3a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>You set the window — end early anytime, never extended.</li>
+          <li><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5l3.5 3.5L14 6" stroke="#4f5c3a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Home-based? Broadcast "open now" at your area — never your exact address.</li>
+        </ul>
+        <span class="beacon-badge"><span class="live-dot"></span>Included for every listing during beta.</span>
+      </div>
+      <div class="beacon-visuals">
+      <div class="dash">
+        <div class="dash-top">
+          <span class="mono">your listing · fort polk</span>
+          <span class="live-pill"><span class="live-dot"></span>beacon live</span>
+        </div>
+        <div class="dash-name">Jerry's Auto</div>
+        <div class="dash-badges">
+          <span class="chip-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.5 8.5 8 9.5 4.5-1 8-4.5 8-9.5V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified Local</span>
+          <span class="chip-badge sage"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c.8-3.8 4-6 7-6s6.2 2.2 7 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Military Spouse Owned</span>
+        </div>
+        <div class="dash-stats">
+          <div class="dstat"><div class="num">1,240</div><div class="lab">listing views</div><div class="delta">↑ 28% this month</div></div>
+          <div class="dstat"><div class="num">86</div><div class="lab">saved by families</div><div class="delta">↑ 12 this month</div></div>
+          <div class="dstat"><div class="num">34</div><div class="lab">direct contacts</div><div class="delta">↑ 9 this month</div></div>
+        </div>
+        <div class="dash-beacon">
+          <span class="bicon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13L20 7L13 22L11 15L5 13Z" fill="#2f3a22"/></svg></span>
+          <div class="btext"><div class="t">Open Now Beacon</div><div class="s">broadcasting · ends 5:30 pm</div></div>
+          <span class="toggle-on"><span></span></span>
+        </div>
+      </div>
+      <div class="beacon-card">
+        <span class="live-pill" style="margin:0 auto"><span class="live-dot"></span>live now</span>
+        <div class="ring-wrap">
+          <svg width="170" height="170" viewBox="0 0 170 170">
+            <circle cx="85" cy="85" r="74" fill="none" stroke="#e0e6d6" stroke-width="10"/>
+            <circle cx="85" cy="85" r="74" fill="none" stroke="#7d9a64" stroke-width="10" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="130"/>
+          </svg>
+          <div class="ring-center"><div class="cd">2:09</div><div class="cl">ends 5:30 pm</div></div>
+        </div>
+        <div class="bc-name">Jerry's Auto is open</div>
+        <div class="bc-note">2 inspection slots open this afternoon</div>
+        <div class="bc-surfaces">
+          <div class="bc-surf"><div class="bn">86</div><div class="bl">notified</div></div>
+          <div class="bc-surf"><div class="bn">live</div><div class="bl">in feed</div></div>
+          <div class="bc-surf"><div class="bn">pinned</div><div class="bl">on map</div></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- 06 / badges you can earn -->
+  <section class="block" style="background:var(--bg-warm);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+    <div class="sec-head"><div><div class="sec-num">06 <span class="slash">/</span> badges you can earn</div></div>
+      <div><h2>Trust signals families <span class="accent">actually read.</span></h2><p class="sec-sub">Every badge means the same thing on every listing. They can't be purchased — which is exactly why a family takes them seriously when they see one on yours.</p></div></div>
+    <div class="badges-grid">
+      <article class="badge-card">
+        <div class="badge-emblem cream"><svg viewBox="0 0 28 28" fill="none"><path d="M14 2L4 6v8c0 6.5 4.5 11 10 12 5.5-1 10-5.5 10-12V6L14 2z" stroke="#17150f" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 14l3.5 3.5L19 11" stroke="#17150f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Verified Local</h4>
+        <p>A real business with a verified presence near the base. Reviewed by hand — name, address, phone, website, and at least one form of public verification. Every verified listing earns it.</p>
+        <div class="crit">Refreshed every 6 months · revoked on closure or fraud</div>
+      </article>
+      <article class="badge-card">
+        <div class="badge-emblem sage"><svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="4" stroke="#2f3a22" stroke-width="1.8"/><path d="M5 24c1-4.5 4.7-7 9-7s8 2.5 9 7" stroke="#2f3a22" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h4>Military Spouse Owned</h4>
+        <p>Owned in whole or majority by a current or former military spouse — verified through AMSE/GovX or direct documentation. A signal this community trusts deeply.</p>
+        <div class="crit">Confirmed annually · persists until ownership changes</div>
+      </article>
+      <article class="badge-card">
+        <div class="badge-emblem peach"><svg viewBox="0 0 28 28" fill="none"><path d="M14 3l3.1 6.6 7.2.8-5.4 5 1.5 7.2L14 19l-6.4 3.6 1.5-7.2-5.4-5 7.2-.8L14 3z" stroke="#7a3a1c" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h4>Founding Partner</h4>
+        <p>One of the first 50 verified businesses to list at Fort Polk during beta. A permanent badge that recognizes who showed up first — never sold, never reissued.</p>
+        <div class="crit">Phase 1 only · permanent while active</div>
+      </article>
+    </div>
+  </div></section>
+
+  <!-- 07 / owner questions -->
+  <section class="block"><div class="wrap">
+    <div class="sec-head"><div><div class="sec-num">07 <span class="slash">/</span> owner questions</div></div>
+      <div><h2>What owners ask before they list.</h2></div></div>
+    <div class="faq-list">
+      <details class="faq" open>
+        <summary>What does a listing include? <span class="plus">+</span></summary>
+        <div class="ans">A manually verified listing with the Verified Local badge, a full profile (photos, hours, services, contact), Open Now Beacons during beta, a monthly performance email, and the ability to edit anytime. No contract — edit, pause or update your listing whenever you like.</div>
+      </details>
+      <details class="faq">
+        <summary>Can I pay to rank higher? <span class="plus">+</span></summary>
+        <div class="ans">No — and that's deliberate. Listing on ScoutLocal is free, and ranking is earned the same way for every business. The logic is documented in-product. It's the reason families trust the order they see, which is what makes a listing worth having.</div>
+      </details>
+      <details class="faq">
+        <summary>How do I get the Military Spouse Owned badge? <span class="plus">+</span></summary>
+        <div class="ans">Mark your business as military-spouse-owned when you apply, and we verify it through AMSE/GovX or direct documentation. It's confirmed annually and persists until ownership changes. Like every badge, it's earned through verification — never purchased.</div>
+      </details>
+      <details class="faq">
+        <summary>What are Open Now Beacons? <span class="plus">+</span></summary>
+        <div class="ans">A Beacon is a live "open now" signal you flip on when you have availability — a same-day opening, a cancellation slot, a food truck that just parked. It surfaces you to nearby families and notifies the ones who saved you, for a window you set. You can end it early; it can't be extended.</div>
+      </details>
+      <details class="faq">
+        <summary>How long does it take to get listed? <span class="plus">+</span></summary>
+        <div class="ans">Usually about a week. A ScoutLocal admin reviews every application by hand — we check name, address, phone, website, and at least one form of public verification. No bulk approvals, which is what keeps the directory trustworthy for the families using it.</div>
+      </details>
+      <details class="faq">
+        <summary>What happens if someone reports my listing? <span class="plus">+</span></summary>
+        <div class="ans">For non-urgent reports, you get a chance to correct the issue before an admin acts. Reports are acknowledged immediately and resolved within 3 business days. What you can't do is hide a report or strip a verified-closed banner — those rules protect the trust that makes your badge mean something.</div>
+      </details>
+      <details class="faq">
+        <summary>Which base can I list on right now? <span class="plus">+</span></summary>
+        <div class="ans">Fort Polk, LA is live in beta. More installations open as each one reaches our launch quality bar. If you serve a base that isn't live yet, start your application anyway — we'll reach out the moment it opens.</div>
+      </details>
+    </div>
+  </div></section>
+
+  </div><!-- /.bizx -->
+
   <section class="section"><div class="wrap"><section class="signup-band"><div><p class="section-number">Join the beta</p><h2>Raise your hand for the Fort Polk beta.</h2><p>Claim or recommend a business profile through the ScoutLocal beta form.</p></div><form class="scout-lead-form" data-scout-lead-form data-source-page="businesses" data-default-base-name="" data-default-base-slug=""><label><span>Email</span><input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label><span>Name</span><input name="fullName" type="text" autocomplete="name" placeholder="Your name"></label><label><span>I am a</span><select name="audience"><option value="family" >Military family / local user</option><option value="business_owner" selected>Business owner</option><option value="partner" >Community partner</option><option value="supporter" >Supporter</option></select></label><input type="hidden" name="baseName" value=""><input type="hidden" name="baseSlug" value=""><button type="submit">Join ScoutLocal</button><p class="lead-form-status" data-lead-status></p></form></section></div></section></main><footer class="site-footer"><div class="footer-glow"></div><div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand"><h2>scout local<span>.</span></h2><p>A directory for the everyday places that make a new base feel workable, familiar, and eventually like home. Built with and for military families.</p></div>
