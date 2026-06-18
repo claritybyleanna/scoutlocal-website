@@ -436,7 +436,7 @@
         })
         .then(function (res) {
           if (!res.ok) { return res.text().then(function (t) { throw new Error(t || ("HTTP " + res.status)); }); }
-          return fetch(SUPABASE_URL + "/functions/v1/resend-listing-email", {
+          fetch(SUPABASE_URL + "/functions/v1/resend-listing-email", {
             method: "POST",
             headers: {
               apikey: SUPABASE_ANON,
@@ -447,7 +447,10 @@
               action: "website_listing_submitted",
               pendingListing: payload
             })
-          }).catch(function () { return null; });
+          }).catch(function (err) {
+            console.warn("Listing saved, but email notification failed.", err);
+          });
+          return true;
         })
         .then(function () {
           form.hidden = true;
