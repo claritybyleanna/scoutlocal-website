@@ -387,7 +387,9 @@
         .then(function (paths) {
           var logo_path = paths[0];
           var photo_paths = paths.slice(1).filter(Boolean);
+          var pendingId = uuid();
           var payload = {
+            id: pendingId,
             plan_interest: (document.querySelector('input[name="plan_interest"]:checked') || {}).value || null,
             relationship: (document.querySelector('input[name="relationship"]:checked') || {}).value || null,
             submitter_name: val("submitter_name"),
@@ -427,28 +429,25 @@
               apikey: SUPABASE_ANON,
               Authorization: "Bearer " + SUPABASE_ANON,
               "Content-Type": "application/json",
-              Prefer: "return=representation"
+              Prefer: "return=minimal"
             },
             body: JSON.stringify(payload)
           });
         })
         .then(function (res) {
           if (!res.ok) { return res.text().then(function (t) { throw new Error(t || ("HTTP " + res.status)); }); }
-          return res.json().catch(function () { return []; }).then(function (rows) {
-            var inserted = Array.isArray(rows) ? rows[0] : rows;
-            return fetch(SUPABASE_URL + "/functions/v1/resend-listing-email", {
-              method: "POST",
-              headers: {
-                apikey: SUPABASE_ANON,
-                Authorization: "Bearer " + SUPABASE_ANON,
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                action: "website_listing_submitted",
-                pendingListing: Object.assign({}, payload, inserted || {})
-              })
-            }).catch(function () { return null; });
-          });
+          return fetch(SUPABASE_URL + "/functions/v1/resend-listing-email", {
+            method: "POST",
+            headers: {
+              apikey: SUPABASE_ANON,
+              Authorization: "Bearer " + SUPABASE_ANON,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              action: "website_listing_submitted",
+              pendingListing: payload
+            })
+          }).catch(function () { return null; });
         })
         .then(function () {
           form.hidden = true;
