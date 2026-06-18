@@ -383,6 +383,7 @@
       if (primaryCat === "__other") { categoryOther = val("category_other") || null; primaryCat = ""; }
       var logoFile = document.getElementById("logo").files[0] || null;
       var photoFiles = Array.prototype.slice.call(document.getElementById("photos").files, 0, 4);
+      var submittedPayload = null;
       Promise.all([uploadFile(logoFile)].concat(photoFiles.map(uploadFile)))
         .then(function (paths) {
           var logo_path = paths[0];
@@ -423,6 +424,7 @@
             referrer: document.referrer || null,
             user_agent: navigator.userAgent
           };
+          submittedPayload = payload;
           return fetch(SUPABASE_URL + "/rest/v1/pending_business_listings", {
             method: "POST",
             headers: {
@@ -445,7 +447,7 @@
             },
             body: JSON.stringify({
               action: "website_listing_submitted",
-              pendingListing: payload
+              pendingListing: submittedPayload
             })
           }).catch(function (err) {
             console.warn("Listing saved, but email notification failed.", err);
