@@ -82,7 +82,7 @@
         <form class="amse-form" id="amseForm" novalidate>
           <div class="fieldset">
             <h2>About you</h2>
-            <p class="hint">This is who ScoutLocal should contact about the listing.</p>
+            <p class="hint">Use the email and phone number ScoutLocal should use to verify that you own this listing and to follow up about review.</p>
             <div class="field">
               <label class="lbl">Your relationship to this business</label>
               <div class="chip-row" role="radiogroup">
@@ -95,7 +95,7 @@
               <div class="field"><label class="lbl" for="submitter_name">Your name <span class="req">*</span></label><input type="text" id="submitter_name" name="submitter_name" autocomplete="name" required></div>
               <div class="field"><label class="lbl" for="submitter_email">Your email <span class="req">*</span></label><input type="email" id="submitter_email" name="submitter_email" autocomplete="email" required></div>
             </div>
-            <div class="field"><label class="lbl" for="submitter_phone">Your phone</label><input type="tel" id="submitter_phone" name="submitter_phone" autocomplete="tel"></div>
+            <div class="field"><label class="lbl" for="submitter_phone">Your phone <span class="req">*</span></label><input type="tel" id="submitter_phone" name="submitter_phone" autocomplete="tel" required><p class="sub">This number may be used for ownership verification before your listing is approved.</p></div>
           </div>
 
           <div class="fieldset">
@@ -437,6 +437,7 @@
       var businessType = checkedValue("business_type") || "local";
       if (!val("submitter_name")) return setMsg("Please add your name.", true);
       if (!val("submitter_email")) return setMsg("Please add your email.", true);
+      if (!val("submitter_phone")) return setMsg("Please add your phone number so we can verify this listing.", true);
       if (!val("name")) return setMsg("Please add the business name.", true);
       if (businessType === "local" && !val("base_id")) return setMsg("Please choose the base this business serves.", true);
       if (businessType === "local" && val("base_id") === "__other" && !val("other_base_text")) return setMsg("Please tell us the base or location.", true);
