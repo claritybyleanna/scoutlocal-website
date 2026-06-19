@@ -1,0 +1,531 @@
+<!doctype html><html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AMSE member listing | ScoutLocal</title><meta name="description" content="Private ScoutLocal listing intake for AMSE members.">
+  <link rel="icon" href="../../../favicon.ico"><link rel="icon" type="image/svg+xml" href="../../../wayfinder.svg"><link rel="apple-touch-icon" href="../../../apple-touch-icon.png"><link rel="manifest" href="../../../site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="../../../assets/css/site.css?v=20260619-amse">
+  <style>
+    .amse-hero{padding:80px 0 54px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--soft),var(--bg))}
+    .private-nav{height:68px;display:flex;align-items:center}
+    .hero-inner{display:grid;grid-template-columns:minmax(0,720px) minmax(340px,1fr);gap:54px;align-items:center}
+    .hero-copy{max-width:720px}
+    .partner-pair{display:flex;align-items:center;justify-content:flex-end;gap:20px}
+    .partner-logo{width:168px;height:168px;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line)}
+    .partner-logo.scout{border-radius:50%;background:transparent;border:0}
+    .partner-logo img{width:100%;height:100%;object-fit:contain}
+    .partner-separator{font:500 46px Outfit;color:var(--line)}
+    .amse-hero h1{font:700 clamp(48px,7vw,82px)/.94 Outfit;margin:0 0 20px;letter-spacing:-.045em;max-width:11ch}
+    .amse-hero .page-lede{max-width:760px}
+    .private-note{max-width:640px;color:var(--muted);font-size:13px;line-height:1.5;margin-top:18px}
+    .amse-grid{display:grid;grid-template-columns:260px 1fr;gap:46px;align-items:start}
+    .form-aside{position:sticky;top:96px}
+    .form-aside ol{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:2px}
+    .form-aside li{font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--line)}
+    .form-aside li b{display:block;color:var(--ink);font-weight:700}
+    form.amse-form{max-width:720px}
+    .fieldset{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:28px;margin-bottom:18px}
+    .fieldset>h2{font:700 24px Outfit;margin:0 0 6px;letter-spacing:-.02em}
+    .hint{font-size:13px;color:var(--muted);margin:0 0 20px;line-height:1.5}
+    .field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+    .lbl{display:block;font:600 13px Geist;color:var(--ink2);margin-bottom:6px}.req{color:var(--rust)}
+    .field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=url],.field textarea,.field select{width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:12px 13px;font:14px Geist;line-height:1.4}
+    .field textarea{min-height:104px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--peach);outline-offset:1px;border-color:var(--rust)}
+    .sub{font-size:12px;color:var(--muted);margin-top:5px}.counter{float:right;font:11px Geist Mono;color:var(--muted)}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .chip-row{display:flex;flex-wrap:wrap;gap:9px}.chip{position:relative;cursor:pointer}.chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+    .chip span{display:inline-flex;align-items:center;border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 15px;font-size:13px;color:var(--ink2);transition:.15s}.chip input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .chip.peach input:checked+span{background:var(--rust);border-color:var(--rust);color:#fff}
+    .base-picker{display:grid;gap:10px}.base-picker select{margin-bottom:0}
+    .tag-input{display:flex;gap:8px}.tag-input input{flex:1}.tag-add{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:0 16px;font:600 13px Geist;cursor:pointer;flex:none}
+    .tag-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}.tag-chip{display:inline-flex;align-items:center;gap:8px;background:var(--peach2);color:var(--ink);border-radius:999px;padding:6px 6px 6px 13px;font-size:13px}
+    .tag-chip button{border:0;background:rgba(23,21,15,.12);color:var(--ink);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;padding:0}
+    .filebox{border:1px dashed var(--line);border-radius:8px;padding:14px;background:var(--soft);font-size:13px;color:var(--ink2)}.filebox input{display:block;margin-top:8px;font-size:13px}
+    .consent{display:flex;gap:11px;align-items:flex-start;font-size:13px;color:var(--ink2);line-height:1.5}.consent input{margin-top:3px;width:16px;height:16px;flex:none}
+    .form-actions{display:flex;align-items:center;gap:18px;margin-top:8px;flex-wrap:wrap}.form-actions .btn-primary{cursor:pointer;border:0}.form-msg{font-size:13px;line-height:1.5}.form-msg.err{color:var(--rust)}
+    .form-success{border:1px solid var(--sage);background:var(--sage);color:var(--sage-deep);border-radius:10px;padding:34px}.form-success h2{font:700 30px Outfit;margin:0 0 10px;color:var(--ink)}.form-success p{margin:0;color:var(--ink2);line-height:1.55}
+    [hidden]{display:none!important}
+    @media(max-width:1050px){.hero-inner{grid-template-columns:1fr}.partner-pair{justify-content:flex-start}.partner-logo{width:132px;height:132px}}
+    @media(max-width:900px){.amse-grid{grid-template-columns:1fr}.form-aside{position:static}.form-aside ol{display:none}}
+    @media(max-width:620px){.grid-2{grid-template-columns:1fr}.fieldset{padding:22px 18px}.partner-logo{width:98px;height:98px}.partner-separator{font-size:30px}}
+  </style></head><body>
+  <header class="site-header"><div class="wrap private-nav">
+    <a class="brand" href="../../../"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L20.5 4L13 21.5L11 13.5L3 11.5Z" fill="currentColor"/></svg></span><span>scout local</span></a>
+  </div></header>
+  <main>
+    <section class="amse-hero"><div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1>Submit your ScoutLocal listing.</h1>
+        <p class="page-lede">AMSE is teaming up with ScoutLocal to help military spouse-owned businesses get discovered by military families. Listings are free and can include your category, description, service area, contact links, social profiles, logo, and photos. Local businesses are reviewed for base-specific discovery, and virtual businesses can be reviewed for ScoutLocal Explore.</p>
+        <div class="private-note">Please do not share this page publicly or outside AMSE member communications.</div>
+      </div>
+      <div class="partner-pair" aria-label="ScoutLocal and AMSE partnership">
+        <div class="partner-logo scout"><img src="../../../assets/img/scout-fab-default.png" alt="ScoutLocal logo"></div>
+        <span class="partner-separator" aria-hidden="true">|</span>
+        <div class="partner-logo"><img src="../../../assets/img/amse-logo.webp" alt="AMSE logo"></div>
+      </div>
+    </div></section>
+    <section class="section"><div class="wrap"><div class="amse-grid">
+      <aside class="form-aside">
+        <p class="section-number">What we need</p>
+        <ol>
+          <li><b>Your contact</b>So we can follow up</li>
+          <li><b>Listing route</b>Local base or virtual</li>
+          <li><b>Business basics</b>Name, category, description</li>
+          <li><b>Background</b>Ownership labels and team size</li>
+          <li><b>Where to find you</b>Location, hours, contact, social</li>
+          <li><b>Photos</b>Logo and up to 4 images</li>
+        </ol>
+        <p class="sub" style="line-height:1.5;margin-top:18px">Your submission is reviewed before anything becomes public.</p>
+      </aside>
+      <div>
+        <form class="amse-form" id="amseForm" novalidate>
+          <div class="fieldset">
+            <h2>About you</h2>
+            <p class="hint">This is who ScoutLocal should contact about the listing.</p>
+            <div class="field">
+              <label class="lbl">Your relationship to this business</label>
+              <div class="chip-row" role="radiogroup">
+                <label class="chip"><input type="radio" name="relationship" value="owner" checked><span>I own it</span></label>
+                <label class="chip"><input type="radio" name="relationship" value="manager"><span>I manage it</span></label>
+                <label class="chip"><input type="radio" name="relationship" value="recommender"><span>I'm recommending it</span></label>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label class="lbl" for="submitter_name">Your name <span class="req">*</span></label><input type="text" id="submitter_name" name="submitter_name" autocomplete="name" required></div>
+              <div class="field"><label class="lbl" for="submitter_email">Your email <span class="req">*</span></label><input type="email" id="submitter_email" name="submitter_email" autocomplete="email" required></div>
+            </div>
+            <div class="field"><label class="lbl" for="submitter_phone">Your phone</label><input type="tel" id="submitter_phone" name="submitter_phone" autocomplete="tel"></div>
+          </div>
+
+          <div class="fieldset">
+            <h2>Listing route</h2>
+            <p class="hint">Choose one path for this launch.</p>
+            <div class="field">
+              <label class="lbl">Where should ScoutLocal review this listing?</label>
+              <div class="chip-row" role="radiogroup">
+                <label class="chip"><input type="radio" name="business_type" value="local" checked><span>Local business near a base</span></label>
+                <label class="chip"><input type="radio" name="business_type" value="online"><span>Virtual / online business</span></label>
+              </div>
+            </div>
+            <div class="field" id="baseField">
+              <label class="lbl" for="base_id">Base served <span class="req">*</span></label>
+              <div class="base-picker">
+                <select id="base_id" name="base_id"><option value="">Loading bases...</option></select>
+                <input type="text" id="other_base_text" name="other_base_text" placeholder="Tell us the base or location" hidden>
+              </div>
+            </div>
+          </div>
+
+          <div class="fieldset">
+            <h2>Business basics</h2>
+            <div class="field"><label class="lbl" for="name">Business name <span class="req">*</span></label><input type="text" id="name" name="name" required></div>
+            <div class="grid-2">
+              <div class="field"><label class="lbl" for="primary_category">Primary category</label><select id="primary_category" name="primary_category"><option value="">Choose one...</option></select></div>
+              <div class="field"><label class="lbl" for="secondary_category">Secondary category</label><select id="secondary_category" name="secondary_category"><option value="">None</option></select></div>
+            </div>
+            <div class="field" id="categoryOtherField" hidden>
+              <label class="lbl" for="category_other">Tell us your category</label>
+              <input type="text" id="category_other" name="category_other" placeholder="e.g. Tattoo studio, music lessons, tax prep">
+            </div>
+            <div class="field">
+              <label class="lbl" for="description">Description <span class="counter"><span id="descCount">0</span>/500</span></label>
+              <textarea id="description" name="description" maxlength="500" placeholder="Tell families what you offer and what makes you a good fit for them."></textarea>
+            </div>
+            <div class="field">
+              <label class="lbl" for="tagEntry">Tags <span class="sub" style="display:inline">(how families might search for you)</span></label>
+              <div class="tag-input">
+                <input type="text" id="tagEntry" list="tagOptions" placeholder="Pick a tag or type your own, then Add" autocomplete="off">
+                <button type="button" class="tag-add" id="tagAdd">Add</button>
+              </div>
+              <datalist id="tagOptions"></datalist>
+              <div class="tag-chips" id="tagChips"></div>
+              <p class="sub">Choose from the suggestions, or add any tag that fits.</p>
+            </div>
+          </div>
+
+          <div class="fieldset">
+            <h2>Background</h2>
+            <p class="hint">Ownership labels are shown to families. Verification happens later, so selecting a label here does not grant a badge.</p>
+            <div class="field">
+              <label class="lbl">Ownership labels <span class="sub" style="display:inline">(select any that apply)</span></label>
+              <div class="chip-row">
+                <label class="chip peach"><input type="checkbox" name="labels" value="military_spouse_owned" checked><span>Military spouse owned</span></label>
+                <label class="chip peach"><input type="checkbox" name="labels" value="veteran_owned"><span>Veteran owned</span></label>
+                <label class="chip peach"><input type="checkbox" name="labels" value="active_duty_owned"><span>Active duty / enlisted</span></label>
+                <label class="chip peach"><input type="checkbox" name="labels" value="women_owned"><span>Women owned</span></label>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label class="lbl" for="years_in_business">Years in business</label><select id="years_in_business" name="years_in_business"><option value="">Choose...</option><option value="less_than_1yr">Less than 1 year</option><option value="1_to_3yr">1-3 years</option><option value="3_to_5yr">3-5 years</option><option value="5plus_yr">5+ years</option></select></div>
+              <div class="field"><label class="lbl" for="employee_count">Team size</label><select id="employee_count" name="employee_count"><option value="">Choose...</option><option value="just_me">Just me</option><option value="2_to_5">2-5 employees</option><option value="6_to_10">6-10 employees</option><option value="11_to_20">11-20 employees</option><option value="20plus">20+ employees</option></select></div>
+            </div>
+          </div>
+
+          <div class="fieldset">
+            <h2>How families find you</h2>
+            <p class="hint">Add whatever you have. Anything blank now can be filled in later.</p>
+            <div class="field"><label class="lbl" for="address">Street address <span class="sub" style="display:inline">(local businesses)</span></label><input type="text" id="address" name="address" placeholder="123 Main St, City, State"></div>
+            <div class="field"><label class="lbl" for="area_description">Service area / note</label><input type="text" id="area_description" name="area_description" placeholder="e.g. Near the main gate, ships nationwide, serves OCONUS"></div>
+            <div class="field"><label class="lbl" for="hours">Hours</label><input type="text" id="hours" name="hours" placeholder="Mon-Fri 9am-5pm"></div>
+            <div class="grid-2">
+              <div class="field"><label class="lbl" for="email">Business email</label><input type="email" id="email" name="email" placeholder="hello@yourbusiness.com"></div>
+              <div class="field"><label class="lbl" for="phone">Business phone</label><input type="tel" id="phone" name="phone"></div>
+            </div>
+            <div class="field"><label class="lbl" for="website">Website</label><input type="url" id="website" name="website" placeholder="https://yourbusiness.com"></div>
+          </div>
+
+          <div class="fieldset">
+            <h2>Social</h2>
+            <p class="hint">Optional, but they help families recognize you.</p>
+            <div class="grid-2">
+              <div class="field"><label class="lbl" for="social_instagram">Instagram</label><input type="text" id="social_instagram" name="social_instagram" placeholder="@handle or URL"></div>
+              <div class="field"><label class="lbl" for="social_facebook">Facebook</label><input type="text" id="social_facebook" name="social_facebook" placeholder="Facebook page URL"></div>
+            </div>
+            <div class="field"><label class="lbl" for="social_etsy">Etsy</label><input type="text" id="social_etsy" name="social_etsy" placeholder="Etsy shop URL"></div>
+          </div>
+
+          <div class="fieldset">
+            <h2>Photos</h2>
+            <p class="hint">Optional. A logo and a few photos make your listing land. JPG, PNG, or WEBP, up to about 5 MB each.</p>
+            <div class="field"><label class="lbl" for="logo">Logo</label><div class="filebox">Square works best.<input type="file" id="logo" name="logo" accept="image/png,image/jpeg,image/webp"></div></div>
+            <div class="field"><label class="lbl" for="photos">Photos <span class="sub" style="display:inline">(up to 4)</span></label><div class="filebox">Storefront, products, your team.<input type="file" id="photos" name="photos" accept="image/png,image/jpeg,image/webp" multiple></div></div>
+          </div>
+
+          <div class="fieldset">
+            <h2>Review notes</h2>
+            <div class="field"><label class="lbl" for="notes_to_team">Anything ScoutLocal should know?</label><textarea id="notes_to_team" name="notes_to_team"></textarea></div>
+            <div class="field">
+              <label class="consent"><input type="checkbox" id="consent" name="consent" required><span>By submitting, I agree that ScoutLocal may contact me about listing review, account setup, launch timing, and ScoutLocal updates. ScoutLocal never sells contact data or charges for ranking.</span></label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Submit listing<svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+        <div class="form-success" id="successPanel" hidden>
+          <h2>Your submission is in review.</h2>
+          <p>Thank you. ScoutLocal received your AMSE listing submission and will review it before anything becomes public.</p>
+        </div>
+      </div>
+    </div></div></section>
+  </main>
+  <footer class="site-footer"><div class="footer-glow"></div><div class="wrap"><div class="footer-base"><span>ScoutLocal is a product of Novalyse LLC. © 2026 Novalyse LLC.</span><span>AMSE partner listing</span></div></div></footer>
+  <script src="../../../assets/js/site.js?v=20260607-2"></script>
+  <script>
+  (function () {
+    var SUPABASE_URL = "https://pmogqxzpwdagpllempgn.supabase.co";
+    var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtb2dxeHpwd2RhZ3BsbGVtcGduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNTQ2MjUsImV4cCI6MjA5MzkzMDYyNX0.qodUSAhb7R31Jiv1KwLs-9Gnv-oejL-495h7-Ogz5dg";
+    var BUCKET = "listing-uploads";
+    var CATEGORIES = [
+      ["Childcare", "childcare"], ["Restaurants", "restaurants"], ["Auto Repair", "auto-repair"],
+      ["Pet Services", "pet-services"], ["Salons / Beauty", "salons-beauty"], ["Healthcare", "healthcare"],
+      ["Home Services", "home-services"], ["E-Commerce", "e-commerce"], ["Coaching / Consulting", "coaching-consulting"],
+      ["Virtual Services", "virtual-services"]
+    ];
+    var BASE_CATALOG = [
+      { key: "fort-polk", id: "00000000-0000-4000-8000-000000000001", name: "Fort Polk", branch: "army", state: "Louisiana" },
+      { key: "fort-liberty", id: "00000000-0000-4000-8000-000000000002", name: "Fort Liberty", branch: "army", state: "North Carolina" },
+      { key: "fort-cavazos", id: "00000000-0000-4000-8000-000000000003", name: "Fort Cavazos", branch: "army", state: "Texas" },
+      { key: "fort-bliss", id: null, name: "Fort Bliss", branch: "army", state: "Texas" },
+      { key: "fort-stewart", id: null, name: "Fort Stewart", branch: "army", state: "Georgia" },
+      { key: "fort-campbell", id: "00000000-0000-4000-8000-000000000004", name: "Fort Campbell", branch: "army", state: "Kentucky / Tennessee" },
+      { key: "fort-moore", id: null, name: "Fort Moore", branch: "army", state: "Georgia" },
+      { key: "fort-carson", id: "00000000-0000-4000-8000-000000000005", name: "Fort Carson", branch: "army", state: "Colorado" },
+      { key: "joint-base-lewis-mcchord", id: "00000000-0000-4000-8000-000000000006", name: "Joint Base Lewis-McChord", branch: "joint", state: "Washington" },
+      { key: "usag-humphreys", id: null, name: "USAG Humphreys", branch: "army", state: "South Korea" },
+      { key: "usag-rheinland-pfalz-kaiserslautern", id: null, name: "USAG Rheinland-Pfalz (Kaiserslautern)", branch: "army", state: "Germany" },
+      { key: "usag-hawaii", id: null, name: "USAG Hawaii", branch: "army", state: "Hawaii" },
+      { key: "fort-eisenhower", id: null, name: "Fort Eisenhower", branch: "army", state: "Georgia" },
+      { key: "fort-sill", id: null, name: "Fort Sill", branch: "army", state: "Oklahoma" },
+      { key: "fort-leonard-wood", id: null, name: "Fort Leonard Wood", branch: "army", state: "Missouri" },
+      { key: "fort-riley", id: null, name: "Fort Riley", branch: "army", state: "Kansas" },
+      { key: "fort-belvoir", id: null, name: "Fort Belvoir", branch: "army", state: "Virginia" },
+      { key: "fort-gregg-adams", id: null, name: "Fort Gregg-Adams", branch: "army", state: "Virginia" },
+      { key: "fort-jackson", id: null, name: "Fort Jackson", branch: "army", state: "South Carolina" },
+      { key: "fort-knox", id: null, name: "Fort Knox", branch: "army", state: "Kentucky" },
+      { key: "fort-drum", id: null, name: "Fort Drum", branch: "army", state: "New York" },
+      { key: "fort-wainwright", id: null, name: "Fort Wainwright", branch: "army", state: "Alaska" },
+      { key: "fort-leavenworth", id: null, name: "Fort Leavenworth", branch: "army", state: "Kansas" },
+      { key: "fort-irwin", id: null, name: "Fort Irwin", branch: "army", state: "California" },
+      { key: "fort-meade", id: null, name: "Fort Meade", branch: "army", state: "Maryland" },
+      { key: "usag-bavaria", id: null, name: "USAG Bavaria", branch: "army", state: "Germany" },
+      { key: "usag-wiesbaden", id: null, name: "USAG Wiesbaden", branch: "army", state: "Germany" },
+      { key: "usag-rheinland-pfalz-baumholder", id: null, name: "USAG Rheinland-Pfalz (Baumholder)", branch: "army", state: "Germany" },
+      { key: "usag-italy", id: null, name: "USAG Italy", branch: "army", state: "Italy" },
+      { key: "redstone-arsenal", id: null, name: "Redstone Arsenal", branch: "army", state: "Alabama" },
+      { key: "fort-novosel", id: null, name: "Fort Novosel", branch: "army", state: "Alabama" },
+      { key: "fort-huachuca", id: null, name: "Fort Huachuca", branch: "army", state: "Arizona" },
+      { key: "fort-detrick", id: null, name: "Fort Detrick", branch: "army", state: "Maryland" },
+      { key: "fort-mccoy", id: null, name: "Fort McCoy", branch: "army", state: "Wisconsin" },
+      { key: "fort-buchanan", id: null, name: "Fort Buchanan", branch: "army", state: "Puerto Rico" },
+      { key: "fort-myer", id: null, name: "Fort Myer", branch: "army", state: "Virginia" },
+      { key: "fort-greely", id: null, name: "Fort Greely", branch: "army", state: "Alaska" },
+      { key: "fort-hunter-liggett", id: null, name: "Fort Hunter Liggett", branch: "army", state: "California" },
+      { key: "fort-hamilton", id: null, name: "Fort Hamilton", branch: "army", state: "New York" },
+      { key: "aberdeen-proving-ground", id: null, name: "Aberdeen Proving Ground", branch: "army", state: "Maryland" },
+      { key: "white-sands-missile-range", id: null, name: "White Sands Missile Range", branch: "army", state: "New Mexico" },
+      { key: "yuma-proving-ground", id: null, name: "Yuma Proving Ground", branch: "army", state: "Arizona" },
+      { key: "rock-island-arsenal", id: null, name: "Rock Island Arsenal", branch: "army", state: "Illinois" },
+      { key: "carlisle-barracks", id: null, name: "Carlisle Barracks", branch: "army", state: "Pennsylvania" },
+      { key: "west-point", id: null, name: "West Point", branch: "army", state: "New York" },
+      { key: "picatinny-arsenal", id: null, name: "Picatinny Arsenal", branch: "army", state: "New Jersey" },
+      { key: "anniston-army-depot", id: null, name: "Anniston Army Depot", branch: "army", state: "Alabama" },
+      { key: "pine-bluff-arsenal", id: null, name: "Pine Bluff Arsenal", branch: "army", state: "Arkansas" },
+      { key: "mcalester-army-ammunition-plant", id: null, name: "McAlester Army Ammunition Plant", branch: "army", state: "Oklahoma" },
+      { key: "tobyhanna-army-depot", id: null, name: "Tobyhanna Army Depot", branch: "army", state: "Pennsylvania" },
+      { key: "detroit-arsenal", id: null, name: "Detroit Arsenal", branch: "army", state: "Michigan" },
+      { key: "dugway-proving-ground", id: null, name: "Dugway Proving Ground", branch: "army", state: "Utah" },
+      { key: "natick-soldier-systems-center", id: null, name: "Natick Soldier Systems Center", branch: "army", state: "Massachusetts" },
+      { key: "camp-parks", id: null, name: "Camp Parks", branch: "army", state: "California" },
+      { key: "presidio-of-monterey", id: null, name: "Presidio of Monterey", branch: "army", state: "California" },
+      { key: "hunter-army-airfield", id: null, name: "Hunter Army Airfield", branch: "army", state: "Georgia" },
+      { key: "usag-ansbach", id: null, name: "USAG Ansbach", branch: "army", state: "Germany" },
+      { key: "usag-bavaria-garmisch", id: null, name: "USAG Bavaria (Garmisch)", branch: "army", state: "Germany" },
+      { key: "usag-bavaria-hohenfels", id: null, name: "USAG Bavaria (Hohenfels)", branch: "army", state: "Germany" },
+      { key: "usag-stuttgart", id: null, name: "USAG Stuttgart", branch: "army", state: "Germany" },
+      { key: "usag-benelux-brussels", id: null, name: "USAG BENELUX (Brussels)", branch: "army", state: "Belgium" },
+      { key: "usag-benelux-shape-chievres", id: null, name: "USAG BENELUX (SHAPE/Chievres)", branch: "army", state: "Belgium" },
+      { key: "usag-benelux-brunssum", id: null, name: "USAG BENELUX (Brunssum)", branch: "army", state: "Netherlands" },
+      { key: "usag-japan-camp-zama", id: null, name: "USAG Japan (Camp Zama)", branch: "army", state: "Japan" },
+      { key: "usag-okinawa-torii-station", id: null, name: "USAG Okinawa (Torii Station)", branch: "army", state: "Japan" },
+      { key: "usag-daegu", id: null, name: "USAG Daegu", branch: "army", state: "South Korea" },
+      { key: "usag-yongsan-casey", id: null, name: "USAG Yongsan-Casey", branch: "army", state: "South Korea" },
+      { key: "usag-poland", id: null, name: "USAG Poland", branch: "army", state: "Poland" },
+      { key: "usag-miami", id: null, name: "USAG Miami", branch: "army", state: "Florida" }
+    ];
+    var form = document.getElementById("amseForm");
+    var msg = document.getElementById("formMsg");
+    var btn = document.getElementById("submitBtn");
+    var successPanel = document.getElementById("successPanel");
+    var baseSelect = document.getElementById("base_id");
+    var otherBase = document.getElementById("other_base_text");
+    var baseField = document.getElementById("baseField");
+    var loadedBases = [];
+    function val(name) { var el = form.elements[name]; return el ? String(el.value || "").trim() : ""; }
+    function checkedValue(name) { var el = document.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
+    function setMsg(text, isErr) { msg.textContent = text || ""; msg.className = "form-msg" + (isErr ? " err" : ""); }
+    function branchLabel(branch) { return ({ army: "Army", navy: "Navy", air_force: "Air Force", marines: "Marine Corps", coast_guard: "Coast Guard", space_force: "Space Force", joint: "Joint" })[branch] || "Other"; }
+    function displayBaseName(base) { return base.name; }
+    function populateCategories() {
+      var primary = document.getElementById("primary_category");
+      var secondary = document.getElementById("secondary_category");
+      var tagOptions = document.getElementById("tagOptions");
+      CATEGORIES.forEach(function (item) {
+        var option = document.createElement("option");
+        option.value = item[1]; option.textContent = item[0]; primary.appendChild(option);
+        var secondaryOption = document.createElement("option");
+        secondaryOption.value = item[1]; secondaryOption.textContent = item[0]; secondary.appendChild(secondaryOption);
+        var tagOption = document.createElement("option");
+        tagOption.value = item[0]; tagOptions.appendChild(tagOption);
+      });
+      var other = document.createElement("option");
+      other.value = "__other"; other.textContent = "Other - tell us...";
+      primary.appendChild(other);
+    }
+    function populateBases(bases) {
+      loadedBases = bases.slice().sort(function (a, b) {
+        return branchLabel(a.branch).localeCompare(branchLabel(b.branch)) || String(a.state || "").localeCompare(String(b.state || "")) || displayBaseName(a).localeCompare(displayBaseName(b));
+      });
+      baseSelect.innerHTML = '<option value="">Choose a base...</option>';
+      var currentGroup = "";
+      loadedBases.forEach(function (base) {
+        var groupLabel = branchLabel(base.branch) + " - " + (base.state || "Other");
+        var group = baseSelect.querySelector('optgroup[label="' + groupLabel + '"]');
+        if (!group) {
+          group = document.createElement("optgroup");
+          group.label = groupLabel;
+          baseSelect.appendChild(group);
+          currentGroup = groupLabel;
+        }
+        var option = document.createElement("option");
+        option.value = base.key;
+        option.textContent = displayBaseName(base);
+        group.appendChild(option);
+      });
+      var other = document.createElement("option");
+      other.value = "__other";
+      other.textContent = "Other / not listed";
+      baseSelect.appendChild(other);
+    }
+    var categoryOtherField = document.getElementById("categoryOtherField");
+    var primaryCategory = document.getElementById("primary_category");
+    primaryCategory.addEventListener("change", function () {
+      categoryOtherField.hidden = primaryCategory.value !== "__other";
+    });
+    var desc = document.getElementById("description");
+    var descCount = document.getElementById("descCount");
+    desc.addEventListener("input", function () { descCount.textContent = desc.value.length; });
+    var selectedTags = [];
+    var tagEntry = document.getElementById("tagEntry");
+    var tagChips = document.getElementById("tagChips");
+    function renderTags() {
+      tagChips.innerHTML = "";
+      selectedTags.forEach(function (tag, idx) {
+        var chip = document.createElement("span");
+        chip.className = "tag-chip";
+        chip.appendChild(document.createTextNode(tag));
+        var remove = document.createElement("button");
+        remove.type = "button";
+        remove.setAttribute("aria-label", "Remove " + tag);
+        remove.textContent = "x";
+        remove.addEventListener("click", function () { selectedTags.splice(idx, 1); renderTags(); });
+        chip.appendChild(remove);
+        tagChips.appendChild(chip);
+      });
+    }
+    function addTag() {
+      var tag = (tagEntry.value || "").trim().replace(/\s+/g, " ");
+      if (!tag) return;
+      var exists = selectedTags.some(function (existing) { return existing.toLowerCase() === tag.toLowerCase(); });
+      if (!exists && selectedTags.length < 12) selectedTags.push(tag);
+      tagEntry.value = "";
+      renderTags();
+      tagEntry.focus();
+    }
+    document.getElementById("tagAdd").addEventListener("click", addTag);
+    tagEntry.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === ",") {
+        event.preventDefault();
+        addTag();
+      }
+    });
+    function uuid() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0;
+        var v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      });
+    }
+    function uploadFile(file) {
+      if (!file) return Promise.resolve(null);
+      var safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      var path = uuid() + "/" + safe;
+      return fetch(SUPABASE_URL + "/storage/v1/object/" + BUCKET + "/" + path, {
+        method: "POST",
+        headers: { apikey: SUPABASE_ANON, Authorization: "Bearer " + SUPABASE_ANON, "Content-Type": file.type || "application/octet-stream" },
+        body: file
+      }).then(function (res) { return res.ok ? path : null; }).catch(function () { return null; });
+    }
+    function syncType() {
+      var type = checkedValue("business_type");
+      baseField.hidden = type === "online";
+      if (type === "online") {
+        baseSelect.value = "";
+        otherBase.hidden = true;
+        otherBase.value = "";
+      }
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="business_type"]'), function (input) {
+      input.addEventListener("change", syncType);
+    });
+    baseSelect.addEventListener("change", function () {
+      otherBase.hidden = baseSelect.value !== "__other";
+      if (otherBase.hidden) otherBase.value = "";
+    });
+    function selectedBase() {
+      var key = val("base_id");
+      if (!key || key === "__other") return null;
+      return loadedBases.find(function (base) { return base.key === key; }) || null;
+    }
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      setMsg("");
+      var businessType = checkedValue("business_type") || "local";
+      if (!val("submitter_name")) return setMsg("Please add your name.", true);
+      if (!val("submitter_email")) return setMsg("Please add your email.", true);
+      if (!val("name")) return setMsg("Please add the business name.", true);
+      if (businessType === "local" && !val("base_id")) return setMsg("Please choose the base this business serves.", true);
+      if (businessType === "local" && val("base_id") === "__other" && !val("other_base_text")) return setMsg("Please tell us the base or location.", true);
+      if (!form.elements.consent.checked) return setMsg("Please check the consent box to continue.", true);
+      var base = selectedBase();
+      var labels = Array.prototype.map.call(document.querySelectorAll('input[name="labels"]:checked'), function (input) { return input.value; });
+      var primaryCat = val("primary_category");
+      var categoryOther = null;
+      if (primaryCat === "__other") {
+        categoryOther = val("category_other") || null;
+        primaryCat = "";
+      }
+      var logoFile = document.getElementById("logo").files[0] || null;
+      var photoFiles = Array.prototype.slice.call(document.getElementById("photos").files, 0, 4);
+      var submittedPayload = null;
+      btn.disabled = true;
+      setMsg("Submitting...");
+      Promise.all([uploadFile(logoFile)].concat(photoFiles.map(uploadFile))).then(function (paths) {
+        var logoPath = paths[0];
+        var photoPaths = paths.slice(1).filter(Boolean);
+        var payload = {
+          plan_interest: "free",
+          relationship: checkedValue("relationship") || "owner",
+          submitter_name: val("submitter_name"),
+          submitter_email: val("submitter_email"),
+          submitter_phone: val("submitter_phone") || null,
+          notes_to_team: val("notes_to_team") || null,
+          name: val("name"),
+          description: val("description") || null,
+          business_type: businessType,
+          submission_path: businessType === "online" ? "online" : "local",
+          primary_category: primaryCat || null,
+          category_other: categoryOther,
+          secondary_category: val("secondary_category") || null,
+          selected_base_id: base && base.id ? base.id : null,
+          base: businessType === "local" ? (base ? displayBaseName(base) : (val("base_id") === "__other" ? "__other" : null)) : null,
+          other_base_text: businessType === "local" && val("base_id") === "__other" ? val("other_base_text") : null,
+          labels: labels,
+          tags: selectedTags,
+          years_in_business: val("years_in_business") || null,
+          employee_count: val("employee_count") || null,
+          phone: val("phone") || null,
+          email: val("email") || null,
+          website: val("website") || null,
+          address: val("address") || null,
+          area_description: val("area_description") || null,
+          hours: val("hours") || null,
+          social_instagram: val("social_instagram") || null,
+          social_facebook: val("social_facebook") || null,
+          social_etsy: val("social_etsy") || null,
+          logo_path: logoPath,
+          photo_paths: photoPaths,
+          consent: true,
+          marketing_consent: true,
+          source: "amse",
+          referrer: document.referrer || null,
+          user_agent: navigator.userAgent
+        };
+        submittedPayload = payload;
+        return fetch(SUPABASE_URL + "/rest/v1/pending_business_listings", {
+          method: "POST",
+          headers: {
+            apikey: SUPABASE_ANON,
+            Authorization: "Bearer " + SUPABASE_ANON,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal"
+          },
+          body: JSON.stringify(payload)
+        });
+      }).then(function (res) {
+        if (!res.ok) return res.text().then(function (text) { throw new Error(text || ("HTTP " + res.status)); });
+        return fetch(SUPABASE_URL + "/functions/v1/resend-listing-email", {
+          method: "POST",
+          headers: { apikey: SUPABASE_ANON, Authorization: "Bearer " + SUPABASE_ANON, "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "website_listing_submitted", pendingListing: submittedPayload })
+        }).catch(function () { return null; });
+      }).then(function () {
+        form.hidden = true;
+        successPanel.hidden = false;
+        successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+      }).catch(function (error) {
+        btn.disabled = false;
+        setMsg("Something went wrong. Please try again, or email hello@joinscoutlocal.com.", true);
+        if (window.console) console.error("AMSE listing submit failed:", error);
+      });
+    });
+    populateCategories();
+    populateBases(BASE_CATALOG);
+    syncType();
+  })();
+  </script>
+</body></html>
