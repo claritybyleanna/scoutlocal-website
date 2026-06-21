@@ -127,3 +127,23 @@ document.querySelectorAll("[data-scout-lead-form]").forEach((form) => {
     }
   });
 });
+
+function scoutSiteHref(path) {
+  if (window.location.protocol !== "file:") return path;
+  const href = window.location.href;
+  const marker = "/docs/";
+  const docsIndex = href.indexOf(marker);
+  if (docsIndex === -1) return path.replace(/^\//, "");
+  return `${href.slice(0, docsIndex + marker.length)}${path.replace(/^\//, "")}`;
+}
+
+function isPrivatePartnerPage() {
+  return window.location.pathname.includes("/partners/amse/list/");
+}
+
+if (!isPrivatePartnerPage()) {
+  const scoutWidgetScript = document.createElement("script");
+  scoutWidgetScript.type = "module";
+  scoutWidgetScript.src = scoutSiteHref("/assets/js/scout-events.js?v=20260620-widget");
+  document.head.appendChild(scoutWidgetScript);
+}
