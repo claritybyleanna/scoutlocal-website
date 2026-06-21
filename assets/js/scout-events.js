@@ -267,6 +267,7 @@ function resetWidgetScroll(state) {
     state.root.querySelector(".scout-widget-panel"),
     state.root.querySelector("[data-scout-widget-content]"),
     state.root.querySelector(".scout-widget-list"),
+    state.root.querySelector(".scout-widget-form-shell"),
     state.root.querySelector(".scout-widget-form"),
   ];
   scrollable.forEach((element) => {
@@ -376,23 +377,25 @@ function renderEventFormView(state) {
       <h2>add an event to scout</h2>
       <button class="scout-widget-back" type="button" data-scout-back>‹ this week</button>
     </div>
-    <form class="scout-widget-form" data-scout-widget-form>
-      <label><span>event name</span><input name="title" type="text" required maxlength="120" placeholder="e.g. Spouses’ coffee & connect"></label>
-      <label><span>hosted by</span><input name="hostedBy" type="text" required maxlength="160" placeholder="MWR, ACS, CYS, your unit..."></label>
-      <div class="scout-widget-grid">
-        <label><span>day</span><input name="date" type="text" inputmode="numeric" required value="${dateFieldValue(state.selectedDate)}" placeholder="MM/DD/YYYY" autocomplete="off"></label>
-        <label><span>time</span><input name="startTime" type="text" required value="10:00 AM" placeholder="10:00 AM" autocomplete="off"></label>
-      </div>
-      <label><span>location name (optional)</span><input name="locationName" type="text" maxlength="140" placeholder="Facility, room, or landmark"></label>
-      <label><span>address</span><input name="address" type="text" required maxlength="180" placeholder="Building, street, or full address"></label>
-      <div class="scout-widget-grid">
-        <label><span>category</span><select name="category"><option value="kids">kids</option><option value="community">community</option><option value="fitness">fitness</option><option value="food">food</option><option value="spouses">spouses</option></select></label>
-        <label><span>cost</span><input name="cost" type="text" maxlength="60" placeholder="Free, or $"></label>
-      </div>
-      <label><span>anything else? (optional)</span><textarea name="description" rows="4" maxlength="1200" placeholder="Age range, registration, what to bring..."></textarea></label>
-      <button class="scout-widget-submit" type="submit">send for review</button>
-      <p class="scout-widget-status" data-scout-widget-status></p>
-    </form>
+    <div class="scout-widget-form-shell">
+      <form class="scout-widget-form" data-scout-widget-form>
+        <label><span>event name</span><input name="title" type="text" required maxlength="120" placeholder="e.g. Spouses’ coffee & connect"></label>
+        <label><span>hosted by</span><input name="hostedBy" type="text" required maxlength="160" placeholder="MWR, ACS, CYS, your unit..."></label>
+        <div class="scout-widget-grid">
+          <label><span>day</span><input name="date" type="text" inputmode="numeric" required value="${dateFieldValue(state.selectedDate)}" placeholder="MM/DD/YYYY" autocomplete="off"></label>
+          <label><span>time</span><input name="startTime" type="text" required value="10:00 AM" placeholder="10:00 AM" autocomplete="off"></label>
+        </div>
+        <label><span>location name (optional)</span><input name="locationName" type="text" maxlength="140" placeholder="Facility, room, or landmark"></label>
+        <label><span>address</span><input name="address" type="text" required maxlength="180" placeholder="Building, street, or full address"></label>
+        <div class="scout-widget-grid">
+          <label><span>category</span><select name="category"><option value="kids">kids</option><option value="community">community</option><option value="fitness">fitness</option><option value="food">food</option><option value="spouses">spouses</option></select></label>
+          <label><span>cost</span><input name="cost" type="text" maxlength="60" placeholder="Free, or $"></label>
+        </div>
+        <label><span>anything else? (optional)</span><textarea name="description" rows="4" maxlength="1200" placeholder="Age range, registration, what to bring..."></textarea></label>
+        <button class="scout-widget-submit" type="submit">send for review</button>
+        <p class="scout-widget-status" data-scout-widget-status></p>
+      </form>
+    </div>
   `;
   content.querySelector("[data-scout-back]").addEventListener("click", () => renderEventsView(state));
   resetWidgetScroll(state);
@@ -433,16 +436,18 @@ function renderWeeklyFormView(state) {
       <h2>want to get this in a weekly email?</h2>
       <button class="scout-widget-back" type="button" data-scout-back>‹ this week</button>
     </div>
-    <form class="scout-widget-form" data-scout-weekly-form>
-      <label><span>email</span><input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
-      <label><span>name</span><input name="name" type="text" required autocomplete="name" placeholder="Your name"></label>
-      <label><span>i am a...</span><select name="role" required><option value="military_family" selected>Military family</option><option value="local">Local to the area</option><option value="business_owner">Business owner</option><option value="community_partner">Community partner</option></select></label>
-      <label><span>your connection to the military</span><select name="affiliation" required><option value="active_duty">Active duty / National Guard / Reserve</option><option value="veteran">Veteran / retired</option><option value="military_spouse">Military spouse or partner</option><option value="civilian">None of the above / civilian</option><option value="prefer_not_to_say">Prefer not to say</option></select></label>
-      <label><span>nearest base</span><input name="nearest_base" type="text" required value="Fort Polk"></label>
-      <label class="scout-widget-checkbox"><input name="email_opt_in" type="checkbox" checked><span>Yes, email me ScoutLocal updates.</span></label>
-      <button class="scout-widget-submit" type="submit">join beta</button>
-      <p class="scout-widget-status" data-scout-weekly-status></p>
-    </form>
+    <div class="scout-widget-form-shell">
+      <form class="scout-widget-form" data-scout-weekly-form>
+        <label><span>email</span><input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+        <label><span>name</span><input name="name" type="text" required autocomplete="name" placeholder="Your name"></label>
+        <label><span>i am a...</span><select name="role" required><option value="military_family" selected>Military family</option><option value="local">Local to the area</option><option value="business_owner">Business owner</option><option value="community_partner">Community partner</option></select></label>
+        <label><span>your connection to the military</span><select name="affiliation" required><option value="active_duty">Active duty / National Guard / Reserve</option><option value="veteran">Veteran / retired</option><option value="military_spouse">Military spouse or partner</option><option value="civilian">None of the above / civilian</option><option value="prefer_not_to_say">Prefer not to say</option></select></label>
+        <label><span>nearest base</span><input name="nearest_base" type="text" required value="Fort Polk"></label>
+        <label class="scout-widget-checkbox"><input name="email_opt_in" type="checkbox" checked><span>Yes, email me ScoutLocal updates.</span></label>
+        <button class="scout-widget-submit" type="submit">join beta</button>
+        <p class="scout-widget-status" data-scout-weekly-status></p>
+      </form>
+    </div>
   `;
   content.querySelector("[data-scout-back]").addEventListener("click", () => renderEventsView(state));
   resetWidgetScroll(state);
