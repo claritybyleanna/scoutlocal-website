@@ -84,4 +84,18 @@ describe("Scout widget event submission payload", () => {
       externalUrl: "",
     });
   });
+
+  it("normalizes typed mobile-friendly date and time values", () => {
+    const payload = buildWidgetEventPayload({
+      title: "Outdoor movie night",
+      hostedBy: "MWR",
+      date: "06/24/2026",
+      startTime: "7:30 PM",
+      address: "Main Exchange lot",
+    });
+
+    expect(payload.date).toBe("2026-06-24");
+    expect(payload.startTime).toBe("19:30");
+    expect(payload.endTime).toBe("20:30");
+  });
 });

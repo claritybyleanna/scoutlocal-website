@@ -83,11 +83,49 @@ function addOneHour(timeValue) {
   return `${String(nextHour).padStart(2, "0")}:${String(minute || 0).padStart(2, "0")}`;
 }
 
+function normalizeDateInput(value) {
+  const trimmed = String(value || "").trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return trimmed;
+  const match = trimmed.match(/^(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})$/);
+  if (!match) return trimmed;
+  const month = Number(match[1]);
+  const day = Number(match[2]);
+  const rawYear = Number(match[3]);
+  const year = rawYear < 100 ? 2000 + rawYear : rawYear;
+  if (month < 1 || month > 12 || day < 1 || day > 31) return trimmed;
+  return `${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+function normalizeTimeInput(value) {
+  const trimmed = String(value || "").trim();
+  if (/^\d{2}:\d{2}$/.test(trimmed)) return trimmed;
+  const match = trimmed.match(/^(\d{1,2})(?::?(\d{2}))?\s*([ap]\.?m\.?)?$/i);
+  if (!match) return trimmed;
+  let hour = Number(match[1]);
+  const minute = Number(match[2] || 0);
+  const meridiem = match[3]?.toLowerCase().replace(/\./g, "");
+  if (minute > 59 || hour < 0 || hour > 23) return trimmed;
+  if (meridiem) {
+    if (hour < 1 || hour > 12) return trimmed;
+    if (meridiem === "pm" && hour !== 12) hour += 12;
+    if (meridiem === "am" && hour === 12) hour = 0;
+  }
+  return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+}
+
+function dateFieldValue(dateValue) {
+  const [year, month, day] = String(dateValue || "").split("-");
+  if (!year || !month || !day) return "";
+  return `${month}/${day}/${year}`;
+}
+
 function compactLines(lines, separator = "\n") {
   return lines.filter((line) => typeof line === "string" && line.trim().length > 0).join(separator);
 }
 
 export function buildWidgetEventPayload(values) {
+  const date = normalizeDateInput(values.date);
+  const startTime = normalizeTimeInput(values.startTime);
   const eventDetails = compactLines([
     values.hostedBy?.trim() ? `Hosted by: ${values.hostedBy.trim()}` : "",
     values.category?.trim() ? `Category: ${values.category.trim()}` : "",
@@ -96,9 +134,9 @@ export function buildWidgetEventPayload(values) {
   const description = compactLines([values.description?.trim(), eventDetails], "\n\n");
   return {
     title: values.title?.trim() || "",
-    date: values.date?.trim() || "",
-    startTime: values.startTime?.trim() || "",
-    endTime: addOneHour(values.startTime),
+    date,
+    startTime,
+    endTime: addOneHour(startTime),
     locationName: values.locationName?.trim() || "",
     address: values.address?.trim() || "",
     description,
@@ -281,6 +319,7 @@ function eventRow(event) {
 function renderEventsView(state) {
   const content = state.root.querySelector("[data-scout-widget-content]");
   if (!content) return;
+  content.className = "is-events-view";
   content.replaceChildren();
 
   const top = createElement("div", "scout-widget-top");
@@ -331,6 +370,7 @@ function renderEventsView(state) {
 function renderEventFormView(state) {
   const content = state.root.querySelector("[data-scout-widget-content]");
   if (!content) return;
+  content.className = "is-form-view";
   content.innerHTML = `
     <div class="scout-widget-top is-form">
       <h2>add an event to scout</h2>
@@ -340,8 +380,8 @@ function renderEventFormView(state) {
       <label><span>event name</span><input name="title" type="text" required maxlength="120" placeholder="e.g. Spouses’ coffee & connect"></label>
       <label><span>hosted by</span><input name="hostedBy" type="text" required maxlength="160" placeholder="MWR, ACS, CYS, your unit..."></label>
       <div class="scout-widget-grid">
-        <label><span>day</span><input name="date" type="date" required value="${state.selectedDate}"></label>
-        <label><span>time</span><input name="startTime" type="time" required value="10:00"></label>
+        <label><span>day</span><input name="date" type="text" inputmode="numeric" required value="${dateFieldValue(state.selectedDate)}" placeholder="MM/DD/YYYY" autocomplete="off"></label>
+        <label><span>time</span><input name="startTime" type="text" required value="10:00 AM" placeholder="10:00 AM" autocomplete="off"></label>
       </div>
       <label><span>location name (optional)</span><input name="locationName" type="text" maxlength="140" placeholder="Facility, room, or landmark"></label>
       <label><span>address</span><input name="address" type="text" required maxlength="180" placeholder="Building, street, or full address"></label>
@@ -387,6 +427,7 @@ function renderEventFormView(state) {
 function renderWeeklyFormView(state) {
   const content = state.root.querySelector("[data-scout-widget-content]");
   if (!content) return;
+  content.className = "is-form-view";
   content.innerHTML = `
     <div class="scout-widget-top is-form">
       <h2>want to get this in a weekly email?</h2>
