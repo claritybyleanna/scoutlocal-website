@@ -371,7 +371,7 @@ function renderEventsView(state) {
 function renderEventFormView(state) {
   const content = state.root.querySelector("[data-scout-widget-content]");
   if (!content) return;
-  content.className = "is-form-view";
+  content.className = "is-form-view is-event-form-view";
   content.innerHTML = `
     <div class="scout-widget-top is-form">
       <h2>add an event to scout</h2>
@@ -430,7 +430,7 @@ function renderEventFormView(state) {
 function renderWeeklyFormView(state) {
   const content = state.root.querySelector("[data-scout-widget-content]");
   if (!content) return;
-  content.className = "is-form-view";
+  content.className = "is-form-view is-weekly-form-view";
   content.innerHTML = `
     <div class="scout-widget-top is-form">
       <h2>want to get this in a weekly email?</h2>
