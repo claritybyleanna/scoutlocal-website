@@ -20,6 +20,14 @@ document.querySelectorAll(".faq-list details").forEach((detail) => {
 const signupParams = new URLSearchParams(window.location.search);
 const endpoint = "https://pmogqxzpwdagpllempgn.supabase.co/functions/v1/resend-sync-contact";
 
+function splitFullName(value) {
+  const parts = String(value || "").trim().split(/\s+/).filter(Boolean);
+  return {
+    firstName: parts[0] || undefined,
+    lastName: parts.length > 1 ? parts.slice(1).join(" ") : undefined,
+  };
+}
+
 document.querySelectorAll("[data-scout-lead-form]").forEach((form) => {
   const email = form.querySelector('[name="email"]');
   const name = form.querySelector('[name="name"], [name="fullName"]');
@@ -72,10 +80,14 @@ document.querySelectorAll("[data-scout-lead-form]").forEach((form) => {
     const utm = new URLSearchParams(window.location.search);
     const roleValue = selectedRole();
     const baseValue = nearestBase?.value || baseName?.value || form.dataset.defaultBaseName || undefined;
+    const fullNameValue = form.querySelector('[name="fullName"]')?.value || name?.value || undefined;
+    const nameParts = splitFullName(fullNameValue);
     const body = {
       email: email.value,
-      name: name?.value,
-      fullName: form.querySelector('[name="fullName"]')?.value || name?.value,
+      name: fullNameValue,
+      fullName: fullNameValue,
+      firstName: nameParts.firstName,
+      lastName: nameParts.lastName,
       role: roleValue,
       audience: audience?.value || roleValue,
       affiliation: affiliation?.value || undefined,
@@ -144,6 +156,6 @@ function isPrivatePartnerPage() {
 if (!isPrivatePartnerPage()) {
   const scoutWidgetScript = document.createElement("script");
   scoutWidgetScript.type = "module";
-  scoutWidgetScript.src = scoutSiteHref("/assets/js/scout-events.js?v=20260620-widget-weekly-mask");
+  scoutWidgetScript.src = scoutSiteHref("/assets/js/scout-events.js?v=20260621-event-email-capture");
   document.head.appendChild(scoutWidgetScript);
 }

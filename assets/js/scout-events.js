@@ -123,6 +123,14 @@ function compactLines(lines, separator = "\n") {
   return lines.filter((line) => typeof line === "string" && line.trim().length > 0).join(separator);
 }
 
+function splitFullName(value) {
+  const parts = String(value || "").trim().split(/\s+/).filter(Boolean);
+  return {
+    firstName: parts[0] || undefined,
+    lastName: parts.length > 1 ? parts.slice(1).join(" ") : undefined,
+  };
+}
+
 export function buildWidgetEventPayload(values) {
   const date = normalizeDateInput(values.date);
   const startTime = normalizeTimeInput(values.startTime);
@@ -141,6 +149,8 @@ export function buildWidgetEventPayload(values) {
     address: values.address?.trim() || "",
     description,
     contact: values.hostedBy?.trim() || "",
+    submitterEmail: values.submitterEmail?.trim() || "",
+    submitterName: values.submitterName?.trim() || "",
     externalUrl: "",
   };
 }
@@ -381,6 +391,7 @@ function renderEventFormView(state) {
       <form class="scout-widget-form" data-scout-widget-form>
         <label><span>event name</span><input name="title" type="text" required maxlength="120" placeholder="e.g. Spouses’ coffee & connect"></label>
         <label><span>hosted by</span><input name="hostedBy" type="text" required maxlength="160" placeholder="MWR, ACS, CYS, your unit..."></label>
+        <label><span>your email</span><input name="submitterEmail" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
         <div class="scout-widget-grid">
           <label><span>day</span><input name="date" type="text" inputmode="numeric" required value="${dateFieldValue(state.selectedDate)}" placeholder="MM/DD/YYYY" autocomplete="off"></label>
           <label><span>time</span><input name="startTime" type="text" required value="10:00 AM" placeholder="10:00 AM" autocomplete="off"></label>
@@ -457,6 +468,7 @@ function renderWeeklyFormView(state) {
     const status = form.querySelector("[data-scout-weekly-status]");
     const submit = form.querySelector('button[type="submit"]');
     const values = Object.fromEntries(new FormData(form).entries());
+    const nameParts = splitFullName(values.name);
     if (status) status.textContent = "Saving your spot...";
     if (submit) submit.disabled = true;
     try {
@@ -465,7 +477,10 @@ function renderWeeklyFormView(state) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...values,
+          name: values.name,
           fullName: values.name,
+          firstName: nameParts.firstName,
+          lastName: nameParts.lastName,
           audience: values.role,
           nearestBase: values.nearest_base,
           baseName: "Fort Polk",

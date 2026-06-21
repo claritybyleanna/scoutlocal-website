@@ -70,6 +70,7 @@ describe("Scout widget event submission payload", () => {
       category: "community",
       cost: "free",
       description: "Bring a mug.",
+      submitterEmail: "helper@example.com",
     });
 
     expect(payload).toEqual({
@@ -81,6 +82,8 @@ describe("Scout widget event submission payload", () => {
       address: "1591 Bell Richard Ave Bldg 920",
       description: "Bring a mug.\n\nHosted by: ACS\nCategory: community\nCost: free",
       contact: "ACS",
+      submitterEmail: "helper@example.com",
+      submitterName: "",
       externalUrl: "",
     });
   });
