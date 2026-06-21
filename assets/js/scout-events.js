@@ -224,6 +224,18 @@ function createElement(tag, className, text) {
   return element;
 }
 
+function resetWidgetScroll(state) {
+  const scrollable = [
+    state.root.querySelector(".scout-widget-panel"),
+    state.root.querySelector("[data-scout-widget-content]"),
+    state.root.querySelector(".scout-widget-list"),
+    state.root.querySelector(".scout-widget-form"),
+  ];
+  scrollable.forEach((element) => {
+    if (element) element.scrollTop = 0;
+  });
+}
+
 function widgetTemplate() {
   return `
     <button class="scout-site-fab" type="button" aria-label="Open Scout events" data-scout-open>
@@ -313,6 +325,7 @@ function renderEventsView(state) {
   add.querySelector(".scout-widget-add-button").addEventListener("click", () => renderEventFormView(state));
 
   content.append(top, days, dayHead, list, add);
+  resetWidgetScroll(state);
 }
 
 function renderEventFormView(state) {
@@ -342,6 +355,7 @@ function renderEventFormView(state) {
     </form>
   `;
   content.querySelector("[data-scout-back]").addEventListener("click", () => renderEventsView(state));
+  resetWidgetScroll(state);
   content.querySelector("[data-scout-widget-form]").addEventListener("submit", async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -390,6 +404,7 @@ function renderWeeklyFormView(state) {
     </form>
   `;
   content.querySelector("[data-scout-back]").addEventListener("click", () => renderEventsView(state));
+  resetWidgetScroll(state);
   content.querySelector("[data-scout-weekly-form]").addEventListener("submit", async (event) => {
     event.preventDefault();
     const form = event.currentTarget;

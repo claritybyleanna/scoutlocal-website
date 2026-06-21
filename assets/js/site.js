@@ -144,6 +144,6 @@ function isPrivatePartnerPage() {
 if (!isPrivatePartnerPage()) {
   const scoutWidgetScript = document.createElement("script");
   scoutWidgetScript.type = "module";
-  scoutWidgetScript.src = scoutSiteHref("/assets/js/scout-events.js?v=20260620-widget");
+  scoutWidgetScript.src = scoutSiteHref("/assets/js/scout-events.js?v=20260620-widget-fixed");
   document.head.appendChild(scoutWidgetScript);
 }
