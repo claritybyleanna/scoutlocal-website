@@ -82,6 +82,29 @@ body.scout-modal-open{overflow:hidden}
 @media(max-width:900px){.scout-hero-grid{grid-template-columns:1fr}.scout-week-card{max-width:440px}.scout-events-track{grid-auto-columns:minmax(280px,82vw)}.form-grid-3{grid-template-columns:1fr}.scout-site-fab{width:68px;height:68px;right:18px;bottom:18px}.footer-bottom{flex-direction:column}}
 @media(max-width:620px){.scout-hero{padding:54px 0 44px}.scout-hero h1{font-size:50px}.scout-section-head{align-items:flex-start;flex-direction:column}.scout-modal,.weekly-email-prompt{padding:12px}.scout-modal-panel,.weekly-email-panel{padding:28px 20px}.form-actions{align-items:stretch;flex-direction:column-reverse}.form-actions .btn{width:100%}.scout-site-fab{width:62px;height:62px}}
 
+/* Contact message form. */
+.contact-message-card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:52px;display:grid;grid-template-columns:.82fr 1.18fr;gap:48px;align-items:start;box-shadow:0 26px 54px -46px #6c5038}
+.contact-message-copy h2{font:700 clamp(36px,4.6vw,56px)/1 Outfit;margin:12px 0 16px;letter-spacing:-.04em;max-width:10ch}
+.contact-message-copy p:not(.section-number){font-size:18px;line-height:1.62;color:var(--ink2);margin:0;max-width:36ch}
+.contact-message-form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-message-form label{display:grid;gap:10px}
+.contact-message-form label span{font:11px Geist Mono;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+.contact-message-form label span em{font-style:normal;color:#b25e3c;text-transform:none;letter-spacing:0;margin-left:5px}
+.contact-message-form input,.contact-message-form textarea{width:100%;border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:16px 18px;font:17px Geist;color:var(--ink);min-height:58px}
+.contact-message-form input::placeholder,.contact-message-form textarea::placeholder{color:rgba(20,16,14,.4)}
+.contact-message-form textarea{min-height:220px;resize:vertical;line-height:1.48}
+.contact-message-form input:focus,.contact-message-form textarea:focus{outline:3px solid rgba(255,209,172,.48);outline-offset:2px;border-color:var(--rust)}
+.contact-message-field{grid-column:1/-1}
+.contact-message-actions{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.contact-message-actions button{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:0;border-radius:999px;background:var(--ink);color:#fff;min-height:62px;padding:0 30px;font:700 18px Geist;cursor:pointer}
+.contact-message-actions button:disabled{opacity:.65;cursor:wait}
+.contact-message-actions p{margin:0;color:var(--muted);font-size:16px;line-height:1.5;max-width:36ch}
+.contact-message-status{grid-column:1/-1;min-height:22px;margin:0;color:var(--muted);font:14px/1.5 Geist}
+.contact-message-status[data-state=success]{color:#4e6a3f}
+.contact-message-status[data-state=error]{color:#b25e3c}
+@media(max-width:900px){.contact-message-card{grid-template-columns:1fr;padding:36px}.contact-message-copy h2{max-width:14ch}.contact-message-form{grid-template-columns:1fr}.contact-message-actions{grid-template-columns:1fr;gap:14px}.contact-message-actions button{width:100%}}
+@media(max-width:620px){.contact-message-card{padding:28px 22px}.contact-message-copy h2{font-size:38px}.contact-message-form input,.contact-message-form textarea{font-size:16px}.contact-message-actions button{min-height:56px}}
+
 /* Global Scout widget. */
 .scout-site-fab{border:0;padding:0;cursor:pointer;overflow:visible;background:#15110e;box-shadow:0 22px 54px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,209,172,.26)}
 .scout-site-fab:active{transform:translateY(-1px) scale(.98)}

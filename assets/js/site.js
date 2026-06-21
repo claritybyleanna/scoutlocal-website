@@ -19,6 +19,7 @@ document.querySelectorAll(".faq-list details").forEach((detail) => {
 
 const signupParams = new URLSearchParams(window.location.search);
 const endpoint = "https://pmogqxzpwdagpllempgn.supabase.co/functions/v1/resend-sync-contact";
+const contactEndpoint = "https://pmogqxzpwdagpllempgn.supabase.co/functions/v1/submit-contact-message";
 
 function splitFullName(value) {
   const parts = String(value || "").trim().split(/\s+/).filter(Boolean);
@@ -128,6 +129,63 @@ document.querySelectorAll("[data-scout-lead-form]").forEach((form) => {
         defaultConfirmation.hidden = false;
       } else if (status) {
         status.textContent = "You're on the list. We'll send the next useful update.";
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent = error.message || "Something went wrong. Please try again.";
+        status.dataset.state = "error";
+      }
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  });
+});
+
+document.querySelectorAll("[data-contact-message-form]").forEach((form) => {
+  const name = form.querySelector('[name="name"]');
+  const email = form.querySelector('[name="email"]');
+  const message = form.querySelector('[name="message"]');
+  const website = form.querySelector('[name="website"]');
+  const status = form.querySelector("[data-contact-message-status]");
+  const submit = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const messageValue = message?.value?.trim() || "";
+    if (!messageValue) {
+      if (status) {
+        status.textContent = "Please add a message before sending.";
+        status.dataset.state = "error";
+      }
+      return;
+    }
+
+    if (status) {
+      status.textContent = "Sending your message...";
+      status.dataset.state = "loading";
+    }
+    if (submit) submit.disabled = true;
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name?.value?.trim() || undefined,
+          email: email?.value?.trim() || undefined,
+          message: messageValue,
+          website: website?.value || "",
+          sourcePage: window.location.pathname,
+          sourceDomain: window.location.hostname,
+          userAgent: navigator.userAgent,
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "Could not send your message.");
+      form.reset();
+      if (status) {
+        status.textContent = "Message sent. A real person will get back to you if you included an email.";
+        status.dataset.state = "success";
       }
     } catch (error) {
       if (status) {
