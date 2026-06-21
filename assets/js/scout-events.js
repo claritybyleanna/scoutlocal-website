@@ -160,6 +160,10 @@ export function countEventsForDate(events, date) {
   return events.filter((event) => formatDateKey(event.starts_at) === date).length;
 }
 
+export function countEventsForWeek(events) {
+  return events.filter(Boolean).length;
+}
+
 function formatDayLabel(dateValue) {
   return new Intl.DateTimeFormat("en-US", {
     timeZone: FORT_POLK_TIMEZONE,
@@ -223,7 +227,9 @@ function createElement(tag, className, text) {
 function widgetTemplate() {
   return `
     <button class="scout-site-fab" type="button" aria-label="Open Scout events" data-scout-open>
+      <span class="scout-site-fab-tip">what’s on this week</span>
       <img src="${siteUrl("/assets/img/scout-fab-active.png")}" alt="">
+      <span class="scout-site-fab-badge" data-scout-fab-count hidden>0</span>
     </button>
     <div class="scout-weekly-nudge" data-scout-weekly-nudge hidden>
       <button type="button" aria-label="Close weekly email prompt" data-scout-weekly-dismiss>×</button>
@@ -232,7 +238,7 @@ function widgetTemplate() {
       <button type="button" data-scout-weekly-open>Join beta</button>
     </div>
     <div class="scout-widget-shell" data-scout-widget hidden>
-      <section class="scout-widget-panel" aria-modal="true" role="dialog" aria-label="Scout Fort Polk events">
+      <section class="scout-widget-panel" role="dialog" aria-label="Scout Fort Polk events">
         <button class="scout-widget-close" type="button" aria-label="Close Scout" data-scout-close>×</button>
         <div data-scout-widget-content></div>
       </section>
@@ -275,7 +281,7 @@ function renderEventsView(state) {
     button.type = "button";
     button.className = date === state.selectedDate ? "is-active" : "";
     button.setAttribute("aria-label", `${formatShortDay(date)}: ${eventCount} ${eventCount === 1 ? "event" : "events"}`);
-    button.innerHTML = `<span>${formatShortDay(date).slice(0, 1)}</span><i>${eventCount}</i>`;
+    button.innerHTML = `<span>${formatShortDay(date).slice(0, 1)}</span><i></i>`;
     button.addEventListener("click", () => {
       state.selectedDate = date;
       renderEventsView(state);
@@ -424,7 +430,6 @@ function renderWeeklyFormView(state) {
 
 function openWidget(state, view = "events") {
   state.shell.hidden = false;
-  document.body.classList.add("scout-modal-open");
   state.nudge.hidden = true;
   if (view === "weekly") renderWeeklyFormView(state);
   else renderEventsView(state);
@@ -432,7 +437,13 @@ function openWidget(state, view = "events") {
 
 function closeWidget(state) {
   state.shell.hidden = true;
-  document.body.classList.remove("scout-modal-open");
+}
+
+function updateScoutFabBadge(state) {
+  if (!state.fabCount) return;
+  const count = countEventsForWeek(state.events);
+  state.fabCount.textContent = String(count);
+  state.fabCount.hidden = count === 0;
 }
 
 async function loadEvents(state) {
@@ -446,6 +457,7 @@ async function loadEvents(state) {
     state.eventsByDay = new Map();
   } finally {
     state.loading = false;
+    updateScoutFabBadge(state);
     if (!state.shell.hidden) renderEventsView(state);
   }
 }
@@ -480,6 +492,7 @@ function initScoutWidget() {
     root,
     shell: root.querySelector("[data-scout-widget]"),
     nudge: root.querySelector("[data-scout-weekly-nudge]"),
+    fabCount: root.querySelector("[data-scout-fab-count]"),
     range,
     weekDates: weekDates(range),
     selectedDate: weekDates(range)[0],

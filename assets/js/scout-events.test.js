@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWidgetEventPayload, countEventsForDate, filterEventsForWeek, getWeekRange } from "./scout-events.js";
+import { buildWidgetEventPayload, countEventsForDate, countEventsForWeek, filterEventsForWeek, getWeekRange } from "./scout-events.js";
 
 describe("Scout website event week helpers", () => {
   it("builds a Sunday through next-Sunday range", () => {
@@ -47,6 +47,14 @@ describe("Scout website event week helpers", () => {
       { starts_at: "2026-06-24T22:00:00.000Z" },
       { starts_at: "2026-06-25T01:00:00.000Z" },
     ], "2026-06-24")).toBe(3);
+  });
+
+  it("counts visible events for the Scout icon badge", () => {
+    expect(countEventsForWeek([
+      { id: "one" },
+      { id: "two" },
+      null,
+    ])).toBe(2);
   });
 });
 
