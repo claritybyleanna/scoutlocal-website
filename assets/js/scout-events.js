@@ -156,6 +156,10 @@ function formatDateKey(value) {
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
+export function countEventsForDate(events, date) {
+  return events.filter((event) => formatDateKey(event.starts_at) === date).length;
+}
+
 function formatDayLabel(dateValue) {
   return new Intl.DateTimeFormat("en-US", {
     timeZone: FORT_POLK_TIMEZONE,
@@ -266,10 +270,12 @@ function renderEventsView(state) {
 
   const days = createElement("div", "scout-widget-days");
   state.weekDates.forEach((date) => {
+    const eventCount = state.loading ? 0 : countEventsForDate(state.events, date);
     const button = document.createElement("button");
     button.type = "button";
     button.className = date === state.selectedDate ? "is-active" : "";
-    button.innerHTML = `<span>${formatShortDay(date).slice(0, 1)}</span><i></i>`;
+    button.setAttribute("aria-label", `${formatShortDay(date)}: ${eventCount} ${eventCount === 1 ? "event" : "events"}`);
+    button.innerHTML = `<span>${formatShortDay(date).slice(0, 1)}</span><i>${eventCount}</i>`;
     button.addEventListener("click", () => {
       state.selectedDate = date;
       renderEventsView(state);
@@ -293,8 +299,12 @@ function renderEventsView(state) {
   }
 
   const add = createElement("div", "scout-widget-add");
-  add.innerHTML = `<span>missing an event?</span><button type="button"><b>+</b> add it to scout</button>`;
-  add.querySelector("button").addEventListener("click", () => renderEventFormView(state));
+  add.innerHTML = `
+    <button class="scout-widget-email-link" type="button">Want this in an email?</button>
+    <button class="scout-widget-add-button" type="button" aria-label="Add an event" title="Add an event" data-tooltip="Add an event"><b>+</b></button>
+  `;
+  add.querySelector(".scout-widget-email-link").addEventListener("click", () => renderWeeklyFormView(state));
+  add.querySelector(".scout-widget-add-button").addEventListener("click", () => renderEventFormView(state));
 
   content.append(top, days, dayHead, list, add);
 }

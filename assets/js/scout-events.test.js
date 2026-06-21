@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWidgetEventPayload, filterEventsForWeek, getWeekRange } from "./scout-events.js";
+import { buildWidgetEventPayload, countEventsForDate, filterEventsForWeek, getWeekRange } from "./scout-events.js";
 
 describe("Scout website event week helpers", () => {
   it("builds a Sunday through next-Sunday range", () => {
@@ -39,6 +39,14 @@ describe("Scout website event week helpers", () => {
     ], range);
 
     expect(events.map((event) => event.id)).toEqual(["overlap", "inside"]);
+  });
+
+  it("counts events for the selected Fort Polk day", () => {
+    expect(countEventsForDate([
+      { starts_at: "2026-06-24T15:00:00.000Z" },
+      { starts_at: "2026-06-24T22:00:00.000Z" },
+      { starts_at: "2026-06-25T01:00:00.000Z" },
+    ], "2026-06-24")).toBe(3);
   });
 });
 
