@@ -236,6 +236,32 @@ function formatTime(value) {
   }).format(new Date(value));
 }
 
+function descriptionLines(value) {
+  return String(value || "")
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+export function buildEventDetailViewModel(event) {
+  const start = event?.starts_at ? formatTime(event.starts_at) : "";
+  const end = event?.ends_at && event.ends_at !== event.starts_at ? formatTime(event.ends_at) : "";
+  const when = start && end && end !== start ? `${start} - ${end}` : start || "Time to be announced";
+  const tags = Array.isArray(event?.tags) ? event.tags.map((tag) => String(tag).trim()).filter(Boolean) : [];
+
+  return {
+    title: event?.title?.trim() || "Fort Polk event",
+    date: event?.starts_at ? formatShortDay(formatDateKey(event.starts_at)).replace(",", " ·") : "This week",
+    when,
+    hostedBy: event?.contact?.trim() || "",
+    locationName: event?.location_name?.trim() || "Fort Polk",
+    address: event?.address?.trim() || "",
+    description: descriptionLines(event?.description),
+    tags,
+    externalUrl: /^https?:\/\//i.test(String(event?.external_url || "")) ? String(event.external_url).trim() : "",
+  };
+}
+
 function weekDates(range) {
   const dates = [];
   const start = new Date(range.start);
@@ -279,6 +305,7 @@ function resetWidgetScroll(state) {
     state.root.querySelector(".scout-widget-list"),
     state.root.querySelector(".scout-widget-form-shell"),
     state.root.querySelector(".scout-widget-form"),
+    state.root.querySelector(".scout-widget-detail-shell"),
   ];
   scrollable.forEach((element) => {
     if (element) element.scrollTop = 0;
@@ -307,8 +334,10 @@ function widgetTemplate() {
   `;
 }
 
-function eventRow(event) {
-  const row = createElement("article", "scout-widget-event");
+function eventRow(event, onOpen) {
+  const row = createElement("button", "scout-widget-event");
+  row.type = "button";
+  row.setAttribute("aria-label", `Open details for ${event.title || "this Fort Polk event"}`);
   const time = createElement("div", "scout-widget-time", formatTime(event.starts_at));
   const content = createElement("div", "scout-widget-event-copy");
   const title = createElement("h3", "", event.title || "Fort Polk event");
@@ -321,10 +350,70 @@ function eventRow(event) {
   const tags = createElement("div", "scout-widget-tags");
   const visibleTags = Array.isArray(event.tags) ? event.tags.filter(Boolean).slice(0, 3) : [];
   visibleTags.forEach((tag) => tags.appendChild(createElement("span", "", String(tag))));
+  const cue = createElement("span", "scout-widget-detail-cue", "details ›");
   content.append(title, meta);
   if (visibleTags.length) content.appendChild(tags);
+  content.appendChild(cue);
   row.append(time, content);
+  row.addEventListener("click", () => onOpen(event));
   return row;
+}
+
+function detailField(label, value) {
+  if (!value) return null;
+  const field = createElement("div", "scout-widget-detail-field");
+  field.append(createElement("span", "", label), createElement("p", "", value));
+  return field;
+}
+
+function renderEventDetailView(state, event) {
+  const content = state.root.querySelector("[data-scout-widget-content]");
+  if (!content) return;
+  const detail = buildEventDetailViewModel(event);
+  content.className = "is-detail-view";
+  content.replaceChildren();
+
+  const top = createElement("div", "scout-widget-top is-detail");
+  const heading = createElement("h2", "", detail.title);
+  const back = createElement("button", "scout-widget-back", "‹ this week");
+  back.type = "button";
+  back.addEventListener("click", () => renderEventsView(state));
+  top.append(heading, back);
+
+  const shell = createElement("div", "scout-widget-detail-shell");
+  const card = createElement("div", "scout-widget-detail-card");
+  const fields = [
+    detailField("when", detail.when),
+    detailField("hosted by", detail.hostedBy),
+    detailField("location", detail.locationName),
+    detailField("address", detail.address),
+  ].filter(Boolean);
+  fields.forEach((field) => card.appendChild(field));
+
+  if (detail.description.length) {
+    const description = createElement("div", "scout-widget-detail-description");
+    description.appendChild(createElement("span", "", "details"));
+    detail.description.forEach((line) => description.appendChild(createElement("p", "", line)));
+    card.appendChild(description);
+  }
+
+  if (detail.tags.length) {
+    const tags = createElement("div", "scout-widget-tags is-detail-tags");
+    detail.tags.forEach((tag) => tags.appendChild(createElement("span", "", tag)));
+    card.appendChild(tags);
+  }
+
+  if (detail.externalUrl) {
+    const link = createElement("a", "scout-widget-detail-link", "Open event link");
+    link.href = detail.externalUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    card.appendChild(link);
+  }
+
+  shell.appendChild(card);
+  content.append(top, shell);
+  resetWidgetScroll(state);
 }
 
 function renderEventsView(state) {
@@ -360,7 +449,7 @@ function renderEventsView(state) {
   } else {
     const events = state.eventsByDay.get(state.selectedDate) || [];
     if (events.length) {
-      events.forEach((event) => list.appendChild(eventRow(event)));
+      events.forEach((event) => list.appendChild(eventRow(event, (selectedEvent) => renderEventDetailView(state, selectedEvent))));
     } else {
       list.appendChild(createElement("p", "scout-widget-empty", "Nothing published for this day yet."));
     }

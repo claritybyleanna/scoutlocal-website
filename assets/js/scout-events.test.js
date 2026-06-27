@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { buildWidgetEventPayload, countEventsForDate, countEventsForWeek, filterEventsForWeek, getWeekRange } from "./scout-events.js";
+import {
+  buildEventDetailViewModel,
+  buildWidgetEventPayload,
+  countEventsForDate,
+  countEventsForWeek,
+  filterEventsForWeek,
+  getWeekRange,
+} from "./scout-events.js";
 
 describe("Scout website event week helpers", () => {
   it("builds a Sunday through next-Sunday range", () => {
@@ -100,5 +107,30 @@ describe("Scout widget event submission payload", () => {
     expect(payload.date).toBe("2026-06-24");
     expect(payload.startTime).toBe("19:30");
     expect(payload.endTime).toBe("20:30");
+  });
+});
+
+describe("Scout widget event details", () => {
+  it("builds the detail panel content for a tappable event card", () => {
+    const detail = buildEventDetailViewModel({
+      title: "Story Time at Allen Memorial Library",
+      starts_at: "2026-06-23T16:30:00.000Z",
+      ends_at: "2026-06-23T17:30:00.000Z",
+      contact: "Allen Memorial Library",
+      location_name: "Allen Memorial Library",
+      address: "7460 Colorado Ave Bldg 660",
+      description: "Stories, songs, and an easy morning activity for younger kids.",
+      external_url: "https://example.com/story-time",
+      tags: ["kid-friendly", "free"],
+    });
+
+    expect(detail.title).toBe("Story Time at Allen Memorial Library");
+    expect(detail.when).toBe("11:30 AM - 12:30 PM");
+    expect(detail.hostedBy).toBe("Allen Memorial Library");
+    expect(detail.locationName).toBe("Allen Memorial Library");
+    expect(detail.address).toBe("7460 Colorado Ave Bldg 660");
+    expect(detail.description).toEqual(["Stories, songs, and an easy morning activity for younger kids."]);
+    expect(detail.externalUrl).toBe("https://example.com/story-time");
+    expect(detail.tags).toEqual(["kid-friendly", "free"]);
   });
 });
