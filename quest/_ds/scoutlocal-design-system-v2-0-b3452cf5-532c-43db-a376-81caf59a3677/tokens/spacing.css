@@ -1,0 +1,42 @@
+/* ============================================================
+   ScoutLocal — Spacing, radius, shadow, layout tokens
+   ============================================================ */
+:root {
+  /* ---- Spacing scale ---- */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   28px;
+  --space-7:   36px;
+  --space-8:   52px;
+  --space-9:   72px;
+  --space-10:  92px;  /* section vertical rhythm */
+
+  /* ---- Radius ---- */
+  --radius-xs:   4px;   /* tiny tag / inline chip */
+  --radius-sm:   8px;   /* inputs, dark band, base cards */
+  --radius-md:   12px;  /* small surfaces, icon tiles */
+  --radius-lg:   18px;  /* feature cards */
+  --radius-xl:   24px;  /* large cards / grids */
+  --radius-2xl:  26px;  /* dashboard panel */
+  --radius-pill: 999px; /* buttons, chips, badges */
+
+  /* ---- Shadows (warm brown-cast, low + wide) ---- */
+  --shadow-sm:   0 8px 16px -10px rgba(40, 30, 20, 0.16);
+  --shadow-card: 0 26px 54px -42px #6c5038;
+  --shadow-lg:   0 30px 60px -34px rgba(40, 30, 20, 0.30);
+  --shadow-pop:  0 50px 90px -42px #14100e;
+  --shadow-fab:  0 22px 54px -20px rgba(0, 0, 0, 0.75);
+
+  /* ---- Layout ---- */
+  --container:   1240px; /* @kind spacing */ /* max content width */
+  --gutter:      24px;   /* @kind spacing */ /* page side gutter */
+  --header-h:    68px;   /* @kind spacing */ /* sticky header height */
+
+  /* ---- Motion ---- */
+  --ease-out:    cubic-bezier(0.2, 0.8, 0.2, 1); /* @kind other */
+  --dur-fast:    0.18s;  /* @kind other */ /* hover / press */
+  --dur-base:    0.45s;  /* @kind other */ /* slides / transforms */
+}
