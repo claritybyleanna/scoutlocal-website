@@ -1,0 +1,46 @@
+/* ============================================================
+   ScoutLocal — Typography tokens
+   Outfit = display headlines (tight tracking, often lowercase).
+   Geist  = body + UI. Geist Mono = eyebrows / labels / meta.
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-display: 'Outfit', 'Geist', system-ui, sans-serif;
+  --font-body:    'Geist', system-ui, Arial, sans-serif;
+  --font-mono:    'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* ---- Weights ---- */
+  --fw-regular:   400; /* @kind font */
+  --fw-medium:    500; /* @kind font */
+  --fw-semibold:  600; /* @kind font */
+  --fw-bold:      700; /* @kind font */
+  --fw-display:   700; /* @kind font */ /* Outfit headlines */
+  --fw-display-x: 800; /* @kind font */ /* Outfit at largest sizes */
+
+  /* ---- Display scale (Outfit, letter-spacing ~ -0.035em, line-height ~0.95) ---- */
+  --display-1:    clamp(58px, 7.4vw, 104px); /* @kind font */ /* hero h1 */
+  --display-2:    clamp(38px, 5vw, 58px);    /* @kind font */ /* section h2 */
+  --display-3:    clamp(28px, 3.4vw, 40px);  /* @kind font */ /* sub-section */
+  --heading:      31px;  /* @kind font */ /* card / panel heading */
+  --heading-sm:   24px;  /* @kind font */ /* small card heading */
+  --title:        20px;  /* @kind font */ /* list title / accordion summary */
+
+  /* ---- Body scale (Geist) ---- */
+  --body-lg:      19px;  /* @kind font */ /* lede / intro paragraph */
+  --body:         16px;  /* @kind font */ /* default body */
+  --body-sm:      15px;  /* @kind font */ /* dense body / card copy */
+  --body-xs:      13px;  /* @kind font */ /* fine print */
+
+  /* ---- Mono / eyebrow ---- */
+  --eyebrow:      11px;  /* @kind font */ /* Geist Mono, uppercase, letter-spacing .1em */
+
+  /* ---- Tracking ---- */
+  --track-display: -0.035em; /* @kind font */ /* Outfit display compression */
+  --track-tight:   -0.02em; /* @kind font */
+  --track-eyebrow:  0.1em;   /* @kind font */ /* mono eyebrow expansion */
+
+  /* ---- Line heights ---- */
+  --lh-display:   0.95; /* @kind font */
+  --lh-heading:   1.1; /* @kind font */
+  --lh-body:      1.55; /* @kind font */
+}

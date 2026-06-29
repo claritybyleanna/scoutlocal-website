@@ -1,0 +1,59 @@
+/* ============================================================
+   ScoutLocal — Color tokens
+   A warm, paper-and-ink palette: cream surfaces, near-black ink,
+   rust accent, with sage (trust) and peach (warmth) supporting hues.
+   ============================================================ */
+:root {
+  /* ---- Surfaces (warm paper stack, lightest action first) ---- */
+  --bg:        #f6f1ea;  /* page background — warm cream */
+  --soft:      #fbf7f0;  /* soft section / panel fill */
+  --paper:     #fffdfa;  /* card / raised surface — near white, warm */
+
+  /* ---- Ink (text + dark surfaces) ---- */
+  --ink:       #17150f;  /* primary text, dark sections, primary buttons */
+  --ink-2:     #332e25;  /* body text on light surfaces */
+  --muted:     #81786c;  /* secondary / meta text */
+
+  /* ---- Lines ---- */
+  --line:      #dfd5c7;  /* hairline borders, dividers */
+  --line-soft: #eee5d6;  /* softer inner dividers */
+
+  /* ---- Rust — the single brand accent ---- */
+  --rust:      #b25e3c;  /* links, accents, active eyebrow text */
+  --rust-deep: #7a3a1c;  /* rust used as icon stroke on peach */
+
+  /* ---- Peach — warmth / highlight / CTA-on-dark ---- */
+  --peach:     #ffd1ac;  /* highlight marker, glows, CTA on dark */
+  --peach-2:   #ffe2c6;  /* lighter peach fill */
+  --peach-3:   #fde5d1;  /* palest peach (live/alert pill bg) */
+
+  /* ---- Sage — trust / verified / "open now" ---- */
+  --sage:      #bccaa6;  /* badge fills, verified chips */
+  --sage-deep: #4f5c3a;  /* text/icon on sage */
+  --sage-mist: #e7ede0;  /* palest sage surface */
+  --sage-line: #c3d0b2;  /* sage borders */
+
+  /* ============================================================
+     Semantic aliases — prefer these in components
+     ============================================================ */
+  --surface-page:    var(--bg);
+  --surface-soft:    var(--soft);
+  --surface-card:    var(--paper);
+  --surface-invert:  var(--ink);
+
+  --text-strong:     var(--ink);
+  --text-body:       var(--ink-2);
+  --text-muted:      var(--muted);
+  --text-accent:     var(--rust);
+  --text-on-invert:  #ffffff;
+
+  --border-default:  var(--line);
+  --border-inner:    var(--line-soft);
+
+  --accent:          var(--rust);
+  --accent-warm:     var(--peach);
+  --accent-trust:    var(--sage);
+
+  /* Focus ring (warm peach, used across forms) */
+  --focus-ring:      var(--peach);
+}

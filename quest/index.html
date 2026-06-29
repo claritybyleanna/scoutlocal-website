@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<script src="/quest/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="/quest/_ds/scoutlocal-design-system-v2-0-b3452cf5-532c-43db-a376-81caf59a3677/tokens/fonts.css">
+<link rel="stylesheet" href="/quest/_ds/scoutlocal-design-system-v2-0-b3452cf5-532c-43db-a376-81caf59a3677/tokens/colors.css">
+<link rel="stylesheet" href="/quest/_ds/scoutlocal-design-system-v2-0-b3452cf5-532c-43db-a376-81caf59a3677/tokens/typography.css">
+<link rel="stylesheet" href="/quest/_ds/scoutlocal-design-system-v2-0-b3452cf5-532c-43db-a376-81caf59a3677/tokens/spacing.css">
+<link rel="stylesheet" href="/quest/_ds/scoutlocal-design-system-v2-0-b3452cf5-532c-43db-a376-81caf59a3677/styles.css">
+<script src="/quest/_ds/scoutlocal-design-system-v2-0-b3452cf5-532c-43db-a376-81caf59a3677/_ds_bundle.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink-2);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  @keyframes sq-ping{0%{transform:scale(1);opacity:.65}70%,100%{transform:scale(2.6);opacity:0}}
+  a{color:inherit;text-decoration:none;}
+</style>
+</helmet>
+
+<div style="overflow-x:hidden;">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(246,241,234,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1180px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <img src="/quest/assets/wayfinder.svg" alt="" style="width:26px;height:26px;">
+        <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:var(--ink);">scout local<span style="color:var(--rust);">.</span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">aug 1 · fort polk, la</span>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="primary" size="sm" arrow="{{ true }}" href="#route" hint-size="auto,40px">Reserve your map</x-import>
+      </div>
+    </div>
+  </header>
+
+  <section style="position:relative;">
+    <div style="position:relative;width:100%;height:clamp(400px,60vh,580px);overflow:hidden;background:var(--ink);">
+      <img src="/quest/uploads/pexels-mag-photography-1501456-32596219.jpg" alt="Families browsing a lively local market" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(23,21,15,.30) 0%, rgba(23,21,15,0) 22%, rgba(246,241,234,0) 46%, rgba(246,241,234,.55) 68%, var(--bg) 86%);"></div>
+      <div style="position:absolute;top:0;left:0;width:100%;">
+        <div style="max-width:1180px;margin:0 auto;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(23,21,15,.34);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 14px;">scout quest · a scout local event</span>
+          <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,253,250,.92);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;padding:7px 13px 7px 11px;">
+            <span style="position:relative;width:9px;height:9px;display:inline-flex;"><span style="position:absolute;inset:0;border-radius:999px;background:var(--sage);"></span><span style="position:absolute;inset:0;border-radius:999px;background:var(--sage);animation:sq-ping 2.4s ease-out infinite;"></span></span>
+            <span style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep);">a free family event</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1000px;margin:-70px auto 0;padding:0 24px;position:relative;z-index:2;text-align:center;">
+      <h1 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(46px,6.6vw,92px);line-height:.92;letter-spacing:-.04em;color:var(--ink);margin:0;">follow the map,<br>collect the stamps,<br><span style="background:linear-gradient(transparent 60%, var(--peach) 60% 92%, transparent 92%);">win the prize.</span></h1>
+      <p style="font-size:19px;line-height:1.55;max-width:36em;margin:22px auto 0;color:var(--ink-2);">A free, map-based adventure for military families. Pick up your map, walk the route of local home-based businesses, collect a stamp at every booth, and finish your map to claim a prize — plus a chance at the door prize.</p>
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:28px;">
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="primary" arrow="{{ true }}" href="#route" hint-size="auto,48px">See the route</x-import>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="ghost" href="#directory" hint-size="auto,48px">Who you'll meet</x-import>
+      </div>
+    </div>
+
+    <div style="max-width:1180px;margin:36px auto 0;padding:0 24px;">
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--line);">
+        <div style="padding:18px 34px;text-align:center;">
+          <div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">when</div>
+          <div style="font-size:16px;font-weight:600;color:var(--ink);margin-top:6px;">Sat, Aug 1 · 9–3</div>
+        </div>
+        <div style="padding:18px 34px;text-align:center;border-left:1px solid var(--line);">
+          <div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">where</div>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=The+Warrior+Center%2C+1321+Corps+Rd%2C+Fort+Polk+South%2C+LA+71459" target="_blank" rel="noopener" style="font-size:16px;font-weight:600;color:var(--ink);margin-top:6px;display:inline-flex;align-items:center;gap:5px;border-bottom:1px solid var(--line);">The Warrior Center<svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M12 21s7-6.4 7-11a7 7 0 10-14 0c0 4.6 7 11 7 11z" stroke="var(--rust)" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="12" cy="10" r="2.4" stroke="var(--rust)" stroke-width="1.6"></circle></svg></a>
+        </div>
+        <div style="padding:18px 34px;text-align:center;border-left:1px solid var(--line);">
+          <div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">entry</div>
+          <div style="font-size:16px;font-weight:600;color:var(--ink);margin-top:6px;">Free · map $5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:48px 24px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:26px;">
+      <div>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">01 / what you take home</x-import>
+        <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 0;">every family leaves with something.</h2>
+      </div>
+      <p style="font-size:15px;color:var(--muted);max-width:24em;margin:0;">Finish the map, stop by the table, and sign in for the door prize — three easy ways to walk away with a win.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+
+      <div style="display:flex;flex-direction:column;gap:14px;padding:26px;border-radius:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 26px 54px -42px #6c5038;">
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--peach-2);display:flex;align-items:center;justify-content:center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="6" stroke="var(--rust-deep)" stroke-width="1.6"></circle><path d="M9 14l-1.5 6L12 18l4.5 2L15 14" stroke="var(--rust-deep)" stroke-width="1.6" stroke-linejoin="round"></path><path d="M9.5 9l1.6 1.6L14.5 7.4" stroke="var(--rust-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;color:var(--ink);margin:0;">Completion prize for kids</h3>
+        <p style="font-size:15px;line-height:1.55;color:var(--ink-2);margin:0;">Collect a stamp at every booth, complete your map, and turn it in for a kid-friendly prize.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;padding:26px;border-radius:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 26px 54px -42px #6c5038;">
+        <div style="width:52px;height:52px;border-radius:14px;background:var(--peach-2);display:flex;align-items:center;justify-content:center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7L6 8z" stroke="var(--rust-deep)" stroke-width="1.6" stroke-linejoin="round"></path><path d="M9 8a3 3 0 016 0" stroke="var(--rust-deep)" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;color:var(--ink);margin:0;">Free event swag</h3>
+        <p style="font-size:15px;line-height:1.55;color:var(--ink-2);margin:0;">Stop by the table to sign up and grab free swag while supplies last.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;padding:26px;border-radius:18px;background:var(--ink);border:1px solid var(--ink);box-shadow:0 26px 54px -42px #6c5038;color:#fff;">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,209,172,.18);display:flex;align-items:center;justify-content:center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v3a2 2 0 000 4v3H4v-3a2 2 0 000-4V7z" stroke="var(--peach)" stroke-width="1.6" stroke-linejoin="round"></path><path d="M14 7v10" stroke="var(--peach)" stroke-width="1.6" stroke-dasharray="2 3"></path></svg>
+        </div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;color:#fff;margin:0;">Door prize</h3>
+        <p style="font-size:15px;line-height:1.55;color:rgba(255,255,255,.82);margin:0;">Sign in with your name and email and you're entered for the door prize near the end of the day.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="route" style="max-width:1180px;margin:0 auto;padding:36px 24px 20px;scroll-margin-top:84px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+      <div>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">02 / the route</x-import>
+        <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 0;">sixteen stops, any order.</h2>
+        <p style="font-size:16px;color:var(--ink-2);max-width:34em;margin:12px 0 0;">Start and finish at the Scout Local table and visit the booths in whatever order you like — there's no set route. Tap any stop to meet the business; each spot is a placeholder until vendors confirm.</p>
+      </div>
+
+    </div>
+
+    <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;">
+
+      <div style="flex:1 1 560px;min-width:300px;">
+        <div style="{{ mapPanelStyle }}">
+          <div style="position:absolute;width:46%;height:60%;right:-8%;top:-14%;background:var(--peach);border-radius:50%;filter:blur(70px);opacity:.4;z-index:0;"></div>
+          <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;">
+            <path d="{{ routePath }}" fill="none" stroke="var(--rust)" stroke-opacity="0.26" stroke-width="3" stroke-dasharray="2 13" stroke-linecap="round"></path>
+            <path d="{{ spokePath }}" fill="none" stroke="var(--rust)" stroke-width="4" stroke-linecap="round" stroke-dasharray="1.5 11"></path>
+          </svg>
+          <svg width="58" height="58" viewBox="0 0 64 64" style="position:absolute;top:16px;right:18px;opacity:.45;z-index:2;">
+            <circle cx="32" cy="32" r="21" fill="none" stroke="var(--ink)" stroke-width="1.4"></circle>
+            <path d="M32 13 L37 32 L32 29 L27 32 Z" fill="var(--rust)"></path>
+            <path d="M32 51 L27 32 L32 35 L37 32 Z" fill="var(--ink)" opacity=".55"></path>
+            <text x="32" y="11" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="9" fill="var(--ink)">N</text>
+          </svg>
+          <div style="position:absolute;left:16px;top:16px;z-index:3;display:inline-flex;align-items:center;gap:7px;background:rgba(255,253,250,.92);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;padding:6px 12px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M5 7h14M5 17h14" stroke="var(--rust)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 5"></path></svg>
+            <span style="font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">walk it in any order</span>
+          </div>
+          <sc-for list="{{ pins }}" as="p" hint-placeholder-count="16">
+            <button onClick="{{ p.onClick }}" style="{{ p.wrapStyle }}" title="{{ p.name }}">
+              <span style="{{ p.circleStyle }}">{{ p.num }}</span>
+              <sc-if value="{{ p.active }}" hint-placeholder-val="{{ false }}">
+                <span style="{{ p.labelStyle }}">{{ p.name }}</span>
+              </sc-if>
+            </button>
+          </sc-for>
+          <div style="{{ tableStyle }}">
+            <div style="width:60px;height:60px;border-radius:999px;overflow:hidden;box-shadow:0 10px 24px -12px rgba(40,30,20,.5);">
+              <img src="/quest/uploads/scout-fab-default.png" alt="scout local" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:-.01em;color:var(--ink);background:rgba(255,253,250,.92);border-radius:999px;padding:3px 11px;white-space:nowrap;">scout local</span>
+            <span style="font-family:'Geist Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);">start &amp; finish</span>
+          </div>
+          <div style="position:absolute;left:16px;bottom:14px;z-index:3;display:inline-flex;align-items:center;gap:7px;background:rgba(255,253,250,.9);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;padding:6px 12px;">
+            <img src="/quest/assets/scout-fab.png" alt="" style="width:16px;height:16px;object-fit:contain;">
+            <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">any order · tap a stop to explore</span>
+          </div>
+        </div>
+      </div>
+
+      <aside style="flex:0 1 340px;min-width:280px;position:sticky;top:88px;">
+        <div style="border:1px solid var(--line);border-radius:24px;background:var(--paper);box-shadow:0 26px 54px -42px #6c5038;overflow:hidden;">
+          <div style="{{ curHeaderStyle }}">
+            <div style="{{ curLogoStyle }}">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.3;">logo<br>+ photo</span>
+            </div>
+          </div>
+          <div style="padding:20px 22px 24px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">stop {{ curNum }} / 16</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);"><span style="{{ curDotStyle }}"></span>stamp</span>
+            </div>
+            <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.02em;color:var(--ink);margin:0;">{{ curName }}</h3>
+            <div style="margin-top:16px;">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">what they sell</div>
+              <p style="font-size:15px;line-height:1.5;color:var(--ink-2);margin:5px 0 0;">{{ curSells }}</p>
+            </div>
+            <div style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">at the booth</div>
+              <p style="font-size:15px;line-height:1.5;color:var(--ink-2);margin:5px 0 0;">{{ curActivity }}</p>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:20px;">
+              <a href="{{ curWebsite }}" target="_blank" rel="noopener" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.6"></path></svg>
+                Website
+              </a>
+              <a href="{{ curFacebook }}" target="_blank" rel="noopener" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--ink);font-size:13.5px;font-weight:600;">
+                <img src="/quest/assets/facebook-icon.svg" alt="" style="width:15px;height:15px;">
+                Facebook
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <section id="directory" style="max-width:1180px;margin:0 auto;padding:44px 24px;scroll-margin-top:84px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+      <div>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">03 / who you'll meet</x-import>
+        <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 0;">the booth directory.</h2>
+      </div>
+      <p style="font-size:15px;color:var(--muted);max-width:26em;margin:0;">Every spot below is a placeholder — we'll drop in each registered Fort Polk home-based business as they confirm. Click a card to find it on the map.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="16">
+        <div onClick="{{ c.onClick }}" style="{{ c.cardStyle }}">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="{{ c.logoStyle }}"><span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">logo</span></div>
+            <div style="min-width:0;">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px;"><span style="{{ c.dotStyle }}"></span>stop {{ c.num }}</div>
+              <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ c.name }}</h3>
+            </div>
+          </div>
+          <p style="font-size:13.5px;line-height:1.5;color:var(--ink-2);margin:0;">{{ c.sells }}</p>
+          <div style="padding-top:11px;border-top:1px dashed var(--line);">
+            <div style="font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">at the booth</div>
+            <p style="font-size:13px;line-height:1.45;color:var(--ink-2);margin:4px 0 0;">{{ c.activity }}</p>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:auto;padding-top:4px;">
+            <a href="{{ c.website }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--rust);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.8"></path></svg>
+              Website
+            </a>
+            <a href="{{ c.facebook }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink-2);">
+              <img src="/quest/assets/facebook-icon.svg" alt="" style="width:13px;height:13px;">
+              Facebook
+            </a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:44px 24px;">
+    <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">04 / how the quest works</x-import>
+    <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 28px;">arrive, walk, stamp, win.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border-top:1px solid var(--line);">
+      <div style="padding:22px 24px 22px 0;border-bottom:1px solid var(--line);">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:34px;color:var(--peach);line-height:1;">01</div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:10px 0 6px;letter-spacing:-.02em;">Check in &amp; grab a map</h3>
+        <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Stop by the registration table, pick up your stamp map for $5 (cash or card), and sign the sign-in sheet.</p>
+      </div>
+      <div style="padding:22px 24px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:34px;color:var(--peach);line-height:1;">02</div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:10px 0 6px;letter-spacing:-.02em;">Roam in any order</h3>
+        <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Hit the booths in any order — there's no set route. Say hi to each local business and see what they make.</p>
+      </div>
+      <div style="padding:22px 24px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:34px;color:var(--peach);line-height:1;">03</div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:10px 0 6px;letter-spacing:-.02em;">Collect every stamp</h3>
+        <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Each business has its own stamp color. Fill in all sixteen circles to complete your map.</p>
+      </div>
+      <div style="padding:22px 0 22px 24px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:34px;color:var(--peach);line-height:1;">04</div>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:10px 0 6px;letter-spacing:-.02em;">Claim your prize</h3>
+        <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Turn in your completed map at the Scout Local table for a prize, grab swag, and you're in for the door prize.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--ink);color:#fff;margin-top:24px;position:relative;overflow:hidden;">
+    <div style="position:absolute;width:480px;height:480px;right:-120px;top:-160px;background:var(--rust);border-radius:50%;filter:blur(120px);opacity:.22;"></div>
+    <div style="max-width:1180px;margin:0 auto;padding:64px 24px;position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:start;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="/quest/assets/wayfinder.svg" alt="" style="width:26px;height:26px;filter:brightness(0) invert(1);">
+          <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;">scout local<span style="color:var(--peach);">.</span></span>
+        </div>
+        <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:34px;line-height:1;letter-spacing:-.03em;margin:22px 0 0;">scout quest<span style="color:var(--peach);">.</span></h2>
+        <p style="font-size:15px;line-height:1.55;color:rgba(255,255,255,.72);max-width:30em;margin:14px 0 0;">A map-based community event for military families. A Scout Local event, with Deployed Love.</p>
+        <div style="margin-top:24px;">
+          <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="peach" arrow="{{ true }}" href="#route" hint-size="auto,48px">Reserve your map</x-import>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div><div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);">date &amp; time</div><div style="font-size:16px;margin-top:5px;">Saturday, August 1, 2026 · 9:00 AM – 3:00 PM</div></div>
+        <div><div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);">location</div><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Warrior+Center%2C+1321+Corps+Rd%2C+Fort+Polk+South%2C+LA+71459" target="_blank" rel="noopener" style="font-size:16px;margin-top:5px;display:inline-flex;align-items:flex-start;gap:7px;color:#fff;border-bottom:1px solid rgba(255,255,255,.25);width:fit-content;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;margin-top:3px;"><path d="M12 21s7-6.4 7-11a7 7 0 10-14 0c0 4.6 7 11 7 11z" stroke="var(--peach)" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="12" cy="10" r="2.4" stroke="var(--peach)" stroke-width="1.6"></circle></svg><span>The Warrior Center<br>1321 Corps Rd, Fort Polk South, LA 71459 · indoor, on post</span></a></div>
+        <div><div style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);">cost</div><div style="font-size:16px;margin-top:5px;">Free entry · map $5 · cash &amp; card accepted</div></div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);position:relative;z-index:1;">
+      <div style="max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);">
+        <span>vendors are registered fort polk home-based businesses and nonprofits</span>
+        <span>a product of novalyse llc</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:2600},&quot;showStampColors&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Map&quot;},&quot;showDirectPath&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Map&quot;},&quot;mapTexture&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;parchment&quot;,&quot;clean&quot;,&quot;grid&quot;],&quot;default&quot;:&quot;parchment&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Map&quot;}}">
+class Component extends DCLogic {
+  state = { selected: 0, mapStyle: 'loop' };
+
+  baseBiz() {
+    const stamps = ['#b25e3c','#c98a3c','#7a8b4f','#4f5c3a','#2f7d78','#5b6b9e','#8e5b8a','#a14b53','#caa05a','#6b8e7a','#9c6b3c','#54707f','#7d6aa0','#b56b5a','#5f8a52','#8a7b3c'];
+    const out = [];
+    for (let i = 0; i < 16; i++) {
+      const n = String(i + 1).padStart(2, '0');
+      out.push({
+        idx: i,
+        num: n,
+        name: 'Business ' + n,
+        sells: 'What they sell \u2014 short description goes here.',
+        activity: 'What they\u2019ll have at their booth.',
+        website: '#',
+        facebook: '#',
+        stamp: stamps[i],
+      });
+    }
+    return out;
+  }
+
+  // All three styles are CLOSED loops that begin and end at the Scout Local table,
+  // which sits in a gap at the top-center of the loop.
+  positions(style) {
+    const cx = 500, cy = 314, rx = 398, ry = 204;
+    const gapDeg = 17;                 // angular gap at the top reserved for the table
+    const startA = -90 + gapDeg;
+    const span = 360 - 2 * gapDeg;
+    const stops = [];
+    for (let i = 0; i < 16; i++) {
+      const a = (startA + span * (i / 15)) * Math.PI / 180;
+      const c = Math.cos(a), s = Math.sin(a);
+      let x, y;
+      if (style === 'road') {
+        // superellipse -> rounded-rectangle "racetrack" with straighter runs
+        const k = 0.62;
+        x = cx + rx * Math.sign(c) * Math.pow(Math.abs(c), k);
+        y = cy + ry * Math.sign(s) * Math.pow(Math.abs(s), k);
+      } else if (style === 'trail') {
+        // wavy radius -> organic meandering loop
+        const wob = 1 + 0.12 * Math.sin(3 * a + 0.7);
+        x = cx + rx * wob * c;
+        y = cy + ry * wob * s;
+      } else {
+        x = cx + rx * c;
+        y = cy + ry * s;
+      }
+      stops.push({ x, y });
+    }
+    const table = { x: cx, y: cy - ry - 40 };
+    return { table, stops };
+  }
+
+  smoothPath(pts, closed) {
+    const n = pts.length;
+    if (n === 0) return '';
+    if (n === 1) return 'M' + pts[0].x.toFixed(1) + ' ' + pts[0].y.toFixed(1);
+    const get = (i) => closed ? pts[((i % n) + n) % n] : pts[Math.max(0, Math.min(n - 1, i))];
+    let d = 'M' + pts[0].x.toFixed(1) + ' ' + pts[0].y.toFixed(1);
+    const last = closed ? n : n - 1;
+    for (let i = 0; i < last; i++) {
+      const p0 = get(i - 1), p1 = get(i), p2 = get(i + 1), p3 = get(i + 2);
+      const c1x = p1.x + (p2.x - p0.x) / 6, c1y = p1.y + (p2.y - p0.y) / 6;
+      const c2x = p2.x - (p3.x - p1.x) / 6, c2y = p2.y - (p3.y - p1.y) / 6;
+      d += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ' ' + p2.x.toFixed(1) + ' ' + p2.y.toFixed(1);
+    }
+    if (closed) d += ' Z';
+    return d;
+  }
+
+  hexA(hex, a) {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+  }
+
+  renderVals() {
+    const showStamps = this.props.showStampColors ?? true;
+    const showDirectPath = this.props.showDirectPath ?? true;
+    const texture = this.props.mapTexture ?? 'parchment';
+    const style = this.state.mapStyle;
+    const sel = this.state.selected;
+    const biz = this.baseBiz();
+    const { table, stops } = this.positions(style);
+
+    const routePath = this.smoothPath([table, ...stops, table], false);
+    const target = stops[sel];
+    const spokePath = showDirectPath ? ('M' + table.x.toFixed(1) + ' ' + table.y.toFixed(1) + ' L' + target.x.toFixed(1) + ' ' + target.y.toFixed(1)) : '';
+
+    const pins = biz.map((b, i) => {
+      const p = stops[i];
+      const active = i === sel;
+      const ring = showStamps ? b.stamp : 'var(--line)';
+      return {
+        num: b.num,
+        name: b.name,
+        active,
+        onClick: () => this.setState({ selected: i }),
+        wrapStyle: { position: 'absolute', left: (p.x / 10) + '%', top: (p.y / 6) + '%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer', zIndex: active ? 6 : 3, width: '94px', fontFamily: "'Geist', sans-serif" },
+        circleStyle: { width: active ? '58px' : '48px', height: active ? '58px' : '48px', borderRadius: '999px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--paper)', border: active ? '3px solid var(--ink)' : ('2px dashed ' + ring), boxShadow: active ? '0 0 0 6px var(--peach), 0 12px 24px -12px rgba(40,30,20,.55)' : '0 6px 14px -10px rgba(40,30,20,.45)', fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: active ? '19px' : '15px', color: 'var(--ink)', transition: 'all .2s cubic-bezier(.2,.8,.2,1)' },
+        labelStyle: { fontSize: '11px', fontWeight: 600, color: 'var(--rust)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '94px', lineHeight: 1.2, textAlign: 'center', background: 'rgba(255,253,250,.85)', padding: '1px 6px', borderRadius: '999px' },
+      };
+    });
+
+    const cards = biz.map((b, i) => {
+      const active = i === sel;
+      return {
+        num: b.num, name: b.name, sells: b.sells, activity: b.activity, website: b.website, facebook: b.facebook,
+        onClick: () => this.setState({ selected: i }),
+        dotStyle: { width: '11px', height: '11px', borderRadius: '999px', background: b.stamp, flex: '0 0 auto', boxShadow: '0 0 0 3px ' + this.hexA(b.stamp, 0.18) },
+        logoStyle: { width: '50px', height: '50px', borderRadius: '999px', border: '2px dashed ' + b.stamp, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto', background: 'var(--soft)' },
+        cardStyle: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '18px', borderRadius: '18px', background: 'var(--paper)', border: active ? '1.5px solid var(--ink)' : '1px solid var(--line)', boxShadow: active ? '0 26px 54px -42px #6c5038' : '0 8px 16px -10px rgba(40,30,20,.16)', cursor: 'pointer', transition: 'border-color .18s, box-shadow .18s, transform .18s', transform: active ? 'translateY(-2px)' : 'none' },
+      };
+    });
+
+    const cur = biz[sel];
+    const dotShadow = '0 0 0 3px ' + this.hexA(cur.stamp, 0.2);
+
+    const dotImg = 'radial-gradient(rgba(23,21,15,0.055) 1.2px, transparent 1.3px)';
+    const gridImg = 'linear-gradient(rgba(23,21,15,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(23,21,15,0.06) 1px, transparent 1px)';
+    let bgImage = 'none', bgSize = 'auto';
+    if (texture === 'parchment') { bgImage = dotImg; bgSize = '26px 26px'; }
+    else if (texture === 'grid') { bgImage = gridImg; bgSize = '40px 40px'; }
+    const mapPanelStyle = { position: 'relative', borderRadius: '24px', border: '1px solid var(--line)', background: 'var(--soft)', backgroundImage: bgImage, backgroundSize: bgSize, boxShadow: '0 26px 54px -42px #6c5038', overflow: 'hidden', aspectRatio: '1000 / 600', minHeight: '380px' };
+
+    return {
+      pins, cards, routePath, spokePath, mapPanelStyle,
+      tableStyle: { position: 'absolute', left: (table.x / 10) + '%', top: (table.y / 6) + '%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', zIndex: 8, textAlign: 'center' },
+      isLoop: style === 'loop', isRoad: style === 'road', isTrail: style === 'trail',
+      setLoop: () => this.setState({ mapStyle: 'loop' }),
+      setRoad: () => this.setState({ mapStyle: 'road' }),
+      setTrail: () => this.setState({ mapStyle: 'trail' }),
+      curName: cur.name, curSells: cur.sells, curActivity: cur.activity, curNum: cur.num, curWebsite: cur.website, curFacebook: cur.facebook,
+      curHeaderStyle: { height: '116px', background: this.hexA(cur.stamp, 0.13), borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+      curLogoStyle: { width: '76px', height: '76px', borderRadius: '999px', border: '2px dashed ' + cur.stamp, background: 'var(--paper)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+      curDotStyle: { width: '11px', height: '11px', borderRadius: '999px', background: cur.stamp, display: 'inline-block', boxShadow: dotShadow },
+    };
+  }
+}
+</script>
+</body>
+</html>
