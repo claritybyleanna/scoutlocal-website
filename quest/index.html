@@ -281,14 +281,18 @@
             </div>
             <sc-if value="{{ curHasLinks }}" hint-placeholder-val="{{ true }}">
               <div style="display:flex;gap:10px;margin-top:20px;">
-                <a href="{{ curWebsite }}" target="_blank" rel="noopener" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.6"></path></svg>
-                  Website
-                </a>
-                <a href="{{ curFacebook }}" target="_blank" rel="noopener" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--ink);font-size:13.5px;font-weight:600;">
-                  <img src="/quest/assets/facebook-icon.svg" alt="" style="width:15px;height:15px;">
-                  Facebook
-                </a>
+                <sc-if value="{{ curHasWebsite }}" hint-placeholder-val="{{ true }}">
+                  <a href="{{ curWebsite }}" target="_blank" rel="noopener" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.6"></path></svg>
+                    Website
+                  </a>
+                </sc-if>
+                <sc-if value="{{ curHasFacebook }}" hint-placeholder-val="{{ true }}">
+                  <a href="{{ curFacebook }}" target="_blank" rel="noopener" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--ink);font-size:13.5px;font-weight:600;">
+                    <img src="/quest/assets/facebook-icon.svg" alt="" style="width:15px;height:15px;">
+                    Facebook
+                  </a>
+                </sc-if>
               </div>
             </sc-if>
             <sc-if value="{{ curNoLinks }}" hint-placeholder-val="{{ false }}">
@@ -336,14 +340,18 @@
           </div>
           <sc-if value="{{ c.hasLinks }}" hint-placeholder-val="{{ true }}">
             <div style="display:flex;gap:8px;margin-top:auto;padding-top:4px;">
-              <a href="{{ c.website }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--rust);">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.8"></path></svg>
-                Website
-              </a>
-              <a href="{{ c.facebook }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink-2);">
-                <img src="/quest/assets/facebook-icon.svg" alt="" style="width:13px;height:13px;">
-                Facebook
-              </a>
+              <sc-if value="{{ c.hasWebsite }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ c.website }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--rust);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.8"></path></svg>
+                  Website
+                </a>
+              </sc-if>
+              <sc-if value="{{ c.hasFacebook }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ c.facebook }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink-2);">
+                  <img src="/quest/assets/facebook-icon.svg" alt="" style="width:13px;height:13px;">
+                  Facebook
+                </a>
+              </sc-if>
             </div>
           </sc-if>
           <sc-if value="{{ c.noLinks }}" hint-placeholder-val="{{ false }}">
@@ -513,6 +521,13 @@ class Component extends DCLogic {
         logo: '/quest/uploads/doughlicious-treats.webp',
       },
       {
+        name: 'Pearl & Co Cafe',
+        sells: 'Milk teas and flavored jasmine teas.',
+        activity: 'Most likely offering a BOGO deal at the booth.',
+        facebook: 'https://www.facebook.com/share/1CtCRKrR5v/',
+        logo: '/quest/uploads/pearl-co-cafe.png',
+      },
+      {
         name: 'Custom Creation by Annye',
         sells: 'Building this vendor profile.',
         activity: 'Booth details coming soon.',
@@ -535,12 +550,6 @@ class Component extends DCLogic {
         sells: 'Building this vendor profile.',
         activity: 'Booth details coming soon.',
         statusText: 'building',
-      },
-      {
-        name: 'Coming Soon',
-        sells: 'More local vendors are being added.',
-        activity: 'Booth details coming soon.',
-        statusText: 'coming soon',
       },
       {
         name: 'Building Profile',
@@ -574,6 +583,8 @@ class Component extends DCLogic {
         logo: vendor.logo || '',
         confirmed: !!vendor.logo,
         statusText: vendor.statusText || 'confirmed',
+        hasWebsite: !!vendor.website,
+        hasFacebook: !!vendor.facebook,
         hasLinks: !!(vendor.website || vendor.facebook),
         stamp: stamps[i % stamps.length],
       };
@@ -745,7 +756,7 @@ class Component extends DCLogic {
     const cards = biz.map((b, i) => {
       const active = i === sel;
       return {
-        num: b.num, name: b.name, sells: b.sells, activity: b.activity, website: b.website, facebook: b.facebook, logo: b.logo, statusText: b.statusText, hasLogo: !!b.logo, noLogo: !b.logo, hasLinks: !!b.hasLinks, noLinks: !b.hasLinks,
+        num: b.num, name: b.name, sells: b.sells, activity: b.activity, website: b.website, facebook: b.facebook, logo: b.logo, statusText: b.statusText, hasLogo: !!b.logo, noLogo: !b.logo, hasWebsite: !!b.hasWebsite, hasFacebook: !!b.hasFacebook, hasLinks: !!b.hasLinks, noLinks: !b.hasLinks,
         onClick: () => this.setState({ selected: i }),
         dotStyle: { width: '11px', height: '11px', borderRadius: '999px', background: b.stamp, flex: '0 0 auto', boxShadow: '0 0 0 3px ' + this.hexA(b.stamp, 0.18) },
         logoStyle: { width: '50px', height: '50px', borderRadius: '999px', border: b.logo ? '1px solid var(--line)' : '2px dashed ' + b.stamp, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto', background: 'var(--soft)', overflow: 'hidden' },
@@ -773,7 +784,7 @@ class Component extends DCLogic {
       setLoop: () => this.setState({ mapStyle: 'loop' }),
       setRoad: () => this.setState({ mapStyle: 'road' }),
       setTrail: () => this.setState({ mapStyle: 'trail' }),
-      curName: cur.name, curSells: cur.sells, curActivity: cur.activity, curNum: cur.num, curWebsite: cur.website, curFacebook: cur.facebook, curLogo: cur.logo, curStatus: cur.statusText, curHasLogo: !!cur.logo, curNoLogo: !cur.logo, curHasLinks: !!cur.hasLinks, curNoLinks: !cur.hasLinks,
+      curName: cur.name, curSells: cur.sells, curActivity: cur.activity, curNum: cur.num, curWebsite: cur.website, curFacebook: cur.facebook, curLogo: cur.logo, curStatus: cur.statusText, curHasLogo: !!cur.logo, curNoLogo: !cur.logo, curHasWebsite: !!cur.hasWebsite, curHasFacebook: !!cur.hasFacebook, curHasLinks: !!cur.hasLinks, curNoLinks: !cur.hasLinks,
       curHeaderStyle: { height: '116px', background: this.hexA(cur.stamp, 0.13), borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
       curLogoStyle: { width: '76px', height: '76px', borderRadius: '999px', border: cur.logo ? '1px solid var(--line)' : '2px dashed ' + cur.stamp, background: 'var(--paper)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
       curDotStyle: { width: '11px', height: '11px', borderRadius: '999px', background: cur.stamp, display: 'inline-block', boxShadow: dotShadow },
