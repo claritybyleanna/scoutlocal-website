@@ -18,9 +18,23 @@
 <style>
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  html,body{max-width:100%;overflow-x:hidden;}
   body{margin:0;background:var(--bg);color:var(--ink-2);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
   @keyframes sq-ping{0%{transform:scale(1);opacity:.65}70%,100%{transform:scale(2.6);opacity:0}}
   a{color:inherit;text-decoration:none;}
+  .sq-vendor-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(320px,1.18fr);gap:28px;align-items:start;}
+  .sq-vendor-intro{position:sticky;top:88px;}
+  .sq-vendor-panel summary::-webkit-details-marker{display:none;}
+  @media(max-width:860px){.sq-vendor-grid{grid-template-columns:1fr!important}.sq-vendor-intro{position:static!important}.sq-vendor-submit{width:100%!important}}
+  @media(max-width:640px){
+    .sq-route-section{padding-left:14px!important;padding-right:14px!important;}
+    .sq-route-layout{gap:18px!important;}
+    .sq-route-map-col,.sq-route-detail{min-width:0!important;width:100%!important;flex:1 1 100%!important;position:static!important;}
+    .sq-map-panel{min-height:270px!important;aspect-ratio:1 / .92!important;border-radius:18px!important;}
+    .sq-map-pin{width:78px!important;gap:4px!important;}
+    .sq-map-pin-circle{width:42px!important;height:42px!important;}
+    .sq-map-pin-label{font-size:10px!important;max-width:74px!important;padding:2px 5px!important;line-height:1.05!important;}
+  }
 </style>
 </helmet>
 
@@ -60,6 +74,7 @@
       <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:28px;">
         <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="primary" arrow="{{ true }}" href="#route" hint-size="auto,48px">See the route</x-import>
         <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="ghost" href="#directory" hint-size="auto,48px">Who you'll meet</x-import>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="ghost" href="#vendor-request" hint-size="auto,48px">Would your business like to participate?</x-import>
       </div>
     </div>
 
@@ -118,20 +133,20 @@
     </div>
   </section>
 
-  <section id="route" style="max-width:1180px;margin:0 auto;padding:36px 24px 20px;scroll-margin-top:84px;">
+  <section id="route" class="sq-route-section" style="max-width:1180px;margin:0 auto;padding:36px 24px 20px;scroll-margin-top:84px;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
       <div>
         <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">02 / the route</x-import>
-        <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 0;">sixteen stops, any order.</h2>
-        <p style="font-size:16px;color:var(--ink-2);max-width:34em;margin:12px 0 0;">Start and finish at the Scout Local table and visit the booths in whatever order you like — there's no set route. Tap any stop to meet the business; each spot is a placeholder until vendors confirm.</p>
+        <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 0;">{{ routeHeading }}</h2>
+        <p style="font-size:16px;color:var(--ink-2);max-width:34em;margin:12px 0 0;">Start and finish at the Scout Local table and visit the {{ stopCountLabel }} in whatever order you like — there's no set route. Tap any stop to meet the business; new stops are added as vendors confirm.</p>
       </div>
 
     </div>
 
-    <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;">
+    <div class="sq-route-layout" style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;">
 
-      <div style="flex:1 1 560px;min-width:300px;">
-        <div style="{{ mapPanelStyle }}">
+      <div class="sq-route-map-col" style="flex:1 1 560px;min-width:300px;">
+        <div class="sq-map-panel" style="{{ mapPanelStyle }}">
           <div style="position:absolute;width:46%;height:60%;right:-8%;top:-14%;background:var(--peach);border-radius:50%;filter:blur(70px);opacity:.4;z-index:0;"></div>
           <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;">
             <path d="{{ routePath }}" fill="none" stroke="var(--rust)" stroke-opacity="0.26" stroke-width="3" stroke-dasharray="2 13" stroke-linecap="round"></path>
@@ -147,11 +162,18 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M5 7h14M5 17h14" stroke="var(--rust)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 5"></path></svg>
             <span style="font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">walk it in any order</span>
           </div>
-          <sc-for list="{{ pins }}" as="p" hint-placeholder-count="16">
-            <button onClick="{{ p.onClick }}" style="{{ p.wrapStyle }}" title="{{ p.name }}">
-              <span style="{{ p.circleStyle }}">{{ p.num }}</span>
+          <sc-for list="{{ pins }}" as="p" hint-placeholder-count="2">
+            <button class="sq-map-pin" onClick="{{ p.onClick }}" style="{{ p.wrapStyle }}" title="{{ p.name }}">
+              <span class="sq-map-pin-circle" style="{{ p.circleStyle }}">
+                <sc-if value="{{ p.hasLogo }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ p.logo }}" alt="{{ p.name }} logo" style="{{ p.logoImgStyle }}">
+                </sc-if>
+                <sc-if value="{{ p.noLogo }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-family:'Geist Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">logo</span>
+                </sc-if>
+              </span>
               <sc-if value="{{ p.active }}" hint-placeholder-val="{{ false }}">
-                <span style="{{ p.labelStyle }}">{{ p.name }}</span>
+                <span class="sq-map-pin-label" style="{{ p.labelStyle }}">{{ p.name }}</span>
               </sc-if>
             </button>
           </sc-for>
@@ -169,16 +191,21 @@
         </div>
       </div>
 
-      <aside style="flex:0 1 340px;min-width:280px;position:sticky;top:88px;">
+      <aside class="sq-route-detail" style="flex:0 1 340px;min-width:280px;position:sticky;top:88px;">
         <div style="border:1px solid var(--line);border-radius:24px;background:var(--paper);box-shadow:0 26px 54px -42px #6c5038;overflow:hidden;">
           <div style="{{ curHeaderStyle }}">
             <div style="{{ curLogoStyle }}">
-              <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.3;">logo<br>+ photo</span>
+              <sc-if value="{{ curHasLogo }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ curLogo }}" alt="{{ curName }} logo" style="width:100%;height:100%;object-fit:cover;display:block;">
+              </sc-if>
+              <sc-if value="{{ curNoLogo }}" hint-placeholder-val="{{ true }}">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.3;">logo<br>+ photo</span>
+              </sc-if>
             </div>
           </div>
           <div style="padding:20px 22px 24px;">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-              <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">stop {{ curNum }} / 16</span>
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">stop {{ curNum }} / {{ stopTotal }}</span>
               <span style="display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);"><span style="{{ curDotStyle }}"></span>stamp</span>
             </div>
             <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.02em;color:var(--ink);margin:0;">{{ curName }}</h3>
@@ -213,16 +240,26 @@
         <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">03 / who you'll meet</x-import>
         <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin:12px 0 0;">the booth directory.</h2>
       </div>
-      <p style="font-size:15px;color:var(--muted);max-width:26em;margin:0;">Every spot below is a placeholder — we'll drop in each registered Fort Polk home-based business as they confirm. Click a card to find it on the map.</p>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:28em;">
+        <p style="font-size:15px;color:var(--muted);margin:0;">Confirmed vendors are added as they come in. Click a card to find it on the map.</p>
+        <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Button" variant="ghost" href="#vendor-request" hint-size="auto,42px">Would your business like to participate?</x-import>
+      </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;">
-      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="16">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
         <div onClick="{{ c.onClick }}" style="{{ c.cardStyle }}">
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="{{ c.logoStyle }}"><span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">logo</span></div>
+            <div style="{{ c.logoStyle }}">
+              <sc-if value="{{ c.hasLogo }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ c.logo }}" alt="{{ c.name }} logo" style="width:100%;height:100%;object-fit:cover;display:block;">
+              </sc-if>
+              <sc-if value="{{ c.noLogo }}" hint-placeholder-val="{{ true }}">
+                <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">logo</span>
+              </sc-if>
+            </div>
             <div style="min-width:0;">
               <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px;"><span style="{{ c.dotStyle }}"></span>stop {{ c.num }}</div>
-              <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ c.name }}</h3>
+              <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--ink);margin:3px 0 0;white-space:normal;line-height:1.06;overflow-wrap:anywhere;">{{ c.name }}</h3>
             </div>
           </div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--ink-2);margin:0;">{{ c.sells }}</p>
@@ -262,7 +299,7 @@
       <div style="padding:22px 24px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);">
         <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:34px;color:var(--peach);line-height:1;">03</div>
         <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:10px 0 6px;letter-spacing:-.02em;">Collect every stamp</h3>
-        <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Each business has its own stamp color. Fill in all sixteen circles to complete your map.</p>
+        <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Each business has its own stamp color. Fill in every business circle to complete your map.</p>
       </div>
       <div style="padding:22px 0 22px 24px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);">
         <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:34px;color:var(--peach);line-height:1;">04</div>
@@ -270,6 +307,82 @@
         <p style="font-size:14.5px;line-height:1.5;color:var(--ink-2);margin:0;">Turn in your completed map at the Scout Local table for a prize, grab swag, and you're in for the door prize.</p>
       </div>
     </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:28px 24px 56px;">
+    <details id="vendor-request" class="sq-vendor-panel" style="scroll-margin-top:84px;border:1px solid var(--line);border-radius:24px;background:var(--paper);box-shadow:0 26px 54px -42px #6c5038;overflow:hidden;">
+      <summary style="list-style:none;cursor:pointer;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:linear-gradient(135deg,var(--paper),var(--soft));">
+        <span style="display:flex;flex-direction:column;gap:8px;min-width:260px;">
+          <span style="font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);">vendor request</span>
+          <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,38px);line-height:1;letter-spacing:-.03em;color:var(--ink);">would your business like to participate?</span>
+          <span style="font-size:15px;line-height:1.5;color:var(--muted);max-width:42em;">Open the request form and send Scout Local the details needed to review your booth and add you to the Quest directory.</span>
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:9px;border-radius:999px;background:var(--ink);color:#fff;padding:12px 16px;font:700 13.5px 'Geist',system-ui,sans-serif;">Open form<svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+      </summary>
+      <div style="padding:0 24px 24px;">
+        <div class="sq-vendor-grid" style="border-top:1px solid var(--line);padding-top:24px;">
+          <div class="sq-vendor-intro">
+            <x-import component-from-global-scope="ScoutLocalDesignSystem_b3452c.Eyebrow" hint-size="auto,16px">review details</x-import>
+            <h2 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,44px);line-height:1;letter-spacing:-.035em;color:var(--ink);margin:12px 0 0;">send every detail in one place.</h2>
+            <p style="font-size:16px;line-height:1.55;color:var(--ink-2);margin:14px 0 0;max-width:28em;">The logo uploads to Scout Local storage and the request is saved for review before anything is added to the public route.</p>
+          </div>
+          <div>
+            <form id="questVendorForm" method="post" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:16px;">
+              <label style="display:flex;align-items:flex-start;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--soft);font-size:14px;line-height:1.45;color:var(--ink-2);">
+                <input name="attestation" type="checkbox" required style="margin-top:3px;accent-color:var(--rust);">
+                <span>I attest my business is an HBB-approved vendor or I am a registered nonprofit at Fort Polk.</span>
+              </label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+                <label style="display:flex;flex-direction:column;gap:7px;">
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">contact name</span>
+                  <input name="contact_name" type="text" required autocomplete="name" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px;">
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">confirmation email</span>
+                  <input name="submitter_email" type="email" required autocomplete="email" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+                </label>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">business name</span>
+                <input name="business_name" type="text" required autocomplete="organization" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">your logo</span>
+                <input id="questVendorLogo" name="logo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" required style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:11px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">what you sell</span>
+                <input name="sell_line" type="text" required placeholder="A short line on what you sell" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+              </label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+                <label style="display:flex;flex-direction:column;gap:7px;">
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">website link</span>
+                  <input name="website" type="url" required placeholder="https://" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px;">
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">facebook link</span>
+                  <input name="facebook" type="url" required placeholder="https://" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);">
+                </label>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">special offer or freebie</span>
+                <textarea name="booth_special" rows="3" required placeholder="Families love these, and it gets people to your table." style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);resize:vertical;"></textarea>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px;">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">best way to reach you</span>
+                <textarea name="contact_method" rows="3" required placeholder="Email, phone number, or anything else we should use." style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;font:14px 'Geist',system-ui,sans-serif;color:var(--ink);resize:vertical;"></textarea>
+              </label>
+              <button id="questVendorSubmit" class="sq-vendor-submit" type="submit" style="width:fit-content;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:13px 18px;font:700 14px 'Geist',system-ui,sans-serif;cursor:pointer;">Send participation request<svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <p id="questVendorStatus" style="font-size:13px;color:var(--rust);margin:0;min-height:18px;" role="status" aria-live="polite"></p>
+            </form>
+            <div id="questVendorSuccess" hidden style="border:1px solid var(--line);border-radius:18px;background:var(--soft);padding:22px;">
+              <h3 style="font-family:'Outfit',sans-serif;font-size:24px;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin:0;">Your request is in review.</h3>
+              <p style="font-size:15px;line-height:1.55;color:var(--ink-2);margin:10px 0 0;">Scout Local received your Quest vendor request and sent a confirmation email. We will review it before adding anything to the public route.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
   </section>
 
   <footer style="background:var(--ink);color:#fff;margin-top:24px;position:relative;overflow:hidden;">
@@ -308,33 +421,53 @@ class Component extends DCLogic {
 
   baseBiz() {
     const stamps = ['#b25e3c','#c98a3c','#7a8b4f','#4f5c3a','#2f7d78','#5b6b9e','#8e5b8a','#a14b53','#caa05a','#6b8e7a','#9c6b3c','#54707f','#7d6aa0','#b56b5a','#5f8a52','#8a7b3c'];
-    const out = [];
-    for (let i = 0; i < 16; i++) {
+    const confirmed = [
+      {
+        name: 'Candles By Lakesha',
+        sells: '100% soy wax wickless candles, wax melts, perfume, and body oils.',
+        activity: 'Shop scent-forward candles, wax melts, perfume, and body oils at the booth.',
+        website: 'https://www.candlesbylakesha.com',
+        facebook: 'https://facebook.com/candlesbylakesha',
+        logo: '/quest/uploads/candles-by-lakesha.jpg',
+      },
+      {
+        name: 'Doughlicious Treats',
+        sells: 'Freshly baked gourmet cookies, mini cakes, cake pops, cake push pops, pretzel bites, Chex Mix, and custom sweet treats.',
+        activity: 'Free samples while supplies last. Spend $25 or more for a surprise Doughlicious treat; follow on Facebook at the booth for an extra entry to win a free 12-pack of signature cookies.',
+        website: 'https://bakebug.com/b/doughlicious-treats-1/shop',
+        facebook: 'https://www.facebook.com/DoughliciousTreats',
+        logo: '/quest/uploads/doughlicious-treats.webp',
+      },
+    ];
+    return confirmed.map((vendor, i) => {
       const n = String(i + 1).padStart(2, '0');
-      out.push({
+      return {
         idx: i,
         num: n,
-        name: 'Business ' + n,
-        sells: 'What they sell \u2014 short description goes here.',
-        activity: 'What they\u2019ll have at their booth.',
-        website: '#',
-        facebook: '#',
-        stamp: stamps[i],
-      });
-    }
-    return out;
+        name: vendor.name,
+        sells: vendor.sells,
+        activity: vendor.activity,
+        website: vendor.website,
+        facebook: vendor.facebook,
+        logo: vendor.logo,
+        confirmed: true,
+        stamp: stamps[i % stamps.length],
+      };
+    });
   }
 
   // All three styles are CLOSED loops that begin and end at the Scout Local table,
   // which sits in a gap at the top-center of the loop.
-  positions(style) {
+  positions(style, count) {
     const cx = 500, cy = 314, rx = 398, ry = 204;
     const gapDeg = 17;                 // angular gap at the top reserved for the table
     const startA = -90 + gapDeg;
     const span = 360 - 2 * gapDeg;
+    const total = Math.max(1, count);
     const stops = [];
-    for (let i = 0; i < 16; i++) {
-      const a = (startA + span * (i / 15)) * Math.PI / 180;
+    for (let i = 0; i < total; i++) {
+      const ratio = total === 1 ? 0.5 : i / (total - 1);
+      const a = (startA + span * ratio) * Math.PI / 180;
       const c = Math.cos(a), s = Math.sin(a);
       let x, y;
       if (style === 'road') {
@@ -385,9 +518,11 @@ class Component extends DCLogic {
     const showDirectPath = this.props.showDirectPath ?? true;
     const texture = this.props.mapTexture ?? 'parchment';
     const style = this.state.mapStyle;
-    const sel = this.state.selected;
     const biz = this.baseBiz();
-    const { table, stops } = this.positions(style);
+    const stopTotal = biz.length;
+    const stopCountLabel = stopTotal + ' ' + (stopTotal === 1 ? 'stop' : 'stops');
+    const sel = Math.min(this.state.selected, Math.max(0, stopTotal - 1));
+    const { table, stops } = this.positions(style, stopTotal);
 
     const routePath = this.smoothPath([table, ...stops, table], false);
     const target = stops[sel];
@@ -400,21 +535,25 @@ class Component extends DCLogic {
       return {
         num: b.num,
         name: b.name,
+        logo: b.logo,
+        hasLogo: !!b.logo,
+        noLogo: !b.logo,
         active,
         onClick: () => this.setState({ selected: i }),
-        wrapStyle: { position: 'absolute', left: (p.x / 10) + '%', top: (p.y / 6) + '%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer', zIndex: active ? 6 : 3, width: '94px', fontFamily: "'Geist', sans-serif" },
-        circleStyle: { width: active ? '58px' : '48px', height: active ? '58px' : '48px', borderRadius: '999px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--paper)', border: active ? '3px solid var(--ink)' : ('2px dashed ' + ring), boxShadow: active ? '0 0 0 6px var(--peach), 0 12px 24px -12px rgba(40,30,20,.55)' : '0 6px 14px -10px rgba(40,30,20,.45)', fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: active ? '19px' : '15px', color: 'var(--ink)', transition: 'all .2s cubic-bezier(.2,.8,.2,1)' },
-        labelStyle: { fontSize: '11px', fontWeight: 600, color: 'var(--rust)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '94px', lineHeight: 1.2, textAlign: 'center', background: 'rgba(255,253,250,.85)', padding: '1px 6px', borderRadius: '999px' },
+        wrapStyle: { position: 'absolute', left: (p.x / 10) + '%', top: (p.y / 6) + '%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer', zIndex: active ? 6 : 3, width: '122px', fontFamily: "'Geist', sans-serif" },
+        circleStyle: { width: active ? '62px' : '50px', height: active ? '62px' : '50px', borderRadius: '999px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--paper)', border: b.logo ? (active ? '3px solid var(--ink)' : '2px solid var(--paper)') : (active ? '3px solid var(--ink)' : ('2px dashed ' + ring)), boxShadow: active ? '0 0 0 6px var(--peach), 0 12px 24px -12px rgba(40,30,20,.55)' : '0 6px 14px -10px rgba(40,30,20,.45)', color: 'var(--ink)', transition: 'all .2s cubic-bezier(.2,.8,.2,1)', overflow: 'hidden' },
+        logoImgStyle: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
+        labelStyle: { fontSize: '11px', fontWeight: 700, color: 'var(--rust)', whiteSpace: 'normal', overflowWrap: 'anywhere', maxWidth: '118px', lineHeight: 1.05, textAlign: 'center', background: 'rgba(255,253,250,.9)', padding: '3px 7px', borderRadius: '10px' },
       };
     });
 
     const cards = biz.map((b, i) => {
       const active = i === sel;
       return {
-        num: b.num, name: b.name, sells: b.sells, activity: b.activity, website: b.website, facebook: b.facebook,
+        num: b.num, name: b.name, sells: b.sells, activity: b.activity, website: b.website, facebook: b.facebook, logo: b.logo, hasLogo: !!b.logo, noLogo: !b.logo,
         onClick: () => this.setState({ selected: i }),
         dotStyle: { width: '11px', height: '11px', borderRadius: '999px', background: b.stamp, flex: '0 0 auto', boxShadow: '0 0 0 3px ' + this.hexA(b.stamp, 0.18) },
-        logoStyle: { width: '50px', height: '50px', borderRadius: '999px', border: '2px dashed ' + b.stamp, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto', background: 'var(--soft)' },
+        logoStyle: { width: '50px', height: '50px', borderRadius: '999px', border: b.logo ? '1px solid var(--line)' : '2px dashed ' + b.stamp, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto', background: 'var(--soft)', overflow: 'hidden' },
         cardStyle: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '18px', borderRadius: '18px', background: 'var(--paper)', border: active ? '1.5px solid var(--ink)' : '1px solid var(--line)', boxShadow: active ? '0 26px 54px -42px #6c5038' : '0 8px 16px -10px rgba(40,30,20,.16)', cursor: 'pointer', transition: 'border-color .18s, box-shadow .18s, transform .18s', transform: active ? 'translateY(-2px)' : 'none' },
       };
     });
@@ -431,18 +570,300 @@ class Component extends DCLogic {
 
     return {
       pins, cards, routePath, spokePath, mapPanelStyle,
+      routeHeading: stopCountLabel + ', any order.',
+      stopCountLabel,
+      stopTotal,
       tableStyle: { position: 'absolute', left: (table.x / 10) + '%', top: (table.y / 6) + '%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', zIndex: 8, textAlign: 'center' },
       isLoop: style === 'loop', isRoad: style === 'road', isTrail: style === 'trail',
       setLoop: () => this.setState({ mapStyle: 'loop' }),
       setRoad: () => this.setState({ mapStyle: 'road' }),
       setTrail: () => this.setState({ mapStyle: 'trail' }),
-      curName: cur.name, curSells: cur.sells, curActivity: cur.activity, curNum: cur.num, curWebsite: cur.website, curFacebook: cur.facebook,
+      curName: cur.name, curSells: cur.sells, curActivity: cur.activity, curNum: cur.num, curWebsite: cur.website, curFacebook: cur.facebook, curLogo: cur.logo, curHasLogo: !!cur.logo, curNoLogo: !cur.logo,
       curHeaderStyle: { height: '116px', background: this.hexA(cur.stamp, 0.13), borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-      curLogoStyle: { width: '76px', height: '76px', borderRadius: '999px', border: '2px dashed ' + cur.stamp, background: 'var(--paper)', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+      curLogoStyle: { width: '76px', height: '76px', borderRadius: '999px', border: cur.logo ? '1px solid var(--line)' : '2px dashed ' + cur.stamp, background: 'var(--paper)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
       curDotStyle: { width: '11px', height: '11px', borderRadius: '999px', background: cur.stamp, display: 'inline-block', boxShadow: dotShadow },
     };
   }
 }
+</script>
+<script>
+(function () {
+  function vendorPanel() {
+    return document.getElementById("vendor-request");
+  }
+  function openVendorPanel() {
+    var details = vendorPanel();
+    if (!details) return;
+    details.open = true;
+    setTimeout(function () { details.scrollIntoView({ behavior: "smooth", block: "start" }); }, 30);
+  }
+  if (window.location.hash === "#vendor-request") setTimeout(openVendorPanel, 100);
+  window.addEventListener("hashchange", function () {
+    if (window.location.hash === "#vendor-request") openVendorPanel();
+  });
+  document.addEventListener("click", function (event) {
+    var target = event.target;
+    var link = target && target.closest ? target.closest('a[href="#vendor-request"]') : null;
+    if (link) setTimeout(openVendorPanel, 60);
+  });
+
+  var setupAttempts = 0;
+  function setupVendorForm() {
+    var form = document.getElementById("questVendorForm");
+    if (!form) return false;
+    if (form.dataset.questVendorReady === "true") return true;
+    form.dataset.questVendorReady = "true";
+    form.noValidate = true;
+    form.setAttribute("novalidate", "novalidate");
+
+  var SUPABASE_URL = "https://pmogqxzpwdagpllempgn.supabase.co";
+  var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtb2dxeHpwd2RhZ3BsbGVtcGduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNTQ2MjUsImV4cCI6MjA5MzkzMDYyNX0.qodUSAhb7R31Jiv1KwLs-9Gnv-oejL-495h7-Ogz5dg";
+  var BUCKET = "listing-uploads";
+  var FORT_POLK_BASE_ID = "00000000-0000-4000-8000-000000000001";
+  var ATTESTATION_TEXT = "HBB-approved vendor or registered nonprofit at Fort Polk";
+
+  var btn = document.getElementById("questVendorSubmit");
+  var status = document.getElementById("questVendorStatus");
+  var successPanel = document.getElementById("questVendorSuccess");
+  var buttonHtml = btn ? btn.innerHTML : "";
+  if (successPanel) {
+    successPanel.hidden = true;
+    successPanel.style.display = "none";
+  }
+  var REQUIRED_FIELDS = [
+    ["attestation", "Please check the attestation box."],
+    ["contact_name", "Please add a contact name."],
+    ["submitter_email", "Please add a confirmation email."],
+    ["business_name", "Please add the business name."],
+    ["logo", "Please upload your logo."],
+    ["sell_line", "Please add a short line on what you sell."],
+    ["website", "Please add your website link."],
+    ["facebook", "Please add your Facebook link."],
+    ["booth_special", "Please add your special offer or freebie."],
+    ["contact_method", "Please add the best way to reach you."]
+  ];
+
+  function val(name) {
+    var el = form.elements[name];
+    return el && typeof el.value === "string" ? el.value.trim() : "";
+  }
+  function setMsg(text, isError) {
+    if (!status) return;
+    status.textContent = text || "";
+    status.style.color = isError ? "var(--rust)" : "var(--sage-deep)";
+  }
+  function field(name) {
+    return form.elements[name] || null;
+  }
+  function markRequiredFields() {
+    REQUIRED_FIELDS.forEach(function (entry) {
+      var el = field(entry[0]);
+      if (!el) return;
+      el.required = true;
+      el.setAttribute("required", "required");
+      el.setAttribute("aria-required", "true");
+    });
+  }
+  function validateRequiredFields() {
+    markRequiredFields();
+    for (var i = 0; i < REQUIRED_FIELDS.length; i++) {
+      var name = REQUIRED_FIELDS[i][0];
+      var message = REQUIRED_FIELDS[i][1];
+      var el = field(name);
+      if (!el) continue;
+      if (el.type === "checkbox" && !el.checked) {
+        setMsg(message, true);
+        el.focus();
+        return false;
+      }
+      if (el.type === "file" && (!el.files || !el.files.length)) {
+        setMsg(message, true);
+        el.focus();
+        return false;
+      }
+      if (el.type !== "checkbox" && el.type !== "file" && !val(name)) {
+        setMsg(message, true);
+        el.focus();
+        return false;
+      }
+    }
+    return form.reportValidity();
+  }
+  markRequiredFields();
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0;
+      var v = c === "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+  function uploadFile(file) {
+    if (!file) return Promise.reject(new Error("Logo file is required"));
+    var safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+    var path = "quest-vendors/" + uuid() + "/" + safe;
+    return fetch(SUPABASE_URL + "/storage/v1/object/" + BUCKET + "/" + path, {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON,
+        Authorization: "Bearer " + SUPABASE_ANON,
+        "Content-Type": file.type || "application/octet-stream"
+      },
+      body: file
+    }).then(function (res) {
+      if (res.ok) return path;
+      return res.text().then(function (text) { throw new Error(text || ("Logo upload failed with HTTP " + res.status)); });
+    });
+  }
+  function notesText() {
+    return [
+      "Scout Quest vendor request",
+      "Attestation: " + ATTESTATION_TEXT,
+      "Special offer/freebie: " + val("booth_special"),
+      "Best contact: " + val("contact_method")
+    ].join("\n");
+  }
+  function notifyVendorRequest(payload) {
+    var vendorRequest = Object.assign({}, payload, {
+      contact_name: val("contact_name"),
+      business_name: val("business_name"),
+      sell_line: val("sell_line"),
+      facebook: val("facebook"),
+      special_offer: val("booth_special"),
+      contact_method: val("contact_method"),
+      attestation: ATTESTATION_TEXT
+    });
+    return fetch(SUPABASE_URL + "/functions/v1/resend-listing-email", {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON,
+        Authorization: "Bearer " + SUPABASE_ANON,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        action: "quest_vendor_request",
+        vendorRequest: vendorRequest
+      })
+    }).then(function (res) {
+      if (res.ok) return res.json().catch(function () { return null; });
+      return res.text().then(function (text) { throw new Error(text || ("Email request failed with HTTP " + res.status)); });
+    }).catch(function (error) {
+      if (window.console) console.warn("Scout Quest email notification failed:", error);
+      return null;
+    });
+  }
+
+    form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    setMsg("");
+    if (!validateRequiredFields()) return;
+
+    var logoInput = document.getElementById("questVendorLogo");
+    var logoFile = logoInput && logoInput.files ? logoInput.files[0] : null;
+    var submissionId = uuid();
+    var submittedPayload = null;
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = "Submitting...";
+    }
+    setMsg("Uploading your logo...");
+
+    uploadFile(logoFile).then(function (logoPath) {
+      setMsg("Saving your request...");
+      var payload = {
+        id: submissionId,
+        plan_interest: "free",
+        relationship: "owner",
+        submitter_name: val("contact_name"),
+        submitter_email: val("submitter_email"),
+        submitter_phone: null,
+        notes_to_team: notesText(),
+        name: val("business_name"),
+        description: val("sell_line"),
+        business_type: "local",
+        submission_path: "local",
+        primary_category: "event-vendor",
+        category_other: null,
+        secondary_category: null,
+        selected_base_id: FORT_POLK_BASE_ID,
+        base: "Fort Polk",
+        other_base_text: null,
+        labels: ["Scout Quest", ATTESTATION_TEXT],
+        tags: ["Scout Quest", "Fort Polk vendor"],
+        phone: null,
+        email: val("submitter_email"),
+        website: val("website"),
+        address: null,
+        area_description: "Scout Quest vendor request",
+        hours: null,
+        social_facebook: val("facebook"),
+        logo_path: logoPath,
+        photo_paths: [],
+        consent: true,
+        marketing_consent: true,
+        source: "quest_vendor_request",
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent
+      };
+      submittedPayload = payload;
+      return fetch(SUPABASE_URL + "/rest/v1/pending_business_listings", {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON,
+          Authorization: "Bearer " + SUPABASE_ANON,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal"
+        },
+        body: JSON.stringify(payload)
+      });
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.text().then(function (text) { throw new Error(text || ("Submission failed with HTTP " + res.status)); });
+      }
+      setMsg("Sending confirmation...");
+      return notifyVendorRequest(submittedPayload);
+    }).then(function () {
+      form.hidden = true;
+      if (successPanel) {
+        successPanel.hidden = false;
+        successPanel.style.display = "block";
+      }
+      setMsg("");
+      var details = vendorPanel();
+      if (details) details.open = true;
+      if (successPanel) successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+    }).catch(function (error) {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = buttonHtml;
+      }
+      setMsg("Something went wrong. Please try again, or email hello@joinscoutlocal.com.", true);
+      if (window.console) console.error("Scout Quest vendor request failed:", error);
+    });
+    });
+    return true;
+  }
+
+  function scheduleVendorFormSetup() {
+    if (setupVendorForm()) {
+      if (window.location.hash === "#vendor-request") setTimeout(openVendorPanel, 50);
+      return;
+    }
+    if (setupAttempts >= 60) return;
+    setupAttempts += 1;
+    setTimeout(scheduleVendorFormSetup, 100);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scheduleVendorFormSetup);
+  } else {
+    scheduleVendorFormSetup();
+  }
+  window.addEventListener("load", function () {
+    setTimeout(scheduleVendorFormSetup, 0);
+    setTimeout(scheduleVendorFormSetup, 250);
+  });
+})();
 </script>
 </body>
 </html>
