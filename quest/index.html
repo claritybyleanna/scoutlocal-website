@@ -22,6 +22,7 @@
   body{margin:0;background:var(--bg);color:var(--ink-2);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
   @keyframes sq-ping{0%{transform:scale(1);opacity:.65}70%,100%{transform:scale(2.6);opacity:0}}
   a{color:inherit;text-decoration:none;}
+  .sq-mobile-route-list{display:none;}
   .sq-vendor-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(320px,1.18fr);gap:28px;align-items:start;}
   .sq-vendor-intro{position:sticky;top:88px;}
   .sq-vendor-panel summary::-webkit-details-marker{display:none;}
@@ -55,7 +56,8 @@
     .sq-route-section{padding-left:14px!important;padding-right:14px!important;}
     .sq-route-layout{gap:18px!important;}
     .sq-route-map-col,.sq-route-detail{min-width:0!important;width:100%!important;flex:1 1 100%!important;position:static!important;}
-    .sq-map-panel{min-height:270px!important;aspect-ratio:1 / .92!important;border-radius:18px!important;}
+    .sq-map-panel{display:none!important;}
+    .sq-mobile-route-list{display:flex!important;flex-direction:column!important;gap:12px!important;border:1px solid var(--line)!important;border-radius:18px!important;background:var(--paper)!important;box-shadow:0 20px 44px -36px #6c5038!important;padding:14px!important;overflow:hidden!important;}
     .sq-map-pin{width:78px!important;gap:4px!important;}
     .sq-map-pin-circle{width:42px!important;height:42px!important;}
     .sq-map-pin-label{font-size:10px!important;max-width:74px!important;padding:2px 5px!important;line-height:1.05!important;}
@@ -213,6 +215,41 @@
             <img src="/quest/assets/scout-fab.png" alt="" style="width:16px;height:16px;object-fit:contain;">
             <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">any order · tap a stop to explore</span>
           </div>
+        </div>
+        <div class="sq-mobile-route-list" aria-label="Quest stop list">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+            <div style="min-width:0;">
+              <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">mobile route</div>
+              <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em;line-height:1.05;color:var(--ink);margin:4px 0 0;">quest stops</h3>
+            </div>
+            <span style="flex:0 0 auto;font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);border:1px solid var(--line);border-radius:999px;background:var(--soft);padding:7px 10px;">{{ stopCountLabel }}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px dashed var(--line);border-radius:14px;background:var(--soft);">
+            <span style="width:44px;height:44px;border-radius:999px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -14px rgba(40,30,20,.55);flex:0 0 auto;background:var(--paper);">
+              <img src="/quest/uploads/scout-fab-default.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </span>
+            <span style="display:flex;flex-direction:column;gap:3px;min-width:0;">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">start &amp; finish</span>
+              <span style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1.05;">Scout Local table</span>
+            </span>
+          </div>
+          <sc-for list="{{ mobileStops }}" as="m" hint-placeholder-count="10">
+            <button onClick="{{ m.onClick }}" style="{{ m.itemStyle }}">
+              <span style="{{ m.logoStyle }}">
+                <sc-if value="{{ m.hasLogo }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ m.logo }}" alt="{{ m.name }} logo" style="width:100%;height:100%;object-fit:cover;display:block;">
+                </sc-if>
+                <sc-if value="{{ m.noLogo }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-family:'Geist Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.08;">{{ m.statusText }}</span>
+                </sc-if>
+              </span>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:4px;">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);">stop {{ m.num }}</span>
+                <span style="font-family:'Outfit',sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.08;color:var(--ink);overflow-wrap:anywhere;">{{ m.name }}</span>
+              </span>
+              <span style="{{ m.badgeStyle }}"><span style="{{ m.dotStyle }}"></span>{{ m.statusText }}</span>
+            </button>
+          </sc-for>
         </div>
       </div>
 
@@ -635,6 +672,76 @@ class Component extends DCLogic {
       };
     });
 
+    const mobileStops = biz.map((b, i) => {
+      const active = i === sel;
+      return {
+        num: b.num,
+        name: b.name,
+        logo: b.logo,
+        statusText: b.statusText,
+        hasLogo: !!b.logo,
+        noLogo: !b.logo,
+        onClick: () => this.setState({ selected: i }),
+        itemStyle: {
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: 'auto minmax(0,1fr) auto',
+          alignItems: 'center',
+          gap: '12px',
+          padding: '12px',
+          borderRadius: '14px',
+          border: active ? '1.5px solid var(--ink)' : '1px solid var(--line)',
+          background: active ? 'var(--soft)' : 'rgba(255,253,250,.72)',
+          boxShadow: active ? '0 16px 34px -28px rgba(40,30,20,.55)' : 'none',
+          textAlign: 'left',
+          cursor: 'pointer',
+          fontFamily: "'Geist', sans-serif",
+          color: 'var(--ink)',
+        },
+        logoStyle: {
+          width: '48px',
+          height: '48px',
+          borderRadius: '999px',
+          border: b.logo ? '1px solid var(--line)' : '2px dashed ' + b.stamp,
+          background: 'var(--paper)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          flex: '0 0 auto',
+        },
+        badgeStyle: {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '5px',
+          minWidth: '72px',
+          maxWidth: '86px',
+          padding: '6px 8px',
+          borderRadius: '999px',
+          border: '1px solid var(--line)',
+          background: 'var(--paper)',
+          fontFamily: "'Geist Mono', monospace",
+          fontSize: '9px',
+          fontWeight: 700,
+          letterSpacing: '.04em',
+          textTransform: 'uppercase',
+          color: 'var(--muted)',
+          lineHeight: 1.1,
+          textAlign: 'center',
+          whiteSpace: 'normal',
+        },
+        dotStyle: {
+          width: '9px',
+          height: '9px',
+          borderRadius: '999px',
+          background: b.stamp,
+          flex: '0 0 auto',
+          boxShadow: '0 0 0 3px ' + this.hexA(b.stamp, 0.16),
+        },
+      };
+    });
+
     const cards = biz.map((b, i) => {
       const active = i === sel;
       return {
@@ -657,7 +764,7 @@ class Component extends DCLogic {
     const mapPanelStyle = { position: 'relative', borderRadius: '24px', border: '1px solid var(--line)', background: 'var(--soft)', backgroundImage: bgImage, backgroundSize: bgSize, boxShadow: '0 26px 54px -42px #6c5038', overflow: 'hidden', aspectRatio: '1000 / 600', minHeight: '380px' };
 
     return {
-      pins, cards, routePath, spokePath, mapPanelStyle,
+      pins, mobileStops, cards, routePath, spokePath, mapPanelStyle,
       routeHeading: stopCountLabel + ', any order.',
       stopCountLabel,
       stopTotal,
